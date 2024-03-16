@@ -8,15 +8,18 @@ import { usePathname } from "next/navigation";
 
 const NavbarLinks = () => {
   const pathname = usePathname();
-  console.log("pathname :", pathname);
 
-  return navbarLinks.map(({ text, href }, index) => (
+  return navbarLinks.map(({ text, href, matchPaths }, index) => (
     <NavbarItem key={index}>
       <Button
         variant="light"
         as={href ? Link : undefined}
         href={href}
-        color={pathname === href ? "primary" : "default"}
+        color={
+          pathname === href || matchPaths?.includes(pathname)
+            ? "primary"
+            : "default"
+        }
         className="font-semibold"
       >
         {text}

@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { ComponentProps, FC } from "react";
 
 export const LogoStandard: FC<ComponentProps<"svg">> = (props) => (
@@ -65,5 +66,123 @@ export const ChevronDown: FC<ComponentProps<"svg">> = (props) => (
       strokeLinejoin="round"
       d="m19.5 8.25-7.5 7.5-7.5-7.5"
     />
+  </svg>
+);
+
+export const ChatBubble: FC<ComponentProps<"svg">> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="w-6 h-6"
+    {...props}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"
+    />
+  </svg>
+);
+
+export const BookmarkIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+    />
+  </svg>
+);
+
+export const BookmarkSolidIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z"
+      clipRule="evenodd"
+    />
+  </svg>
+);
+
+export const MagicWandIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="m11.399 5.59 2.5 2.5M5.738 3.333V5m0 0v1.667m0-1.667H4.071m1.667 0h1.667m8.958 5.209v1.666m0 0v1.667m0-1.667h-1.667m1.667 0h1.667M2.577 14.411 13.9 3.089a.833.833 0 0 1 1.178 0L16.4 4.411a.833.833 0 0 1 0 1.178L5.077 16.911a.833.833 0 0 1-1.178 0l-1.322-1.322a.833.833 0 0 1 0-1.178Z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);
+
+export const FeaturedIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M5.481 10.156 2.066 13.95l2.973.434.743 2.911 3.415-3.793m1.606 0 3.415 3.793.743-2.912 2.973-.434-3.415-3.793m-2.751 2.71 2.946-2.947a2.5 2.5 0 0 0 0-3.535l-2.946-2.947a2.5 2.5 0 0 0-3.536 0L5.286 6.384a2.5 2.5 0 0 0 0 3.535l2.946 2.946a2.5 2.5 0 0 0 3.536 0Zm.107-4.715a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);
+
+export const ClockIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M10 5v5l3.333 1.666m5-1.666a8.333 8.333 0 1 1-16.666 0 8.333 8.333 0 0 1 16.666 0Z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
   </svg>
 );
