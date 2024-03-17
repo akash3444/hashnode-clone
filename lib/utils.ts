@@ -1,4 +1,5 @@
 import { clsx, ClassValue } from "clsx";
+import { format } from "date-fns/format";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -15,3 +16,7 @@ export function getDomain(url: string) {
 
   return domain;
 }
+
+export const formatDate = (date: any, dateFormat?: string) => {
+  return format(date, dateFormat || "MMM dd, yyyy");
+};

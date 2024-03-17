@@ -159,3 +159,26 @@ export const GET_FEED = `
     __typename
   }
 `;
+
+export const GET_DISCUSSIONS_TOP_COMMENTERS = `
+  query DiscussionsTopCommenters {
+    topCommenters(first: 5) {
+      edges {
+        node {
+          ...RequiredTopCommenterFields
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+  }
+  fragment RequiredTopCommenterFields on User {
+    _id: id
+    name
+    photo: profilePicture
+    isPro
+    username
+    __typename
+  }
+`;

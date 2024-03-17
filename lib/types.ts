@@ -66,3 +66,16 @@ export interface Publication {
 
 type UrlPattern = "DEFAULT" | "SIMPLE";
 export type FeedType = "RECENT" | "PERSONALIZED" | "FEATURED" | "RELEVANT";
+
+export interface Changelog {
+  _id: string;
+  title: string;
+  slug: string;
+  content: string;
+  contentMarkdown: string;
+  coverImageURL: string;
+  author: string;
+  type: string;
+  isActive: boolean;
+  dateAdded: string;
+}

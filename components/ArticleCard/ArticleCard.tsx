@@ -6,19 +6,14 @@ import {
 } from "@/components/icons";
 import { DEFAULT_PROFILE_PICTURE, SEPARATOR_DOT } from "@/lib/constants";
 import { Article } from "@/lib/types";
-import { cn, getDomain } from "@/lib/utils";
+import { formatDate, getDomain } from "@/lib/utils";
 import Button from "@/shared/Button";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  CardProps,
-} from "@nextui-org/card";
+import Card from "@/shared/Card";
+import Tooltip from "@/shared/Tooltip";
+import { CardBody, CardFooter, CardHeader, CardProps } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
 import { Divider } from "@nextui-org/divider";
 import { Link } from "@nextui-org/link";
-import { format } from "date-fns/format";
 import Image from "next/image";
 import NextLink from "next/link";
 import { FC } from "react";
@@ -49,7 +44,7 @@ const ArticleCardHeader: FC<Article> = ({
           {author.isPro && <Chip size="sm">Pro</Chip>}
         </div>
         <p className="text-small text-default-500">
-          {getDomain(url)} {SEPARATOR_DOT} {format(dateAdded, "MMM dd, yyyy")}
+          {getDomain(url)} {SEPARATOR_DOT} {formatDate(dateAdded)}
         </p>
       </div>
     </div>
@@ -128,20 +123,22 @@ const ArticleCardFooter: FC<Article> = ({
           <Divider orientation="vertical" className="h-3.5 ml-1 mr-0" />
         </>
       )}
-      <Button isIconOnly size="sm" variant="light">
-        {bookmarked ? (
-          <BookmarkSolidIcon className="text-foreground-500" />
-        ) : (
-          <BookmarkIcon className="text-foreground-500" />
-        )}
-      </Button>
+      <Tooltip content={bookmarked ? "Remove bookmark" : "Save for later"}>
+        <Button isIconOnly size="sm" variant="light">
+          {bookmarked ? (
+            <BookmarkSolidIcon className="text-foreground-500" />
+          ) : (
+            <BookmarkIcon className="text-foreground-500" />
+          )}
+        </Button>
+      </Tooltip>
     </div>
   </CardFooter>
 );
 
 const ArticleCard: FC<ArticleCardProps> = ({ article, className }) => {
   return (
-    <Card className={cn("max-w-3xl p-3", className)} shadow="sm">
+    <Card>
       <ArticleCardHeader {...article} />
       <ArticleCardBody {...article} />
       <ArticleCardFooter {...article} />

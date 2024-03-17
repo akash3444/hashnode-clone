@@ -186,3 +186,42 @@ export const ClockIcon: FC<ComponentProps<"svg">> = ({
     ></path>
   </svg>
 );
+
+export const CloseIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+      clipRule="evenodd"
+    />
+  </svg>
+);
+
+export const FollowIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M15.059 16.263S13.558 13.336 10 13.336c-3.558 0-5.059 2.927-5.059 2.927m13.29-7.578a8.333 8.333 0 1 1-7.17-6.952m5.19 4.1V3.75m0 0V1.667m0 2.083h-2.084m2.083 0h2.083M12.78 8.276a2.78 2.78 0 1 1-5.558 0 2.78 2.78 0 0 1 5.558 0Z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);

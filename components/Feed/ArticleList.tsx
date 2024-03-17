@@ -1,10 +1,10 @@
 "use client";
 
-import { Feed, FeedVariables, getFeed } from "@/lib/api";
 import { FC, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ArticleCard from "../ArticleCard";
 import { ArticleListSkeleton } from "./ArticleListSkeleton";
+import { Feed, FeedVariables, getFeed } from "@/api/feed";
 
 interface ArticleListProps {
   initialFeed: Feed;
