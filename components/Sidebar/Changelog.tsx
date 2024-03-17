@@ -1,7 +1,7 @@
 "use client";
 
 import { SEPARATOR_DOT } from "@/lib/constants";
-import { Changelog } from "@/lib/types";
+import type { Changelog } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 import Button from "@/shared/Button";
 import Card from "@/shared/Card";
