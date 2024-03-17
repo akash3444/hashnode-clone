@@ -1,7 +1,7 @@
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Skeleton } from "@nextui-org/skeleton";
 
-const ArticleCardSkeleton = () => {
+export const ArticleCardSkeleton = () => {
   return (
     <Card className="max-w-3xl p-3" shadow="sm">
       <CardHeader>
@@ -32,5 +32,3 @@ const ArticleCardSkeleton = () => {
     </Card>
   );
 };
-
-export default ArticleCardSkeleton;

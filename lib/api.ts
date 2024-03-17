@@ -1,9 +1,9 @@
 import { GET_FEED } from "@/graphql/queries";
 import { PageInfo, Article, FeedType } from "./types";
 
-type Feed = { edges: { node: Article }[]; pageInfo: PageInfo };
+export type Feed = { edges: { node: Article }[]; pageInfo: PageInfo };
 
-interface FeedVariables {
+export interface FeedVariables {
   first: number;
   filter?: { type: FeedType };
   after?: string;

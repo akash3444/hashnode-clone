@@ -1,10 +1,10 @@
 "use client";
 
 import { Tab, Tabs } from "@nextui-org/tabs";
-import { ClockIcon, FeaturedIcon, MagicWandIcon } from "./icons";
+import { ClockIcon, FeaturedIcon, MagicWandIcon } from "../icons";
 import { usePathname, useRouter } from "next/navigation";
 
-const ArticleTabs = () => {
+export const ArticleTabs = () => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -47,5 +47,3 @@ const ArticleTabs = () => {
     </Tabs>
   );
 };
-
-export default ArticleTabs;

@@ -7,7 +7,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <NextUiButton
         {...props}
-        className={cn("font-semibold", className)}
+        className={cn("font-semibold rounded-full", className)}
         ref={ref}
       />
     );

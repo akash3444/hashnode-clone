@@ -1,6 +1,6 @@
-import ArticleList from "@/components/ArticleList";
-import ArticleListSkeleton from "@/components/ArticleListSkeleton";
-import ArticleTabs from "@/components/ArticleTabs";
+import Feed from "@/components/Feed";
+import { ArticleListSkeleton } from "@/components/Feed";
+import { ArticleTabs } from "@/components/Feed";
 import { Suspense } from "react";
 
 export default function Recent() {
@@ -8,7 +8,7 @@ export default function Recent() {
     <main className="py-3 max-w-3xl mx-auto">
       <ArticleTabs />
       <Suspense fallback={<ArticleListSkeleton />}>
-        <ArticleList feedType="RECENT" />
+        <Feed feedType="RECENT" />
       </Suspense>
     </main>
   );
