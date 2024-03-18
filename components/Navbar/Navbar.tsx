@@ -14,7 +14,7 @@ import Button from "@/shared/Button";
 
 const Navbar = () => {
   return (
-    <Nav maxWidth="2xl">
+    <Nav maxWidth="2xl" isBlurred isBordered>
       <NavbarBrand className="cursor-pointer" as={Link} href="/">
         <LogoStandard className="h-7 w-auto" />
       </NavbarBrand>

@@ -8,6 +8,7 @@ const Tooltip: FC<TooltipProps> = (props) => {
       closeDelay={0}
       color="foreground"
       disableAnimation
+      showArrow
       {...props}
     />
   );

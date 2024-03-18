@@ -1,9 +1,9 @@
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
+import Card, { CardBody, CardFooter, CardHeader } from "@/shared/Card";
 import { Skeleton } from "@nextui-org/skeleton";
 
 export const ArticleCardSkeleton = () => {
   return (
-    <Card className="p-3" shadow="sm">
+    <Card className="p-3">
       <CardHeader>
         <div className="flex items-center gap-3">
           <Skeleton className="h-10 w-10 rounded-full" />

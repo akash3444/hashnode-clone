@@ -1,7 +1,7 @@
 export const navbarLinks = [
   {
     text: "Feed",
-    href: "/feed",
+    href: "/",
     matchPaths: ["/", "/featured", "/recent"],
   },
   {

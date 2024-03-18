@@ -1,10 +1,9 @@
-import { SEPARATOR_DOT } from "@/lib/constants";
 import { Article } from "@/lib/types";
 import Button from "@/shared/Button";
 import { CardBody } from "@/shared/Card";
-import { Dispatch, FC, SetStateAction } from "react";
-import { ChevronDown } from "../icons";
 import WithSeparatorDot from "@/shared/WithSeparatorDot";
+import { Dispatch, FC, SetStateAction } from "react";
+import { ChevronDown } from "../../icons";
 
 interface TrendingArticleListProps {
   articles: Article[];

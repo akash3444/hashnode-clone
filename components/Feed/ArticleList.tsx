@@ -38,7 +38,7 @@ const ArticleList: FC<ArticleListProps> = ({ initialFeed, feedVariables }) => {
       dataLength={feed?.edges?.length}
       scrollThreshold="2850px" // Height of the skeleton because loader is always visible
     >
-      <div className="space-y-6 pt-1 px-1">
+      <div className="space-y-6">
         {feed?.edges?.map(({ node }) => (
           <ArticleCard key={node.id} article={node} />
         ))}
