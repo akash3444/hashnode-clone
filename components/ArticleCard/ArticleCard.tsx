@@ -10,6 +10,7 @@ import { formatDate, getDomain } from "@/lib/utils";
 import Button from "@/shared/Button";
 import Card from "@/shared/Card";
 import Tooltip from "@/shared/Tooltip";
+import WithSeparatorDot from "@/shared/WithSeparatorDot";
 import { CardBody, CardFooter, CardHeader, CardProps } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
 import { Divider } from "@nextui-org/divider";
@@ -43,9 +44,10 @@ const ArticleCardHeader: FC<Article> = ({
           <p className="text-base font-semibold mr-1.5">{author.name}</p>
           {author.isPro && <Chip size="sm">Pro</Chip>}
         </div>
-        <p className="text-small text-default-500">
-          {getDomain(url)} {SEPARATOR_DOT} {formatDate(dateAdded)}
-        </p>
+        <WithSeparatorDot className="text-sm text-default-500">
+          <span>{getDomain(url)}</span>
+          <span>{formatDate(dateAdded)}</span>
+        </WithSeparatorDot>
       </div>
     </div>
     {isFeatured && (
@@ -87,7 +89,7 @@ const ArticleCardFooter: FC<Article> = ({
   views,
 }) => (
   <CardFooter className="flex items-center justify-between">
-    <div className="flex items-center gap-2">
+    <WithSeparatorDot>
       <Link
         color="foreground"
         size="sm"
@@ -98,22 +100,16 @@ const ArticleCardFooter: FC<Article> = ({
         Discuss
       </Link>
       {!!totalReactions && (
-        <>
-          {SEPARATOR_DOT}
-          <span className="text-sm">
-            {totalReactions} {totalReactions === 1 ? "like" : "likes"}
-          </span>
-        </>
+        <span className="text-sm">
+          {totalReactions} {totalReactions === 1 ? "like" : "likes"}
+        </span>
       )}
       {!!views && (
-        <>
-          {SEPARATOR_DOT}
-          <span className="text-sm">
-            {views} {views === 1 ? "read" : "reads"}
-          </span>
-        </>
+        <span className="text-sm">
+          {views} {views === 1 ? "read" : "reads"}
+        </span>
       )}
-    </div>
+    </WithSeparatorDot>
     <div className="flex items-center gap-2">
       {!!tags?.length && (
         <>

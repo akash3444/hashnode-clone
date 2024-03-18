@@ -10,6 +10,7 @@ import { Chip } from "@nextui-org/chip";
 import Image from "next/image";
 import { FC, useState } from "react";
 import { CloseIcon } from "../icons";
+import WithSeparatorDot from "@/shared/WithSeparatorDot";
 
 interface ChangelogProps {
   changelog: Changelog;
@@ -41,9 +42,8 @@ const Changelog: FC<ChangelogProps> = ({
           <Image src={coverImageURL} alt={title} fill className="rounded-lg" />
         </div>
         <h3 className="mt-3 mb-2 text-lg font-bold">{title}</h3>
-        <div className="flex items-center gap-3">
+        <WithSeparatorDot className="gap-3">
           <span>{formatDate(dateAdded)}</span>
-          <span className="text-foreground-400">{SEPARATOR_DOT}</span>
           {!!type && (
             <Chip
               className="capitalize"
@@ -54,7 +54,7 @@ const Changelog: FC<ChangelogProps> = ({
               {type}
             </Chip>
           )}
-        </div>
+        </WithSeparatorDot>
       </CardBody>
     </Card>
   );
