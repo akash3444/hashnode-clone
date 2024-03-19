@@ -13,9 +13,9 @@ const FeedLayout: FC<FeedLayoutProps> = ({ children }) => {
         <ArticleTabs />
         {children}
       </div>
-      <div>
+      <aside>
         <Sidebar />
-      </div>
+      </aside>
     </main>
   );
 };

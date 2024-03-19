@@ -4,6 +4,7 @@ import { CardBody } from "@/shared/Card";
 import WithSeparatorDot from "@/shared/WithSeparatorDot";
 import { Dispatch, FC, SetStateAction } from "react";
 import { ChevronDown } from "../../icons";
+import Typography from "@/shared/Typography";
 
 interface TrendingArticleListProps {
   articles: Article[];
@@ -20,7 +21,9 @@ const TrendingArticleList: FC<TrendingArticleListProps> = ({
     <CardBody className="space-y-6">
       {articles?.map(({ id, author, title, views }) => (
         <div key={id}>
-          <h4 className="mb-1.5 font-semibold line-clamp-2">{title}</h4>
+          <Typography variant="h5" as="h2" className="mb-1.5 line-clamp-2">
+            {title}
+          </Typography>
           <WithSeparatorDot className="text-sm text-foreground-500 font-medium">
             <span>{author.name}</span>
             <span>

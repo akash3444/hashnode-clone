@@ -8,6 +8,7 @@ import { Article } from "@/lib/types";
 import Button from "@/shared/Button";
 import Card from "@/shared/Card";
 import Tooltip from "@/shared/Tooltip";
+import Typography from "@/shared/Typography";
 import WithSeparatorDot from "@/shared/WithSeparatorDot";
 import { CardBody, CardFooter, CardHeader, CardProps } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
@@ -51,8 +52,10 @@ const ArticleCardBody: FC<Article> = ({ brief, coverImage, title, slug }) => (
     href={slug}
   >
     <div>
-      <h2 className="text-xl font-extrabold mb-2">{title}</h2>
-      <p className="text-sm line-clamp-3">{brief}</p>
+      <Typography variant="h1" className="mb-2">
+        {title}
+      </Typography>
+      <Typography className="line-clamp-3">{brief}</Typography>
     </div>
     {!!coverImage && (
       <div className="relative h-full min-w-48 aspect-video">

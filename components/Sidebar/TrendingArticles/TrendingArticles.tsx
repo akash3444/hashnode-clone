@@ -7,6 +7,7 @@ import Select, { SelectItem } from "@/shared/Select";
 import { ChangeEventHandler, FC, useState } from "react";
 import TrendingArticleList from "./TrendingArticleList";
 import TrendingArticleListSkeleton from "./TrendingArticleListSkeleton";
+import Typography from "@/shared/Typography";
 
 interface TrendingArticlesProps {
   articles: Article[];
@@ -57,7 +58,9 @@ const TrendingArticles: FC<TrendingArticlesProps> = ({
   return (
     <Card>
       <CardHeader className="pt-2 justify-between gap-5">
-        <h2 className="text-xl font-bold shrink-0">Trending Articles</h2>
+        <Typography variant="h2" className="shrink-0">
+          Trending Articles
+        </Typography>
         <Select
           size="sm"
           selectedKeys={[selectedDuration]}

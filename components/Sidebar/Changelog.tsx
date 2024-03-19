@@ -1,16 +1,16 @@
 "use client";
 
-import { SEPARATOR_DOT } from "@/lib/constants";
 import type { Changelog } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 import Button from "@/shared/Button";
 import Card from "@/shared/Card";
+import Typography from "@/shared/Typography";
+import WithSeparatorDot from "@/shared/WithSeparatorDot";
 import { CardBody, CardHeader } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
 import Image from "next/image";
 import { FC, useState } from "react";
 import { CloseIcon } from "../icons";
-import WithSeparatorDot from "@/shared/WithSeparatorDot";
 
 interface ChangelogProps {
   changelog: Changelog;
@@ -26,7 +26,7 @@ const Changelog: FC<ChangelogProps> = ({
   return (
     <Card>
       <CardHeader className="pt-2 justify-between">
-        <h2 className="text-xl font-bold">Changelog</h2>
+        <Typography variant="h2">Changelog</Typography>
         <Button
           isIconOnly
           size="sm"
@@ -41,7 +41,9 @@ const Changelog: FC<ChangelogProps> = ({
         <div className="relative aspect-video">
           <Image src={coverImageURL} alt={title} fill className="rounded-lg" />
         </div>
-        <h3 className="mt-3 mb-2 text-lg font-bold">{title}</h3>
+        <Typography variant="h3" className="mt-3 mb-2">
+          {title}
+        </Typography>
         <WithSeparatorDot className="gap-3">
           <span>{formatDate(dateAdded)}</span>
           {!!type && (

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.10",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.5.0",
     "framer-motion": "^11.0.14",
