@@ -79,3 +79,23 @@ export interface Changelog {
   isActive: boolean;
   dateAdded: string;
 }
+
+export interface Challenge {
+  _id: string;
+  badges: string[];
+  isActive: boolean;
+  title: string;
+  contentMarkdown: string;
+  image: string;
+  slug: string;
+  descriptionMarkdown: string;
+  tagline: string;
+  url: string;
+  ctaLabel: string;
+  ctaURL: string;
+  coverImage: string;
+  ogImage: string;
+  dateAdded: string;
+  content: string;
+  description: string;
+}

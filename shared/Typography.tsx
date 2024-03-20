@@ -4,7 +4,7 @@ import { ElementType, FC, ReactNode } from "react";
 
 interface TypographyProps extends VariantProps<typeof typographyVariants> {
   className?: string;
-  children: ReactNode;
+  children?: ReactNode;
   as?: ElementType;
 }
 

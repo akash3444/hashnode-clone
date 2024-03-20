@@ -1,7 +1,8 @@
 import { getLatestChangelog, getTrendingArticles } from "@/api/sidebar";
 import Changelog from "./Changelog";
-import TrendingArticles from "./TrendingArticles";
 import TopCommenters from "./TopCommenters";
+import TrendingArticles from "./TrendingArticles";
+import WritingChallenges from "./WritingChallenges";
 
 const Sidebar = async () => {
   const changelog = await getLatestChangelog();
@@ -12,6 +13,7 @@ const Sidebar = async () => {
       <Changelog changelog={changelog} />
       <TrendingArticles articles={trendingArticles?.posts} />
       <TopCommenters />
+      <WritingChallenges />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 "use server";
 
-import { Article, Changelog } from "@/lib/types";
+import { Article, Challenge, Changelog } from "@/lib/types";
 
 const endpoint = process.env.NEXT_PUBLIC_HASHNODE_REST_API_URL;
 
@@ -23,7 +23,15 @@ export const getTrendingArticles = async (
     }
   );
   const data = await res.json();
-  console.log("data :", duration, data.posts?.[0].title);
+
+  return data;
+};
+
+export const getWritingChallenges = async (): Promise<Challenge[]> => {
+  const res = await fetch(`${endpoint}/widget/challenges`, {
+    cache: "no-store",
+  });
+  const data = await res.json();
 
   return data;
 };

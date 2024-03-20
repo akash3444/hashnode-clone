@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "cdn.hashnode.com",
+        hostname: "*",
       },
     ],
   },
