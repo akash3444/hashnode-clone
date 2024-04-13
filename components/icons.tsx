@@ -225,3 +225,21 @@ export const FollowIcon: FC<ComponentProps<"svg">> = ({
     ></path>
   </svg>
 );
+
+export const SeriesIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 16 16"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M10.957 7.4V5M2.583 8h2.334M2.583 5.333h2.334m-2.334 5.334h2.334M5.764 14h5.639a2.007 2.007 0 0 0 2.014-2V4c0-1.105-.902-2-2.014-2h-5.64A2.007 2.007 0 0 0 3.75 4v8c0 1.105.902 2 2.014 2Z"
+      stroke-linecap="round"
+    ></path>
+  </svg>
+);

@@ -10,7 +10,7 @@ export interface Article {
   brief: string;
   subtitle: string;
   isFeatured: boolean;
-  // "contributors": [],
+  series: Series;
   bookmarked: boolean;
   views: number;
   url: string;
@@ -18,6 +18,12 @@ export interface Article {
   dateAdded: string;
   preferences: { disableComments: boolean };
   tags: Tag[];
+}
+
+export interface Series {
+  _id: string;
+  slug: string;
+  name: string;
 }
 
 export interface Author {

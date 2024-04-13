@@ -3,6 +3,7 @@ import {
   BookmarkSolidIcon,
   ChatBubble,
   FeaturedIcon,
+  SeriesIcon,
 } from "@/components/icons";
 import { Article } from "@/lib/types";
 import Button from "@/shared/Button";
@@ -32,15 +33,17 @@ const ArticleCardHeader: FC<Article> = ({
   <CardHeader className="flex items-center justify-between">
     <UserInfo author={author} dateAdded={dateAdded} url={url} showProBadge />
     {isFeatured && (
-      <Chip
-        color="secondary"
-        variant="flat"
-        className="px-2"
-        classNames={{ content: "font-semibold" }}
-        startContent={<FeaturedIcon />}
-      >
-        Featured
-      </Chip>
+      <Link href="/featured">
+        <Chip
+          color="secondary"
+          variant="flat"
+          className="px-2"
+          classNames={{ content: "font-semibold" }}
+          startContent={<FeaturedIcon />}
+        >
+          Featured
+        </Chip>
+      </Link>
     )}
   </CardHeader>
 );
@@ -70,13 +73,14 @@ const ArticleCardFooter: FC<Article> = ({
   tags,
   totalReactions,
   views,
+  series,
 }) => (
-  <CardFooter className="flex items-center justify-between">
+  <CardFooter className="flex items-center justify-between text-foreground-500">
     <WithSeparatorDot>
       <Link
         color="foreground"
         size="sm"
-        className="font-medium leading-none"
+        className="leading-none text-foreground-600"
         href="/"
       >
         <ChatBubble className="h-4 mr-2" />
@@ -94,11 +98,26 @@ const ArticleCardFooter: FC<Article> = ({
       )}
     </WithSeparatorDot>
     <div className="flex items-center gap-2">
+      {series && (
+        <Link href={`/series/${series.slug}`}>
+          <Chip
+            size="sm"
+            variant="flat"
+            color="primary"
+            className="px-2"
+            startContent={<SeriesIcon className="h-4 w-4 mr-0.5" />}
+          >
+            {series.name}
+          </Chip>
+        </Link>
+      )}
       {!!tags?.length && (
         <>
-          <Chip size="sm" variant="flat">
-            {tags[0]?.name}
-          </Chip>
+          <Link href={`/tags/${tags[0].slug}`}>
+            <Chip size="sm" variant="flat">
+              {tags[0]?.name}
+            </Chip>
+          </Link>
           <Divider orientation="vertical" className="h-3.5 ml-1 mr-0" />
         </>
       )}
