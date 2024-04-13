@@ -1,8 +1,9 @@
+import Navbar from "@/components/Navbar";
+import { Providers } from "@/components/Providers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
-import { Providers } from "@/components/Providers";
-import Navbar from "@/components/Navbar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,6 +27,14 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
+          <Toaster
+            toastOptions={{
+              style: {
+                background: "#333",
+                color: "#fff",
+              },
+            }}
+          />
         </Providers>
       </body>
     </html>

@@ -45,6 +45,8 @@ export interface Tag {
   logo: string;
   name: string;
   slug: string;
+  followersCount: number;
+  postsCount: number;
 }
 
 export interface PageInfo {

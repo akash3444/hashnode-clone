@@ -9,13 +9,19 @@ import { Feed, FeedVariables, getFeed } from "@/api/feed";
 interface ArticleListProps {
   initialFeed: Feed;
   feedVariables: FeedVariables;
+  // TODO: define type for feedVariables
+  getMoreFeed: (feedVariables: any) => Promise<Feed>;
 }
 
-const ArticleList: FC<ArticleListProps> = ({ initialFeed, feedVariables }) => {
+const ArticleList: FC<ArticleListProps> = ({
+  initialFeed,
+  feedVariables,
+  getMoreFeed = getFeed,
+}) => {
   const [feed, setFeed] = useState<Feed>(initialFeed);
 
   const fetchMoreFeed = async () => {
-    const newFeed = await getFeed({
+    const newFeed = await getMoreFeed({
       ...feedVariables,
       after: feed.pageInfo.endCursor,
     });

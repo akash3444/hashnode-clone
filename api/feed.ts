@@ -8,9 +8,10 @@ export type TopCommenters = { edges: { node: Author }[] };
 
 export interface FeedVariables {
   first: number;
-  filter?: { type: FeedType };
+  filter?: { type?: FeedType; sortBy?: string };
   after?: string;
-  commentsFirst: number;
+  slug?: string;
+  commentsFirst?: number;
 }
 
 export const getFeed = async (variables: FeedVariables): Promise<Feed> => {

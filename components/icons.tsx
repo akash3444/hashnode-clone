@@ -239,7 +239,66 @@ export const SeriesIcon: FC<ComponentProps<"svg">> = ({
     <path
       stroke="currentColor"
       d="M10.957 7.4V5M2.583 8h2.334M2.583 5.333h2.334m-2.334 5.334h2.334M5.764 14h5.639a2.007 2.007 0 0 0 2.014-2V4c0-1.105-.902-2-2.014-2h-5.64A2.007 2.007 0 0 0 3.75 4v8c0 1.105.902 2 2.014 2Z"
-      stroke-linecap="round"
+      strokeLinecap="round"
+    ></path>
+  </svg>
+);
+
+export const RssIcon: FC<ComponentProps<"svg">> = ({ className, ...props }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12.75 19.5v-.75a7.5 7.5 0 0 0-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+    />
+  </svg>
+);
+
+export const LinkIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+    />
+  </svg>
+);
+
+export const FireIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M16.667 11.56c0-6.39-6.248-9.366-6.248-9.366 0 3.117.784 7.805-1.56 7.805-1.56 0-1.951-1.556-1.951-4.294 0 0-2.741 2.325-2.741 5.865s2.737 6.236 6.252 6.236c3.515 0 6.248-2.71 6.248-6.246Z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
     ></path>
   </svg>
 );
