@@ -21,6 +21,7 @@ export interface Article {
 }
 
 export interface Author {
+  _id: string;
   id: string;
   name: string;
   isPro: boolean;
@@ -98,4 +99,21 @@ export interface Challenge {
   dateAdded: string;
   content: string;
   description: string;
+}
+
+export interface UserProfile {
+  _id: string;
+  numFollowers: number;
+  numFollowing: number;
+  isAmbassador: boolean;
+  hasGoldRing: boolean;
+  name: string;
+  username: string;
+  tagline: string;
+  photo: string; // URL string
+  blogHandle: string;
+  publicationDomain: string | null;
+  publicationEnabled: boolean;
+  // latestPost: LatestPost;
+  // domainStatus: DomainStatus;
 }

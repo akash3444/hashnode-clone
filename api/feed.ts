@@ -1,5 +1,7 @@
+"use server";
+
 import { GET_DISCUSSIONS_TOP_COMMENTERS, GET_FEED } from "@/graphql/queries";
-import { PageInfo, Article, FeedType, Author } from "../lib/types";
+import { PageInfo, Article, FeedType, Author, UserProfile } from "../lib/types";
 
 export type Feed = { edges: { node: Article }[]; pageInfo: PageInfo };
 export type TopCommenters = { edges: { node: Author }[] };
@@ -46,4 +48,18 @@ export const getTopCommenters = async (): Promise<TopCommenters> => {
   const data = await res.json();
 
   return data?.data?.topCommenters;
+};
+
+export const getUserProfileSummary = async (
+  userId: string
+): Promise<UserProfile> => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_HASHNODE_REST_API_URL}/profile/profile-sheet?userId=${userId}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const data = await res.json();
+
+  return data;
 };
