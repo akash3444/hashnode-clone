@@ -1,7 +1,6 @@
 import { getTagFeed } from "@/api/tag";
 import { FC } from "react";
 import ArticleList from "../Feed/ArticleList";
-import { TagTabs } from "./TagTabs";
 
 interface TagArticlesProps {
   slug: string;
@@ -20,14 +19,11 @@ const TagArticles: FC<TagArticlesProps> = async ({
   const tag = await getTagFeed(feedVariables);
 
   return (
-    <div className="mt-12">
-      <TagTabs slug={slug} />
-      <ArticleList
-        initialFeed={tag}
-        getMoreFeed={getTagFeed}
-        feedVariables={feedVariables}
-      />
-    </div>
+    <ArticleList
+      initialFeed={tag}
+      getMoreFeed={getTagFeed}
+      feedVariables={feedVariables}
+    />
   );
 };
 

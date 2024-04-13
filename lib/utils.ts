@@ -20,3 +20,12 @@ export function getDomain(url: string) {
 export const formatDate = (date: any, dateFormat?: string) => {
   return format(date, dateFormat || "MMM dd, yyyy");
 };
+
+export const formatNumberWithSuffix = (number: number) => {
+  if (number >= 1e12) return (number / 1e12).toFixed(1) + "T"; // Trillions
+  if (number >= 1e9) return (number / 1e9).toFixed(1) + "B"; // Billions
+  if (number >= 1e6) return (number / 1e6).toFixed(1) + "M"; // Millions
+  if (number >= 1e3) return (number / 1e3).toFixed(1) + "K"; // Thousands
+
+  return number.toString(); // Less than thousands, return the number as is
+};

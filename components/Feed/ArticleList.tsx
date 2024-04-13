@@ -9,8 +9,8 @@ import { Feed, FeedVariables, getFeed } from "@/api/feed";
 interface ArticleListProps {
   initialFeed: Feed;
   feedVariables: FeedVariables;
-  getMoreFeed?: (feedVariables: any) => Promise<Feed>;
   // TODO: define type for feedVariables
+  getMoreFeed?: (feedVariables: any) => Promise<Feed>;
 }
 
 const ArticleList: FC<ArticleListProps> = ({
