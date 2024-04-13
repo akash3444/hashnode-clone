@@ -74,6 +74,7 @@ const ArticleCardFooter: FC<Article> = ({
   totalReactions,
   views,
   series,
+  publication,
 }) => (
   <CardFooter className="flex items-center justify-between text-foreground-500">
     <WithSeparatorDot>
@@ -99,7 +100,7 @@ const ArticleCardFooter: FC<Article> = ({
     </WithSeparatorDot>
     <div className="flex items-center gap-2">
       {series && (
-        <Link href={`/series/${series.slug}`}>
+        <Link href={`${publication.url}/series/${series.slug}`}>
           <Chip
             size="sm"
             variant="flat"

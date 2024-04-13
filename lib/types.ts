@@ -11,6 +11,7 @@ export interface Article {
   subtitle: string;
   isFeatured: boolean;
   series: Series;
+  publication: Publication;
   bookmarked: boolean;
   views: number;
   url: string;
@@ -60,6 +61,7 @@ export interface Publication {
   url: string;
   canonicalURL: string;
   title: string;
+  domain: string;
   displayTitle: string;
   isHeadless: boolean;
   // favicon: null;

@@ -13,6 +13,7 @@ import {
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { UserProfileSummarySkeleton } from "./UserProfileSummarySkeleton";
+import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 
 export const UserProfileSummary = ({ userId }: { userId: string }) => {
   const [isFollowed, setIsFollowed] = useState(false);
@@ -47,7 +48,11 @@ export const UserProfileSummary = ({ userId }: { userId: string }) => {
       >
         <CardHeader className="justify-between gap-6">
           <div className="flex gap-3">
-            <Avatar radius="full" size="md" src={user.photo} />
+            <Avatar
+              radius="full"
+              size="md"
+              src={user.photo || DEFAULT_PROFILE_PICTURE}
+            />
             <div className="flex flex-col items-start justify-center">
               <h4 className="text-small font-semibold leading-none text-default-600">
                 {user.name}

@@ -1,10 +1,11 @@
 import { Article } from "@/lib/types";
 import Button from "@/shared/Button";
 import { CardBody } from "@/shared/Card";
+import Typography from "@/shared/Typography";
 import WithSeparatorDot from "@/shared/WithSeparatorDot";
+import Link from "next/link";
 import { Dispatch, FC, SetStateAction } from "react";
 import { ChevronDown } from "../../icons";
-import Typography from "@/shared/Typography";
 
 interface TrendingArticleListProps {
   articles: Article[];
@@ -25,7 +26,7 @@ const TrendingArticleList: FC<TrendingArticleListProps> = ({
             {title}
           </Typography>
           <WithSeparatorDot className="text-sm text-foreground-500 font-medium">
-            <span>{author.name}</span>
+            <Link href={`/users/${author.username}`}>{author.name}</Link>
             <span>
               {views} {views === 1 ? "read" : "reads"}
             </span>
