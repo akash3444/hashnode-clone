@@ -361,3 +361,53 @@ export const GET_TAG_FEED = `
     __typename
   }
 `;
+
+export const GET_USER = `
+  query User($username: String!) {
+    user(username: $username) {
+      id
+      name
+      isPro
+      bio {
+        text
+      }
+      followersCount
+      location
+      socialMediaLinks {
+        website
+        github
+        twitter
+        instagram
+        facebook
+        stackoverflow
+        linkedin
+        youtube
+      }
+      dateJoined
+      availableFor
+      profilePicture
+      tagline
+      badges {
+        id
+        name
+        image
+        dateAssigned
+      }
+    }
+  }
+`;
+
+export const GET_USER_INFO = `
+  query User($username: String!) {
+    user(username: $username) {
+      id
+      name
+      tagline
+      profilePicture
+      location
+      dateJoined
+      followersCount
+      followingsCount
+    }
+  }
+`;

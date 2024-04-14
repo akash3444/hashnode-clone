@@ -7,6 +7,7 @@ import { Tooltip } from "@nextui-org/react";
 import Image from "next/image";
 import { FC } from "react";
 import { UserProfileSummary } from "./UserProfileSummary";
+import Link from "next/link";
 
 interface UserInfoProps extends Partial<Article> {
   showProBadge?: boolean;
@@ -18,6 +19,7 @@ const UserInfo: FC<UserInfoProps> = ({
   url,
   dateAdded,
   showProBadge,
+  publication,
   size = "md",
 }) => {
   const isSmall = size === "sm";
@@ -31,7 +33,8 @@ const UserInfo: FC<UserInfoProps> = ({
           placement="bottom"
           delay={500}
         >
-          <div
+          <Link
+            href={`/users/${author.username}`}
             className={cn(
               "relative h-10 w-10 cursor-pointer hover:opacity-75",
               {
@@ -45,24 +48,29 @@ const UserInfo: FC<UserInfoProps> = ({
               fill
               className="rounded-full object-cover object-center flex-shrink-0 flex-grow shadow-small"
             />
-          </div>
+          </Link>
         </Tooltip>
       )}
       <div className="flex flex-col">
         {author && (
           <div className="flex items-center">
-            <span
+            <Link
+              href={`/users/${author.username}`}
               className={cn("text-base font-semibold mr-1.5", {
                 "text-sm": isSmall,
               })}
             >
               {author.name}
-            </span>
+            </Link>
             {showProBadge && author.isPro && <Chip size="sm">Pro</Chip>}
           </div>
         )}
         <WithSeparatorDot className="text-sm text-default-500">
-          {url && <span>{getDomain(url)}</span>}
+          {url && publication?.url && (
+            <Link href={publication?.url} target="_blank">
+              {getDomain(url)}
+            </Link>
+          )}
           {dateAdded && <span>{formatDate(dateAdded)}</span>}
         </WithSeparatorDot>
       </div>

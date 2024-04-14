@@ -29,9 +29,16 @@ const ArticleCardHeader: FC<Article> = ({
   dateAdded,
   url,
   isFeatured,
+  publication,
 }) => (
   <CardHeader className="flex items-center justify-between">
-    <UserInfo author={author} dateAdded={dateAdded} url={url} showProBadge />
+    <UserInfo
+      author={author}
+      dateAdded={dateAdded}
+      url={url}
+      publication={publication}
+      showProBadge
+    />
     {isFeatured && (
       <Link href="/featured">
         <Chip
@@ -48,11 +55,12 @@ const ArticleCardHeader: FC<Article> = ({
   </CardHeader>
 );
 
-const ArticleCardBody: FC<Article> = ({ brief, coverImage, title, slug }) => (
+const ArticleCardBody: FC<Article> = ({ brief, coverImage, title, url }) => (
   <CardBody
     className="flex flex-row gap-4 justify-between"
     as={NextLink}
-    href={slug}
+    href={url}
+    target="_blank"
   >
     <div>
       <Typography variant="h1" className="mb-2">

@@ -1,10 +1,10 @@
 "use server";
 
 import { GET_DISCUSSIONS_TOP_COMMENTERS, GET_FEED } from "@/graphql/queries";
-import { PageInfo, Article, FeedType, Author, UserProfile } from "../lib/types";
+import { PageInfo, Article, FeedType, User, UserProfile } from "../lib/types";
 
 export type Feed = { edges: { node: Article }[]; pageInfo: PageInfo };
-export type TopCommenters = { edges: { node: Author }[] };
+export type TopCommenters = { edges: { node: User }[] };
 
 export interface FeedVariables {
   first: number;

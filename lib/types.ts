@@ -1,7 +1,7 @@
 export interface Article {
   id: string;
   title: string;
-  author: Author;
+  author: User;
   coverImage: CoverImage;
   slug: string;
   readTime: number;
@@ -27,13 +27,44 @@ export interface Series {
   name: string;
 }
 
-export interface Author {
+export interface User {
   _id: string;
   id: string;
   name: string;
   isPro: boolean;
   photo: string;
   username: string;
+  bio: {
+    text: string;
+    html: string;
+    markdown: string;
+  };
+  followersCount: number;
+  followingsCount: number;
+  location: string;
+  socialMediaLinks: {
+    website: string;
+    github: string;
+    twitter: string;
+    instagram: string;
+    facebook: string;
+    stackoverflow: string;
+    linkedin: string;
+    youtube: string;
+  };
+  dateJoined: string;
+  availableFor: string;
+  profilePicture: string;
+  tagline: string;
+  badges: Badge[];
+  followers: { nodes: User[]; pageInfo: PageInfo };
+}
+
+export interface Badge {
+  id: string;
+  name: string;
+  image: string;
+  dateAssigned: string;
 }
 
 export interface CoverImage {
@@ -127,3 +158,5 @@ export interface UserProfile {
   // latestPost: LatestPost;
   // domainStatus: DomainStatus;
 }
+
+export type ConnectionType = "following" | "followers";
