@@ -1,6 +1,6 @@
 "use client";
 
-import { Tab, Tabs } from "@nextui-org/tabs";
+import { Tab, Tabs } from "@/shared/Tabs";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { FC } from "react";
 
@@ -21,14 +21,7 @@ export const ConnectionTabs: FC<ConnectionTabsProps> = ({
     <Tabs
       aria-label="Connections"
       variant="underlined"
-      color="primary"
       className="mb-6"
-      classNames={{
-        base: "border-b",
-        tabList: "p-0",
-        tab: "h-10",
-        tabContent: "font-medium",
-      }}
       selectedKey={pathname.endsWith("/followers") ? "followers" : "following"}
       onSelectionChange={(selectedKey) =>
         router.push(`/users/${username}/${selectedKey}`)

@@ -1,6 +1,6 @@
 "use client";
 
-import { Tab, Tabs } from "@nextui-org/tabs";
+import { Tab, Tabs } from "@/shared/Tabs";
 import { ClockIcon, FeaturedIcon, MagicWandIcon } from "../icons";
 import { usePathname, useRouter } from "next/navigation";
 
