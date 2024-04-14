@@ -29,3 +29,9 @@ export const formatNumberWithSuffix = (number: number) => {
 
   return number.toString(); // Less than thousands, return the number as is
 };
+
+export const getTwitterShareUrl = (text: string) =>
+  encodeURI(`https://twitter.com/intent/tweet?text=${text}`);
+
+export const getLinkedInShareUrl = (url: string) =>
+  encodeURI(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`);

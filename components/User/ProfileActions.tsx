@@ -1,5 +1,6 @@
 "use client";
 
+import { getLinkedInShareUrl, getTwitterShareUrl } from "@/lib/utils";
 import Button from "@/shared/Button";
 import {
   Dropdown,
@@ -15,7 +16,20 @@ import {
   XIcon,
 } from "../icons";
 
-export const ProfileActions = () => {
+export const ProfileActions = ({ name }: { name: string }) => {
+  const shareProfile = (platform: string) => {
+    const text = `Check ${name}'s profile on @hashnode ${window.location.href}`;
+
+    switch (platform) {
+      case "twitter":
+        window.open(getTwitterShareUrl(text), "_blank");
+        break;
+      case "linkedIn":
+        window.open(getLinkedInShareUrl(window.location.href), "_blank");
+        break;
+    }
+  };
+
   return (
     <div className="flex items-start gap-3">
       <Dropdown placement="bottom" disableAnimation>
@@ -24,11 +38,21 @@ export const ProfileActions = () => {
             <ShareIcon />
           </Button>
         </DropdownTrigger>
-        <DropdownMenu aria-label="Share profile" variant="flat">
-          <DropdownItem startContent={<XIcon className="h-6 w-6" />}>
+        <DropdownMenu
+          aria-label="Share profile"
+          variant="flat"
+          onAction={(key) => shareProfile(key as string)}
+        >
+          <DropdownItem
+            key="twitter"
+            startContent={<XIcon className="h-6 w-6" />}
+          >
             <p className="font-semibold">Twitter</p>
           </DropdownItem>
-          <DropdownItem startContent={<LinkedInIcon className="h-6 w-6" />}>
+          <DropdownItem
+            key="linkedIn"
+            startContent={<LinkedInIcon className="h-6 w-6" />}
+          >
             <p className="font-semibold">LinkedIn</p>
           </DropdownItem>
         </DropdownMenu>

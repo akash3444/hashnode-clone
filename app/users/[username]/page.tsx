@@ -60,7 +60,7 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
                 {user.tagline}
               </p>
             </div>
-            <ProfileActions />
+            <ProfileActions name={user.name} />
           </div>
 
           <Link
