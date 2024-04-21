@@ -1,5 +1,5 @@
 import Card, { CardBody } from "@/shared/Card";
-import { Skeleton } from "@nextui-org/react";
+import Skeleton from "@/shared/Skeleton";
 
 const ConnectionCardSkeleton = () => (
   <Card className="bg-slate-100 border-0">

@@ -1,5 +1,5 @@
 import { CardBody } from "@/shared/Card";
-import { Skeleton } from "@nextui-org/skeleton";
+import Skeleton from "@/shared/Skeleton";
 
 const TrendingArticleListSkeleton = () => {
   return (

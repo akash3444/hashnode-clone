@@ -7,6 +7,7 @@ import { Article } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Button from "@/shared/Button";
 import Select, { SelectItem } from "@/shared/Select";
+import Skeleton from "@/shared/Skeleton";
 import {
   Divider,
   Link,
@@ -14,7 +15,6 @@ import {
   ModalBody,
   ModalContent,
   ModalHeader,
-  Skeleton,
   Textarea,
 } from "@nextui-org/react";
 import { useParams } from "next/navigation";

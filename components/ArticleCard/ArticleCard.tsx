@@ -60,6 +60,7 @@ const ArticleCardBody: FC<Article> = ({ id, brief, coverImage, title }) => (
     className="flex flex-row gap-4 justify-between"
     as={NextLink}
     href={`/posts/${id}`}
+    target="_blank"
   >
     <div>
       <Typography variant="h1" className="mb-2">

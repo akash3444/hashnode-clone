@@ -1,4 +1,4 @@
-import { Skeleton } from "@nextui-org/skeleton";
+import Skeleton from "@/shared/Skeleton";
 
 const TopCommenterListSkeleton = () => {
   return new Array(5).fill(0).map((_, index) => (

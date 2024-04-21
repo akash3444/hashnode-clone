@@ -3,6 +3,7 @@ import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 import { Article } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Button from "@/shared/Button";
+import Skeleton from "@/shared/Skeleton";
 import Typography from "@/shared/Typography";
 import {
   Avatar,
@@ -11,7 +12,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalProps,
-  Skeleton,
 } from "@nextui-org/react";
 import { useParams } from "next/navigation";
 import { FC, useEffect, useState } from "react";
