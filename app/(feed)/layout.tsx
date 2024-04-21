@@ -1,5 +1,6 @@
 import { ArticleTabs } from "@/components/Feed";
 import Sidebar from "@/components/Sidebar";
+import StickyBox from "@/shared/StickyBox";
 import React, { FC } from "react";
 
 interface FeedLayoutProps {
@@ -14,7 +15,9 @@ const FeedLayout: FC<FeedLayoutProps> = ({ children }) => {
         {children}
       </div>
       <aside>
-        <Sidebar />
+        <StickyBox offsetTop={90} offsetBottom={20}>
+          <Sidebar />
+        </StickyBox>
       </aside>
     </main>
   );

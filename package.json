@@ -20,6 +20,7 @@
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-sticky-box": "^2.0.5",
     "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {
