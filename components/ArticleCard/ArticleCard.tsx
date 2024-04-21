@@ -55,12 +55,11 @@ const ArticleCardHeader: FC<Article> = ({
   </CardHeader>
 );
 
-const ArticleCardBody: FC<Article> = ({ brief, coverImage, title, url }) => (
+const ArticleCardBody: FC<Article> = ({ id, brief, coverImage, title }) => (
   <CardBody
     className="flex flex-row gap-4 justify-between"
     as={NextLink}
-    href={url}
-    target="_blank"
+    href={`/posts/${id}`}
   >
     <div>
       <Typography variant="h1" className="mb-2">

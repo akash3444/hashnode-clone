@@ -35,7 +35,9 @@ export const PostHeader: FC<PostHeaderProps> = ({ post }) => {
             {post.author.name}
           </span>
         </div>
-        <span>{formatDate(post.featuredAt)}</span>
+        {formatDate(post.featuredAt) && (
+          <span>{formatDate(post.featuredAt)}</span>
+        )}
         {post.readTimeInMinutes && (
           <div className="flex items-center gap-2">
             <BookIcon />

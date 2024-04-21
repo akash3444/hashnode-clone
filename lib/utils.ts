@@ -1,5 +1,6 @@
 import { clsx, ClassValue } from "clsx";
 import { format } from "date-fns/format";
+import { isValid } from "date-fns/isValid";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -18,7 +19,9 @@ export function getDomain(url: string) {
 }
 
 export const formatDate = (date: any, dateFormat?: string) => {
-  return format(date, dateFormat || "MMM dd, yyyy");
+  return date && isValid(new Date(date))
+    ? format(date, dateFormat || "MMM dd, yyyy")
+    : date;
 };
 
 export const formatNumberWithSuffix = (number: number) => {
