@@ -9,6 +9,7 @@ const Tooltip: FC<TooltipProps> = (props) => {
       color="foreground"
       disableAnimation
       showArrow
+      className="py-2 px-3 text-xs rounded-md"
       {...props}
     />
   );

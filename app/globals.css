@@ -5,3 +5,7 @@
 body {
   @apply font-inter;
 }
+
+.hljs {
+  @apply text-lg;
+}

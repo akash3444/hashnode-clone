@@ -411,3 +411,119 @@ export const GET_USER_INFO = `
     }
   }
 `;
+
+export const GET_POST = `
+  query Post($postId: ID!) {
+    post(id: $postId) {
+      title
+      slug
+      publication {
+        url
+      }
+      author {
+        id
+        name
+        bio {
+          text
+        }
+        username
+        profilePicture
+      }
+      coverImage {
+        url
+      }
+      reactionCount
+      responseCount
+      tags {
+        name
+        slug
+      }
+      content {
+        html
+      }
+      featured
+      featuredAt
+      readTimeInMinutes
+      reactionCount
+      replyCount
+      likedBy(first: 4) {
+        edges {
+          node {
+            id
+            profilePicture
+          }
+        }
+        totalDocuments
+      }
+    }
+  }
+`;
+
+export const GET_POST_LIKES = `
+  query Post($postId: ID!, $first: Int!, $after: String) {
+    post(id: $postId) {
+      likedBy(first: $first, after: $after) {
+        edges {
+          node {
+            id
+            profilePicture
+            name
+            username
+          }
+          reactionCount
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+`;
+
+export const GET_POST_COMMENTS = `
+  query Post($postId: ID!, $first: Int!, $sortBy: PostCommentSortBy) {
+    post(id: $postId) {
+      comments(first: $first, sortBy: $sortBy) {
+        edges {
+          node {
+            id
+            author {
+              id
+              name
+              username
+              profilePicture
+            }
+            content {
+              text
+            }
+            totalReactions
+            dateAdded
+            replies(first: $first) {
+              edges {
+                node {
+                  id
+                  author {
+                    id
+                    name
+                    username
+                    profilePicture
+                  }
+                  content {
+                    text
+                  }
+                  totalReactions
+                  dateAdded
+                }
+              }
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+`;

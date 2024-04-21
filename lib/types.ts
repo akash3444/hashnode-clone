@@ -3,22 +3,61 @@ export interface Article {
   title: string;
   author: User;
   coverImage: CoverImage;
+  content: {
+    html: string;
+  };
   slug: string;
   readTime: number;
   replyCount: number;
   responseCount: number;
+  readTimeInMinutes: number;
   brief: string;
   subtitle: string;
   isFeatured: boolean;
+  featured: boolean;
   series: Series;
   publication: Publication;
   bookmarked: boolean;
   views: number;
   url: string;
   totalReactions: number;
+  reactionCount: number;
   dateAdded: string;
+  featuredAt: string;
   preferences: { disableComments: boolean };
   tags: Tag[];
+  likedBy: {
+    edges: {
+      node: User;
+      reactionCount: number;
+    }[];
+    pageInfo: PageInfo;
+    totalDocuments: number;
+  };
+  comments: {
+    edges: {
+      node: Comment;
+    }[];
+    pageInfo: PageInfo;
+  };
+}
+
+export interface Comment {
+  id: string;
+  author: User;
+  content: {
+    text: string;
+    html: string;
+    markdown: string;
+  };
+  totalReactions: number;
+  dateAdded: string;
+  replies?: {
+    edges: {
+      node: Comment;
+    }[];
+    pageInfo: PageInfo;
+  };
 }
 
 export interface Series {
@@ -160,3 +199,5 @@ export interface UserProfile {
 }
 
 export type ConnectionType = "following" | "followers";
+
+export type PostCommentSortBy = "TOP" | "RECENT";
