@@ -5,9 +5,10 @@ import Button from "@/shared/Button";
 import Tooltip from "@/shared/Tooltip";
 import { Divider } from "@nextui-org/react";
 import { FC, useState } from "react";
-import { BookmarkIcon, HeartIcon, ShareIcon } from "../icons";
+import { BookmarkIcon, BulletListIcon, HeartIcon, ShareIcon } from "../icons";
 import { CommentsAction } from "./CommentsAction";
 import { PeopleWhoLiked } from "./PeopleWhoLiked";
+import { TableOfContentsModal } from "./TableOfContentsModal";
 
 interface PostActionsProps {
   post: Article;
@@ -15,6 +16,7 @@ interface PostActionsProps {
 
 export const PostActions: FC<PostActionsProps> = ({ post }) => {
   const [showPeopleWhoLiked, setShowPeopleWhoLiked] = useState(false);
+  const [showTableOfContents, setShowTableOfContents] = useState(false);
 
   return (
     <div className="mt-10 flex max-w-max mx-auto items-center gap-2 border rounded-full py-1 px-4">
@@ -42,6 +44,25 @@ export const PostActions: FC<PostActionsProps> = ({ post }) => {
       <Divider orientation="vertical" className="h-6" />
       <CommentsAction post={post} />
       <Divider orientation="vertical" className="h-6" />
+      {post.features?.tableOfContents?.isEnabled && (
+        <>
+          <Tooltip
+            content="Table of contents"
+            showArrow={false}
+            offset={15}
+            delay={1000}
+          >
+            <Button
+              isIconOnly
+              variant="light"
+              onClick={() => setShowTableOfContents(true)}
+            >
+              <BulletListIcon />
+            </Button>
+          </Tooltip>
+          <Divider orientation="vertical" className="h-6" />
+        </>
+      )}
       <Tooltip
         content="Add Bookmark"
         showArrow={false}
@@ -67,6 +88,12 @@ export const PostActions: FC<PostActionsProps> = ({ post }) => {
       {/* Modals */}
       {showPeopleWhoLiked && (
         <PeopleWhoLiked onClose={() => setShowPeopleWhoLiked(false)} />
+      )}
+      {post.features?.tableOfContents?.isEnabled && showTableOfContents && (
+        <TableOfContentsModal
+          onClose={() => setShowTableOfContents(false)}
+          tableOfContents={post.features?.tableOfContents?.items}
+        />
       )}
     </div>
   );

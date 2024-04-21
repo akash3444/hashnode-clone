@@ -442,6 +442,18 @@ export const GET_POST = `
       content {
         html
       }
+      features {
+        tableOfContents {
+          isEnabled
+          items {
+            id
+            level
+            slug
+            title
+            parentId
+          }
+        }
+      }
       featured
       featuredAt
       readTimeInMinutes

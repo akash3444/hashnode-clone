@@ -44,6 +44,12 @@ export interface Article {
     title: string;
     description: string;
   };
+  features: {
+    tableOfContents: {
+      isEnabled: boolean;
+      items: TableOfContent[];
+    };
+  };
 }
 
 export interface Comment {
@@ -63,6 +69,14 @@ export interface Comment {
     pageInfo: PageInfo;
     totalDocuments: number;
   };
+}
+
+export interface TableOfContent {
+  id: string;
+  level: number;
+  slug: string;
+  title: string;
+  parentId: string;
 }
 
 export interface Series {

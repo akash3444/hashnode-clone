@@ -1,10 +1,11 @@
 import { getPost } from "@/api/post";
 import Newsletter from "@/components/Newsletter";
-import { PostContent, PostHeader } from "@/components/Post";
+import { PostContent, PostHeader, TableOfContents } from "@/components/Post";
 import { PostActions } from "@/components/Post/PostActions";
 import Button from "@/shared/Button";
+import Card from "@/shared/Card";
 import Typography from "@/shared/Typography";
-import { Chip } from "@nextui-org/react";
+import { CardBody, Chip } from "@nextui-org/react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,11 +23,11 @@ export const generateMetadata = async ({
   params: { postId },
 }: Props): Promise<Metadata> => {
   const {
-    coverImage: { url },
+    coverImage,
     seo: { title, description },
   } = await getPost(postId);
   const coverImageUrl = encodeURIComponent(
-    `${url}?w=1200&h=630&fit=crop&crop=entropy&auto=compress,format&format=webp&fm=png`
+    `${coverImage?.url}?w=1200&h=630&fit=crop&crop=entropy&auto=compress,format&format=webp&fm=png`
   );
   const imageUrl = `https://hashnode.com/utility/r?url=${coverImageUrl}`;
 
@@ -36,7 +37,7 @@ export const generateMetadata = async ({
     openGraph: {
       title,
       description,
-      images: [{ url: imageUrl }],
+      images: coverImage?.url ? [{ url: imageUrl }] : [],
     },
   };
 };
@@ -48,20 +49,37 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
     post && (
       <div className="pt-6 pb-10">
         <PostHeader post={post} />
-        <div className="my-14 relative aspect-[18/9]">
-          <Image
-            src={post.coverImage.url}
-            alt=""
-            fill
-            className="object-cover"
-          />
-        </div>
+
+        {/* Table of contents */}
+        {post.features?.tableOfContents?.isEnabled && (
+          <Card className="mt-16 max-w-2xl mx-auto">
+            <CardBody>
+              <Typography variant="h3" className="mb-4 font-semibold">
+                Table of contents
+              </Typography>
+              <TableOfContents
+                tableOfContents={post.features?.tableOfContents?.items}
+              />
+            </CardBody>
+          </Card>
+        )}
+
+        {!!post.coverImage?.url && (
+          <div className="my-14 relative aspect-[18/9]">
+            <Image
+              src={post.coverImage?.url}
+              alt=""
+              fill
+              className="object-cover"
+            />
+          </div>
+        )}
 
         <PostContent html={post.content.html} />
 
         <PostActions post={post} />
-        {/* Newsletter */}
 
+        {/* Newsletter */}
         <div className="mt-20 text-center max-w-lg mx-auto ">
           <Newsletter
             authorName={post.author.name}

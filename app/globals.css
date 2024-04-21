@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply scroll-pt-20
+}
+
 body {
   @apply font-inter;
 }
