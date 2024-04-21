@@ -86,7 +86,7 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
       isOpen={isOpen}
       classNames={{
         wrapper: "justify-end",
-        base: "!m-0 h-[100dvh] rounded-none",
+        base: "!m-0 h-[100dvh] overflow-y-auto rounded-none",
       }}
       onClose={onClose}
       hideCloseButton

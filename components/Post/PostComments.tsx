@@ -88,10 +88,7 @@ export const PostComments: FC<PostCommentsProps> = ({
                   </Button>
                 </Tooltip>
                 {!!totalReactions && (
-                  <span
-                    role="button"
-                    className="cursor-pointer hover:underline text-sm"
-                  >
+                  <span role="button" className="cursor-pointer text-sm">
                     {totalReactions}
                   </span>
                 )}
@@ -108,12 +105,12 @@ export const PostComments: FC<PostCommentsProps> = ({
                       <ChatIcon className="text-foreground-600" />
                     </Button>
                   </Tooltip>
-                  <span
-                    role="button"
-                    className="cursor-pointer hover:underline text-sm"
-                  >
-                    {totalReactions}
-                  </span>
+
+                  {!!replies?.totalDocuments && (
+                    <span role="button" className="cursor-pointer text-sm">
+                      {replies?.totalDocuments}
+                    </span>
+                  )}
                 </div>
               )}
               <span

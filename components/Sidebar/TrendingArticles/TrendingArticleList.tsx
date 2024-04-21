@@ -22,9 +22,11 @@ const TrendingArticleList: FC<TrendingArticleListProps> = ({
     <CardBody className="space-y-6">
       {articles?.map(({ id, author, title, views }) => (
         <div key={id}>
-          <Typography variant="h5" as="h2" className="mb-1.5 line-clamp-2">
-            {title}
-          </Typography>
+          <Link href={`/posts/${id}`} target="_blank">
+            <Typography variant="h5" as="h2" className="mb-1.5 line-clamp-2">
+              {title}
+            </Typography>
+          </Link>
           <WithSeparatorDot className="text-sm text-foreground-500 font-medium">
             <Link href={`/users/${author.username}`}>{author.name}</Link>
             <span>

@@ -61,6 +61,7 @@ export interface Comment {
       node: Comment;
     }[];
     pageInfo: PageInfo;
+    totalDocuments: number;
   };
 }
 

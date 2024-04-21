@@ -135,7 +135,7 @@ const ArticleCardFooter: FC<Article> = ({
           {bookmarked ? (
             <BookmarkSolidIcon className="text-foreground-500" />
           ) : (
-            <BookmarkIcon className="text-foreground-500" />
+            <BookmarkIcon className="h-4 w-4 text-foreground-500" />
           )}
         </Button>
       </Tooltip>

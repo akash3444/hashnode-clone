@@ -521,6 +521,7 @@ export const GET_POST_COMMENTS = `
                   dateAdded
                 }
               }
+              totalDocuments
             }
           }
         }
