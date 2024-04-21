@@ -456,6 +456,10 @@ export const GET_POST = `
         }
         totalDocuments
       }
+      seo {
+        title
+        description
+      }
     }
   }
 `;

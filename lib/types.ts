@@ -40,6 +40,10 @@ export interface Article {
     }[];
     pageInfo: PageInfo;
   };
+  seo: {
+    title: string;
+    description: string;
+  };
 }
 
 export interface Comment {

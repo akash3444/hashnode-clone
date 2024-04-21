@@ -5,6 +5,7 @@ import { PostActions } from "@/components/Post/PostActions";
 import Button from "@/shared/Button";
 import Typography from "@/shared/Typography";
 import { Chip } from "@nextui-org/react";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
@@ -12,6 +13,33 @@ import { FC } from "react";
 interface PostPageProps {
   params: { postId: string };
 }
+
+interface Props {
+  params: { postId: string };
+}
+
+export const generateMetadata = async ({
+  params: { postId },
+}: Props): Promise<Metadata> => {
+  const {
+    coverImage: { url },
+    seo: { title, description },
+  } = await getPost(postId);
+  const coverImageUrl = encodeURIComponent(
+    `${url}?w=1200&h=630&fit=crop&crop=entropy&auto=compress,format&format=webp&fm=png`
+  );
+  const imageUrl = `https://hashnode.com/utility/r?url=${coverImageUrl}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [{ url: imageUrl }],
+    },
+  };
+};
 
 const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
   const post = await getPost(postId);

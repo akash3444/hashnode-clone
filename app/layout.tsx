@@ -11,9 +11,19 @@ const inter = Inter({
   weight: ["400", "500", "600", "700", "800"],
 });
 
+const title = "Hashnode: Everything you need to start blogging as a developer!";
+const description =
+  "Hashnode is a free developer blogging platform that allows you to publish articles on your own domain and helps you stay connected with a global developer community.";
+
 export const metadata: Metadata = {
-  title: "Hashnode Clone",
-  description: "Hashnode Clone",
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    siteName: "Hashnode",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

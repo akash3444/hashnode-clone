@@ -11,6 +11,7 @@ import { formatNumberWithSuffix } from "@/lib/utils";
 import Card, { CardHeader } from "@/shared/Card";
 import Typography from "@/shared/Typography";
 import { CardBody, Chip, Link } from "@nextui-org/react";
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FC } from "react";
@@ -18,6 +19,32 @@ import { FC } from "react";
 interface UserPageProps {
   params: { username: string };
 }
+
+interface Props {
+  params: { username: string };
+}
+
+export const generateMetadata = async ({
+  params: { username },
+}: Props): Promise<Metadata> => {
+  const { name, tagline, profilePicture } = await getUser(username);
+  const title = `${name} - Hashnode`;
+  const description = `${name}'s profile on Hashnode. ${tagline}`;
+  const coverImageUrl = encodeURIComponent(
+    `${profilePicture}?w=400&h=300&fit=crop&crop=faces&auto=compress,format&format=webp`
+  );
+  const imageUrl = `https://hashnode.com/utility/r?url=${coverImageUrl}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [{ url: imageUrl }],
+    },
+  };
+};
 
 const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
   const user = await getUser(username);
