@@ -1,7 +1,12 @@
 "use server";
 
+import { SUBSCRIBE_TO_NEWSLETTER } from "@/graphql/mutations";
 import { GET_POST, GET_POST_COMMENTS, GET_POST_LIKES } from "@/graphql/queries";
-import { Article, PostCommentSortBy } from "@/lib/types";
+import {
+  Article,
+  NewsletterSubscribeStatus,
+  PostCommentSortBy,
+} from "@/lib/types";
 
 export const getPost = async (postId: string): Promise<Article> => {
   const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
@@ -67,4 +72,26 @@ export const getPostComments = async (variables: {
   const data = await res.json();
 
   return data?.data?.post?.comments;
+};
+
+export const subscribeToNewsletter = async (input: {
+  email: string;
+  publicationId: string;
+}): Promise<{ status: NewsletterSubscribeStatus }> => {
+  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify({
+      query: SUBSCRIBE_TO_NEWSLETTER,
+      variables: { input },
+    }),
+    cache: "no-store",
+  });
+  const data = await res.json();
+
+  return data?.data?.subscribeToNewsletter;
 };

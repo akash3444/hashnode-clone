@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 import { nextui } from "@nextui-org/react";
 import typographyPlugin from "@tailwindcss/typography";
 
@@ -24,6 +25,13 @@ const config: Config = {
         borderWidth: {
           small: "1px",
           medium: "1px",
+        },
+      },
+      themes: {
+        light: {
+          colors: {
+            foreground: colors.slate,
+          },
         },
       },
     }),

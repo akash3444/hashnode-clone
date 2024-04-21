@@ -34,8 +34,11 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
         <PostActions post={post} />
         {/* Newsletter */}
 
-        <div className="mt-20 text-center max-w-2xl mx-auto ">
-          <Newsletter authorName={post.author.name} />
+        <div className="mt-20 text-center max-w-lg mx-auto ">
+          <Newsletter
+            authorName={post.author.name}
+            publicationId={post.publication.id}
+          />
         </div>
 
         {/* Tags */}

@@ -418,6 +418,7 @@ export const GET_POST = `
       title
       slug
       publication {
+        id
         url
       }
       author {

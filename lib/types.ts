@@ -128,6 +128,7 @@ export interface PageInfo {
 
 export interface Publication {
   _id: string;
+  id: string;
   url: string;
   canonicalURL: string;
   title: string;
@@ -201,3 +202,5 @@ export interface UserProfile {
 export type ConnectionType = "following" | "followers";
 
 export type PostCommentSortBy = "TOP" | "RECENT";
+
+export type NewsletterSubscribeStatus = "PENDING" | "CONFIRMED";
