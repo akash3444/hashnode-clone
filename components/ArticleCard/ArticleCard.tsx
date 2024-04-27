@@ -31,7 +31,7 @@ const ArticleCardHeader: FC<Article> = ({
   isFeatured,
   publication,
 }) => (
-  <CardHeader className="flex items-center justify-between">
+  <CardHeader className="flex items-center justify-between px-0 md:px-2 pt-4 md:pt-2">
     <UserInfo
       author={author}
       dateAdded={dateAdded}
@@ -44,11 +44,11 @@ const ArticleCardHeader: FC<Article> = ({
         <Chip
           color="secondary"
           variant="flat"
-          className="px-2"
-          classNames={{ content: "font-semibold" }}
-          startContent={<FeaturedIcon />}
+          className="px-0 md:px-2"
+          classNames={{ content: "flex items-center gap-2 font-semibold" }}
         >
-          Featured
+          <FeaturedIcon />
+          <span className="hidden md:inline">Featured</span>
         </Chip>
       </Link>
     )}
@@ -57,7 +57,7 @@ const ArticleCardHeader: FC<Article> = ({
 
 const ArticleCardBody: FC<Article> = ({ id, brief, coverImage, title }) => (
   <CardBody
-    className="flex flex-row gap-4 justify-between"
+    className="flex flex-col md:flex-row gap-4 justify-between px-0 md:px-2"
     as={NextLink}
     href={`/posts/${id}`}
     target="_blank"
@@ -66,10 +66,12 @@ const ArticleCardBody: FC<Article> = ({ id, brief, coverImage, title }) => (
       <Typography variant="h1" className="mb-2">
         {title}
       </Typography>
-      <Typography className="line-clamp-3">{brief}</Typography>
+      <Typography className="hidden md:block md:line-clamp-3">
+        {brief}
+      </Typography>
     </div>
     {!!coverImage && (
-      <div className="relative h-full min-w-48 aspect-video">
+      <div className="relative h-full min-w-48 aspect-video bg-foreground-100 rounded-lg">
         <Image src={coverImage.url} fill alt={title} className="rounded-lg" />
       </div>
     )}
@@ -84,7 +86,7 @@ const ArticleCardFooter: FC<Article> = ({
   series,
   publication,
 }) => (
-  <CardFooter className="flex items-center justify-between text-foreground-500">
+  <CardFooter className="flex items-center justify-between text-foreground-500 px-0 md:px-2 pb-4 md:pb-2">
     <WithSeparatorDot>
       <Link
         color="foreground"
@@ -108,7 +110,10 @@ const ArticleCardFooter: FC<Article> = ({
     </WithSeparatorDot>
     <div className="flex items-center gap-2">
       {series && (
-        <Link href={`${publication.url}/series/${series.slug}`}>
+        <Link
+          href={`${publication.url}/series/${series.slug}`}
+          className="hidden md:block"
+        >
           <Chip
             size="sm"
             variant="flat"
@@ -122,12 +127,15 @@ const ArticleCardFooter: FC<Article> = ({
       )}
       {!!tags?.length && (
         <>
-          <Link href={`/tags/${tags[0].slug}`}>
+          <Link href={`/tags/${tags[0].slug}`} className="hidden md:block">
             <Chip size="sm" variant="flat">
               {tags[0]?.name}
             </Chip>
           </Link>
-          <Divider orientation="vertical" className="h-3.5 ml-1 mr-0" />
+          <Divider
+            orientation="vertical"
+            className="hidden md:block h-3.5 ml-1 mr-0"
+          />
         </>
       )}
       <Tooltip content={bookmarked ? "Remove bookmark" : "Save for later"}>
@@ -143,9 +151,9 @@ const ArticleCardFooter: FC<Article> = ({
   </CardFooter>
 );
 
-const ArticleCard: FC<ArticleCardProps> = ({ article, className }) => {
+const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
   return (
-    <Card>
+    <Card className="p-0 border-0 border-b rounded-none md:p-3 md:border md:rounded-2xl">
       <ArticleCardHeader {...article} />
       <ArticleCardBody {...article} />
       <ArticleCardFooter {...article} />

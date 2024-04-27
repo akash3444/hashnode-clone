@@ -5,6 +5,7 @@ import TrendingArticles from "./TrendingArticles";
 import WritingChallenges from "./WritingChallenges";
 
 const Sidebar = async () => {
+  // TODO: do not call below APIs on screens smaller than XL (< 1280px)
   const changelog = await getLatestChangelog();
   const trendingArticles = await getTrendingArticles();
 

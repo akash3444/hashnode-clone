@@ -12,12 +12,7 @@ export const CommentsAction = ({ post }: { post: Article }) => {
 
   return (
     <>
-      <Tooltip
-        content="Write a comment"
-        showArrow={false}
-        offset={15}
-        delay={1000}
-      >
+      <Tooltip content="Write a comment" offset={15} delay={1000}>
         <Button
           className="px-2.5 min-w-0 font-normal"
           variant="light"

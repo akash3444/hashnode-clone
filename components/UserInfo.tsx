@@ -65,7 +65,7 @@ const UserInfo: FC<UserInfoProps> = ({
             {showProBadge && author.isPro && <Chip size="sm">Pro</Chip>}
           </div>
         )}
-        <WithSeparatorDot className="text-sm text-default-500">
+        <WithSeparatorDot className="hidden md:flex text-sm text-default-500">
           {url && publication?.url && (
             <Link href={publication?.url} target="_blank">
               {getDomain(url)}
@@ -73,6 +73,11 @@ const UserInfo: FC<UserInfoProps> = ({
           )}
           {dateAdded && <span>{formatDate(dateAdded)}</span>}
         </WithSeparatorDot>
+        {dateAdded && (
+          <span className="md:hidden text-sm text-default-500">
+            {formatDate(dateAdded)}
+          </span>
+        )}
       </div>
     </div>
   );
