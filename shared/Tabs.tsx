@@ -18,7 +18,11 @@ export const Tabs: FC<TabsProps> = ({
       color="primary"
       classNames={{
         ...classNames,
-        base: cn({ "border-b": variant === "underlined" }, classNames?.base),
+        base: cn(
+          "max-w-full overflow-x-auto",
+          { "border-b": variant === "underlined" },
+          classNames?.base
+        ),
         tabList: cn(
           { "bg-transparent p-0": variant === "solid" },
           { "p-0": variant === "underlined" },
