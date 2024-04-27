@@ -41,12 +41,12 @@ const Newsletter: FC<NewsletterProps> = ({ authorName, publicationId }) => {
       <h5 className="text-3xl font-bold tracking-wide">
         Subscribe to my newsletter
       </h5>
-      <p className="mt-6 text-xl tracking-wide text-foreground-700">
+      <p className="mt-6 text-lg md:text-xl tracking-wide text-foreground-700">
         Read articles from <b>{authorName}</b> directly inside your inbox.
         Subscribe to the newsletter, and don&apos;t miss out.
       </p>
       {isSubscribed ? (
-        <div className="mt-10 border border-success-600 bg-success-50 rounded-lg p-6">
+        <div className="mt-6 md:mt-10 border border-success-600 bg-success-50 rounded-lg p-6">
           <PaperPlaneIcon className="h-10 w-10 text-success-600 mx-auto animate-bounce" />
           <div className="mt-6 text-lg font-medium">
             <p>We&apos;ve sent a confirmation email;</p>
@@ -58,7 +58,7 @@ const Newsletter: FC<NewsletterProps> = ({ authorName, publicationId }) => {
         </div>
       ) : (
         <form action={handleSubscription} noValidate>
-          <div className="mt-10 max-w-lg mx-auto flex items-center">
+          <div className="mt-6 md:mt-10 max-w-lg mx-auto flex items-center">
             <Input
               type="email"
               name="email"

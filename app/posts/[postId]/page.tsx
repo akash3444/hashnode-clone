@@ -80,7 +80,7 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
         <PostActions post={post} />
 
         {/* Newsletter */}
-        <div className="mt-20 text-center max-w-lg mx-auto ">
+        <div className="mt-20 text-center max-w-lg mx-auto px-6 sm:px-0">
           <Newsletter
             authorName={post.author.name}
             publicationId={post.publication.id}
@@ -88,7 +88,7 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
         </div>
 
         {/* Tags */}
-        <div className="mt-20 flex items-center justify-center gap-4">
+        <div className="mt-20 flex items-center justify-center flex-wrap gap-4">
           {post.tags.map(({ name, slug }) => (
             <Chip key={slug} as={Link} href={`/tags/${slug}`}>
               {name}
@@ -96,25 +96,38 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
           ))}
         </div>
 
-        <div className="mt-16">
-          <p className="border-b text-foreground-600">Written by</p>
-          <div className="mt-6 flex items-start gap-4">
-            <div className="shrink-0 relative h-12 w-12 rounded-full bg-slate-100">
-              <Image
-                src={post.author.profilePicture}
-                alt={post.author.name}
-                fill
-                className="rounded-full"
-              />
+        <div className="mt-16 px-6 xl:px-0">
+          <p className="border-b text-foreground-500 leading-8 tracking-wide">
+            Written by
+          </p>
+          <div className="mt-6 flex flex-col md:flex-row items-start gap-4">
+            <div className="flex items-center gap-3">
+              <div className="shrink-0 relative h-12 w-12 rounded-full bg-slate-100">
+                <Image
+                  src={post.author.profilePicture}
+                  alt={post.author.name}
+                  fill
+                  className="rounded-full"
+                />
+              </div>
+              <Typography variant="h5" className="md:hidden">
+                {post.author.name}
+              </Typography>
             </div>
             <div className="max-w-2xl">
-              <Typography variant="h5">{post.author.name}</Typography>
-              <p className="mt-1.5 text-foreground-600">
+              <Typography variant="h5" className="hidden md:block">
+                {post.author.name}
+              </Typography>
+              <p className="mt-1.5 text-foreground-600 leading-7">
                 {post.author.bio.text}
               </p>
             </div>
 
-            <Button color="primary" variant="bordered" className="ml-auto">
+            <Button
+              color="primary"
+              variant="bordered"
+              className="mt-1 md:mt-0 md:ml-auto"
+            >
               Follow
             </Button>
           </div>
