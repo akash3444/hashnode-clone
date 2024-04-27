@@ -25,7 +25,7 @@ const UserBadges: FC<UserBadgesProps> = ({ badges }) => {
                 </div>
                 <div>
                   <Typography variant="h4">{name}</Typography>
-                  <p className="text-foreground-500">
+                  <p className="text-foreground-500  dark:text-foreground-400">
                     Earned on {formatDate(dateAssigned)}
                   </p>
                 </div>

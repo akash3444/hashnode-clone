@@ -83,7 +83,7 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
                   </Chip>
                 )}
               </div>
-              <p className="mt-3 mb-1 md:mb-6 text-lg text-foreground-700">
+              <p className="mt-3 mb-1 md:mb-6 text-lg text-foreground-700 dark:text-foreground-200">
                 {user.tagline}
               </p>
             </div>
@@ -92,7 +92,7 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
 
           <Link
             href={`/users/${username}/followers`}
-            className="hidden md:flex text-foreground-700"
+            className="hidden md:flex text-foreground-700 dark:text-foreground-200"
           >
             <b>{formatNumberWithSuffix(user.followersCount)}</b>
             <span>&nbsp;followers</span>
@@ -106,7 +106,7 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
 
         <Link
           href={`/users/${username}/followers`}
-          className="mt-2 mb-4 flex md:hidden text-foreground-700"
+          className="mt-2 mb-4 flex md:hidden text-foreground-700 dark:text-foreground-200"
         >
           <b>{formatNumberWithSuffix(user.followersCount)}</b>
           <span>&nbsp;followers</span>
@@ -131,9 +131,11 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
                 About Me
               </Typography>
               {user.bio.text ? (
-                <p className="text-foreground-600">{user.bio.text}</p>
+                <p className="text-foreground-600 dark:text-foreground-200">
+                  {user.bio.text}
+                </p>
               ) : (
-                <p className="my-14 text-center text-foreground-500">
+                <p className="my-14 text-center text-foreground-500 dark:text-foreground-400">
                   No bio to display
                 </p>
               )}
@@ -145,9 +147,11 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
                 I am available for
               </Typography>
               {user.availableFor ? (
-                <p className="text-foreground-600">{user.availableFor}</p>
+                <p className="text-foreground-600 dark:text-foreground-200">
+                  {user.availableFor}
+                </p>
               ) : (
-                <p className="my-14 text-center text-foreground-500">
+                <p className="my-14 text-center text-foreground-500 dark:text-foreground-400">
                   Nothing to show
                 </p>
               )}

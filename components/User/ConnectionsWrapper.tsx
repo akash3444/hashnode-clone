@@ -36,7 +36,9 @@ export const ConnectionsWrapper = async ({
           <Link href={`/users/${username}`}>
             <Typography variant="h2">{user.name}</Typography>
           </Link>
-          <p className="text-foreground-600">{user.tagline}</p>
+          <p className="text-foreground-600 dark:text-foreground-200">
+            {user.tagline}
+          </p>
         </CardBody>
         <CardFooter className="block space-y-3">
           <Button color="primary">Follow</Button>

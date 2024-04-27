@@ -11,7 +11,10 @@ import { cn } from "@/lib/utils";
 const Card: FC<CardProps> = ({ className, ...props }) => {
   return (
     <NextUiCard
-      className={cn("p-3 border", className)}
+      className={cn(
+        "p-3 border dark:border-foreground-800 dark:bg-transparent",
+        className
+      )}
       shadow="none"
       {...props}
     />

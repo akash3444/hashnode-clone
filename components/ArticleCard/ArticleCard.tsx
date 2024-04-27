@@ -66,12 +66,12 @@ const ArticleCardBody: FC<Article> = ({ id, brief, coverImage, title }) => (
       <Typography variant="h1" className="mb-2">
         {title}
       </Typography>
-      <Typography className="hidden md:block md:line-clamp-3">
+      <Typography className="hidden md:block md:line-clamp-3 dark:text-foreground-400">
         {brief}
       </Typography>
     </div>
     {!!coverImage && (
-      <div className="relative h-full min-w-48 aspect-video bg-foreground-100 rounded-lg">
+      <div className="relative h-full min-w-48 aspect-video bg-foreground-100 dark:bg-foreground-900 rounded-lg">
         <Image src={coverImage.url} fill alt={title} className="rounded-lg" />
       </div>
     )}
@@ -86,12 +86,12 @@ const ArticleCardFooter: FC<Article> = ({
   series,
   publication,
 }) => (
-  <CardFooter className="flex items-center justify-between text-foreground-500 px-0 md:px-2 pb-4 md:pb-2">
+  <CardFooter className="flex items-center justify-between text-foreground-500 dark:text-foreground-300 px-0 md:px-2 pb-4 md:pb-2">
     <WithSeparatorDot>
       <Link
         color="foreground"
         size="sm"
-        className="leading-none text-foreground-600"
+        className="leading-none text-foreground-600 dark:text-foreground-300"
         href="/"
       >
         <ChatBubble className="h-4 mr-2" />

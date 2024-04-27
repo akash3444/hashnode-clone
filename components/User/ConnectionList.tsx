@@ -35,6 +35,7 @@ const ConnectionList: FC<ConnectionListProps> = ({ username, type }) => {
 
   useEffect(() => {
     fetchConnections(1);
+    fetchConnections(2);
   }, []);
 
   if (!isLoading && !connections?.length)

@@ -18,7 +18,9 @@ const Challenges: FC<{
             <Typography variant="h5" className="mb-1">
               {title}
             </Typography>
-            <Typography>{tagline}</Typography>
+            <Typography className="dark:text-foreground-400">
+              {tagline}
+            </Typography>
           </div>
           <div className="relative h-20 aspect-square">
             <Image src={image} fill alt={title} />

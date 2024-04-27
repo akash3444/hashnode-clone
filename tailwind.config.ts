@@ -31,6 +31,30 @@ const config: Config = {
         light: {
           colors: {
             foreground: colors.slate,
+            secondary: {
+              DEFAULT: colors.indigo[500],
+            },
+          },
+        },
+        dark: {
+          colors: {
+            foreground: colors.slate,
+            secondary: {
+              DEFAULT: colors.indigo[500],
+            },
+            default: {
+              100: colors.slate[900],
+              200: colors.slate[800],
+              300: colors.slate[700],
+              400: colors.slate[600],
+              500: colors.slate[500],
+              DEFAULT: colors.slate[800],
+              600: colors.slate[400],
+              700: colors.slate[300],
+              800: colors.slate[200],
+              900: colors.slate[100],
+            },
+            content1: colors.slate[950],
           },
         },
       },

@@ -45,7 +45,7 @@ export const SocialMediaHandles: FC<SocialMediaHandlesProps> = ({ links }) => {
           variant="light"
           target="_blank"
         >
-          <Icon className="text-foreground-500" />
+          <Icon className="text-foreground-500 dark:text-foreground-400" />
         </Button>
       )
     );

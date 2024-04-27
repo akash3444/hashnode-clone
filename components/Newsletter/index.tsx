@@ -41,7 +41,7 @@ const Newsletter: FC<NewsletterProps> = ({ authorName, publicationId }) => {
       <h5 className="text-3xl font-bold tracking-wide">
         Subscribe to my newsletter
       </h5>
-      <p className="mt-6 text-lg md:text-xl tracking-wide text-foreground-700">
+      <p className="mt-6 text-lg md:text-xl tracking-wide text-foreground-700 dark:text-foreground-300">
         Read articles from <b>{authorName}</b> directly inside your inbox.
         Subscribe to the newsletter, and don&apos;t miss out.
       </p>
@@ -59,6 +59,7 @@ const Newsletter: FC<NewsletterProps> = ({ authorName, publicationId }) => {
       ) : (
         <form action={handleSubscription} noValidate>
           <div className="mt-6 md:mt-10 max-w-lg mx-auto flex items-center">
+            {/* TODO: Do not display input built-in error message */}
             <Input
               type="email"
               name="email"
@@ -84,7 +85,7 @@ const SubscribeButton = () => {
     <Button
       type="submit"
       className={cn(
-        "h-12 rounded-l-none px-6 rounded-r-xl bg-black text-white",
+        "h-12 rounded-l-none px-6 rounded-r-xl bg-black dark:bg-foreground-800 text-white",
         {
           "opacity-50": pending,
         }

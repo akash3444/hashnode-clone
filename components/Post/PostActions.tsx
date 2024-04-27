@@ -19,7 +19,7 @@ export const PostActions: FC<PostActionsProps> = ({ post }) => {
   const [showTableOfContents, setShowTableOfContents] = useState(false);
 
   return (
-    <div className="mt-10 flex max-w-max mx-auto items-center gap-2 border rounded-full py-1 px-4">
+    <div className="mt-10 flex max-w-max mx-auto items-center gap-2 border dark:border-foreground-800 rounded-full py-1 px-4">
       <div className="flex items-center">
         <Tooltip content="Like this article" offset={15} delay={1000}>
           <Button isIconOnly variant="light">

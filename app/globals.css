@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @apply font-inter;
+  @apply font-inter dark:bg-foreground-950;
 }
 
 .hljs {

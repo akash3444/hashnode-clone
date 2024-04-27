@@ -31,7 +31,7 @@ export const PostHeader: FC<PostHeaderProps> = ({ post }) => {
               className="rounded-full"
             />
           </div>
-          <span className="font-medium text-foreground-600">
+          <span className="font-medium text-foreground-600 dark:text-foreground-200">
             {post.author.name}
           </span>
         </div>
@@ -47,7 +47,7 @@ export const PostHeader: FC<PostHeaderProps> = ({ post }) => {
           )}
         </WithSeparatorDot>
       </div>
-      <WithSeparatorDot className="mt-10 hidden md:flex items-center justify-center text-lg gap-4 text-foreground-500">
+      <WithSeparatorDot className="mt-10 hidden md:flex items-center justify-center text-lg gap-4 text-foreground-500 dark:text-foreground-400">
         <div className="flex items-center gap-3.5">
           <div className="relative h-12 w-12 bg-slate-200 rounded-full">
             <Image
@@ -57,7 +57,7 @@ export const PostHeader: FC<PostHeaderProps> = ({ post }) => {
               className="rounded-full"
             />
           </div>
-          <span className="font-medium text-foreground-600">
+          <span className="font-medium text-foreground-600 dark:text-foreground-200">
             {post.author.name}
           </span>
         </div>

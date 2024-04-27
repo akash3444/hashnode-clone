@@ -118,7 +118,7 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
               <Typography variant="h5" className="hidden md:block">
                 {post.author.name}
               </Typography>
-              <p className="mt-1.5 text-foreground-600 leading-7">
+              <p className="mt-1.5 text-foreground-600 dark:text-foreground-400 leading-7">
                 {post.author.bio.text}
               </p>
             </div>

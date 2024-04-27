@@ -20,7 +20,7 @@ export const Tabs: FC<TabsProps> = ({
         ...classNames,
         base: cn(
           "max-w-full overflow-x-auto",
-          { "border-b": variant === "underlined" },
+          { "border-b dark:border-foreground-800": variant === "underlined" },
           classNames?.base
         ),
         tabList: cn(

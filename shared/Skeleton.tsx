@@ -4,9 +4,10 @@ import { Skeleton as NextUiSkeleton, SkeletonProps } from "@nextui-org/react";
 const Skeleton: FC<SkeletonProps> = (props) => {
   return (
     <NextUiSkeleton
+      disableAnimation
       {...props}
       classNames={{
-        base: "bg-foreground-100 before:via-foreground-200/80",
+        base: "bg-foreground-100 dark:bg-foreground-900",
       }}
     />
   );
