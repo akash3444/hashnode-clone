@@ -52,9 +52,9 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
   if (!user) return notFound();
 
   return (
-    <Card fullWidth className="py-10 px-24">
-      <CardHeader className="mb-2 gap-10">
-        <div className="shrink-0 relative h-40 w-40 border rounded-full">
+    <Card className="border-0 lg:border py-0 md:py-10 px-6 lg:px-24">
+      <CardHeader className="mb-2 flex-col md:flex-row gap-4 lg:gap-10 items-start">
+        <div className="shrink-0 relative h-24 w-24 lg:h-40 lg:w-40 border rounded-full">
           <Image
             src={user.profilePicture || DEFAULT_PROFILE_PICTURE}
             alt={user.username}
@@ -83,27 +83,40 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
                   </Chip>
                 )}
               </div>
-              <p className="mt-3 mb-6 text-lg text-foreground-700">
+              <p className="mt-3 mb-1 md:mb-6 text-lg text-foreground-700">
                 {user.tagline}
               </p>
             </div>
-            <ProfileActions name={user.name} />
+            <ProfileActions name={user.name} className="hidden md:flex" />
           </div>
 
           <Link
             href={`/users/${username}/followers`}
-            className="text-foreground-700"
+            className="hidden md:flex text-foreground-700"
           >
             <b>{formatNumberWithSuffix(user.followersCount)}</b>
             <span>&nbsp;followers</span>
           </Link>
         </div>
+
+        <ProfileActions
+          name={user.name}
+          className="flex md:hidden flex-row-reverse"
+        />
+
+        <Link
+          href={`/users/${username}/followers`}
+          className="mt-2 mb-4 flex md:hidden text-foreground-700"
+        >
+          <b>{formatNumberWithSuffix(user.followersCount)}</b>
+          <span>&nbsp;followers</span>
+        </Link>
       </CardHeader>
 
       <CardBody>
         <Card>
-          <CardBody className="flex-row items-center gap-10 justify-center">
-            <div className="flex items-center gap-1">
+          <CardBody className="flex-col md:flex-row items-start md:items-center gap-2.5 md:gap-10 justify-center">
+            <div className="-ml-1.5 md:ml-0 flex items-center gap-1">
               <SocialMediaHandles links={user.socialMediaLinks} />
             </div>
             <Location location={user.location} />

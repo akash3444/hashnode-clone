@@ -12,7 +12,7 @@ interface UserBadgesProps {
 const UserBadges: FC<UserBadgesProps> = ({ badges }) => {
   return (
     !!badges.length && (
-      <Card className="col-span-2">
+      <Card className="col-span-1 lg:col-span-2">
         <CardBody className="pb-8">
           <Typography variant="h2" className="mb-3">
             Badges

@@ -1,6 +1,6 @@
 "use client";
 
-import { getLinkedInShareUrl, getTwitterShareUrl } from "@/lib/utils";
+import { cn, getLinkedInShareUrl, getTwitterShareUrl } from "@/lib/utils";
 import Button from "@/shared/Button";
 import {
   Dropdown,
@@ -16,7 +16,13 @@ import {
   XIcon,
 } from "../icons";
 
-export const ProfileActions = ({ name }: { name: string }) => {
+export const ProfileActions = ({
+  name,
+  className,
+}: {
+  name: string;
+  className?: string;
+}) => {
   const shareProfile = (platform: string) => {
     const text = `Check ${name}'s profile on @hashnode ${window.location.href}`;
 
@@ -31,7 +37,7 @@ export const ProfileActions = ({ name }: { name: string }) => {
   };
 
   return (
-    <div className="flex items-start gap-3">
+    <div className={cn("flex items-start gap-3", className)}>
       <Dropdown placement="bottom" disableAnimation>
         <DropdownTrigger>
           <Button isIconOnly variant="bordered">

@@ -5,7 +5,7 @@ interface UserLayoutProps {
 }
 
 const UserLayout: FC<UserLayoutProps> = ({ children }) => {
-  return <main className="max-w-6xl mx-auto py-6">{children}</main>;
+  return <main className="lg:max-w-6xl lg:px-6 mx-auto py-6">{children}</main>;
 };
 
 export default UserLayout;
