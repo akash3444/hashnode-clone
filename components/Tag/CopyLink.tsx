@@ -6,7 +6,7 @@ import { LinkIcon } from "../icons";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import toast from "react-hot-toast";
 
-const CopyLink = () => {
+const CopyLink = ({ className }: { className?: string }) => {
   const [_, copy] = useCopyToClipboard();
 
   const copyLink = async () => {
@@ -16,7 +16,13 @@ const CopyLink = () => {
   };
 
   return (
-    <Button isIconOnly size="sm" variant="bordered" onClick={copyLink}>
+    <Button
+      isIconOnly
+      size="sm"
+      variant="bordered"
+      onClick={copyLink}
+      className={className}
+    >
       <LinkIcon className="h-4 w-4" />
     </Button>
   );

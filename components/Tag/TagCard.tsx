@@ -22,7 +22,41 @@ export const TagCard: FC<TagCardProps> = async ({ slug }) => {
   return (
     <Card>
       <CardBody>
-        <div className="flex items-center justify-between">
+        <div className="sm:hidden flex items-center justify-between">
+          <div className="relative h-12 w-12">
+            <Image
+              src={logo || DEFAULT_TAG_LOGO}
+              alt={name}
+              fill
+              className="rounded-full"
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <CopyLink />
+            <Button
+              as={Link}
+              isIconOnly
+              size="sm"
+              variant="bordered"
+              href={`/tags/${slug}/rss`}
+            >
+              <RssIcon className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+        <div className="sm:hidden mt-6 flex items-center justify-between">
+          <div>
+            <Typography variant="h2" className="text-2xl font-semibold">
+              {name}
+            </Typography>
+            <span className="text-foreground-500">#{slug}</span>
+            <WithSeparatorDot className="mt-4 text-foreground-500">
+              <span>{formatNumberWithSuffix(followersCount)} followers</span>
+              <span>{formatNumberWithSuffix(postsCount)} articles</span>
+            </WithSeparatorDot>
+          </div>
+        </div>
+        <div className="hidden sm:flex items-center justify-between">
           <div>
             <Typography variant="h2" className="text-2xl font-semibold">
               {name}
@@ -49,12 +83,13 @@ export const TagCard: FC<TagCardProps> = async ({ slug }) => {
           <Button size="sm" variant="bordered" className="font-medium">
             Write an article
           </Button>
-          <CopyLink />
+          <CopyLink className="hidden sm:flex" />
           <Button
             as={Link}
             isIconOnly
             size="sm"
             variant="bordered"
+            className="hidden sm:flex"
             href={`/tags/${slug}/rss`}
           >
             <RssIcon className="h-4 w-4" />
