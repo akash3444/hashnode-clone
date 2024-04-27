@@ -20,7 +20,7 @@ export const ConnectionsWrapper = async ({
   const user = await getUserInfo(username);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start px-2 md:px-6">
       <Card>
         <CardHeader>
           <div className="relative h-20 w-20">

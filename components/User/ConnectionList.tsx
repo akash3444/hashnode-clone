@@ -15,7 +15,7 @@ interface ConnectionListProps {
 
 const ConnectionList: FC<ConnectionListProps> = ({ username, type }) => {
   const [connections, setConnections] = useState<User[]>();
-  const currentPage = useRef(-1);
+  const currentPage = useRef(1);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -34,7 +34,6 @@ const ConnectionList: FC<ConnectionListProps> = ({ username, type }) => {
   };
 
   useEffect(() => {
-    fetchConnections(0);
     fetchConnections(1);
   }, []);
 
@@ -48,11 +47,10 @@ const ConnectionList: FC<ConnectionListProps> = ({ username, type }) => {
   return (
     <InfiniteScroll
       hasMore={hasMore}
-      loader={<ConnectionListSkeleton />}
+      loader={isLoading && <ConnectionListSkeleton />}
       next={fetchConnections}
       dataLength={connections?.length || 0}
-      scrollThreshold="350px" // Height of the skeleton because loader is always visible
-      initialScrollY={100}
+      scrollThreshold="10px"
     >
       <div
         className={cn("grid grid-cols-1 md:grid-cols-2 gap-4", {

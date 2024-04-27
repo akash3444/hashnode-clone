@@ -2,7 +2,7 @@ import Card, { CardBody } from "@/shared/Card";
 import Skeleton from "@/shared/Skeleton";
 
 const ConnectionCardSkeleton = () => (
-  <Card className="bg-slate-100 border-0">
+  <Card>
     <CardBody className="flex-row items-start gap-2 p-1">
       <Skeleton className="h-9 w-9 shrink-0 rounded-full" />
       <div className="w-full">
