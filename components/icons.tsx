@@ -704,3 +704,162 @@ export const SunIcon: FC<ComponentProps<"svg">> = ({ className, ...props }) => (
     ></path>
   </svg>
 );
+
+export const NoteIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M11.66 2.65v3.183a.834.834 0 0 0 .834.834h3.19M11.66 2.649a1.667 1.667 0 0 0-.69-.149H6.667a2.5 2.5 0 0 0-2.5 2.5v10a2.5 2.5 0 0 0 2.5 2.5h6.666a2.5 2.5 0 0 0 2.5-2.5V7.358c0-.241-.052-.476-.15-.691m-4.022-4.018c.18.082.345.196.488.338l3.195 3.191c.143.143.257.309.34.489M7.5 10h5m-5 3.333h3.333"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);
+
+export const BookmarksIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M14.948 13.7a.719.719 0 0 0 1.094-.614V3.958c0-.92-.747-1.667-1.667-1.667H8.958c-.584 0-1.098.301-1.395.756m5.145 14.661V7.292c0-.921-.746-1.667-1.666-1.667H5.625c-.92 0-1.667.746-1.667 1.667v10.416l3.95-2.338a.833.833 0 0 1 .85 0l3.95 2.338Z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);
+
+export const UserCircleIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M4.94 16.263a5.831 5.831 0 0 1 5.06-2.93 5.831 5.831 0 0 1 5.06 2.93M18.334 10a8.333 8.333 0 1 1-16.666 0 8.333 8.333 0 0 1 16.666 0Zm-5.555-1.852a2.778 2.778 0 1 1-5.556 0 2.778 2.778 0 0 1 5.556 0Z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);
+
+export const FilterIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M4.167 2.5v8.333m1.666 0H4.167m0 0H2.5m1.667 2.5V17.5M10 9.167V17.5m1.667-10.833H10m0 0V2.5m0 4.167H8.333m9.167 6.666h-1.667m0 0V2.5m0 10.833h-1.666m1.666 2.5V17.5"
+      strokeLinecap="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);
+
+export const TimeIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M4.262 14.83a7.5 7.5 0 1 0-.387-9.158m2.167.784-3.085.2-.2-3.086m6.994 3.432v2.994l2.248 1.505"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);
+
+export const GiftIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M4.262 14.83a7.5 7.5 0 1 0-.387-9.158m2.167.784-3.085.2-.2-3.086m6.994 3.432v2.994l2.248 1.505"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);
+
+export const HelpCircleIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M7.575 7.5a2.5 2.5 0 0 1 4.858.833c0 1.667-2.5 2.5-2.5 2.5M10 14.166h.008M18.333 10a8.333 8.333 0 1 1-16.666 0 8.333 8.333 0 0 1 16.666 0Z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);
+
+export const ExitIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M13.333 14.167 17.5 10m0 0-4.167-4.167M17.5 10h-10m0-7.5h-1c-1.4 0-2.1 0-2.635.272a2.5 2.5 0 0 0-1.093 1.093C2.5 4.4 2.5 5.1 2.5 6.5v7c0 1.4 0 2.1.272 2.635a2.5 2.5 0 0 0 1.093 1.092C4.4 17.5 5.1 17.5 6.5 17.5h1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);

@@ -545,3 +545,22 @@ export const GET_POST_COMMENTS = `
     }
   }
 `;
+
+export const GET_AUTHENTICATED_USER = `
+  query GetAuthenticatedUser {
+    me {
+      id
+      name
+      username
+      profilePicture
+      publications(first: 1) {
+        edges {
+          node {
+            id
+            url
+          }
+        }
+      }
+    }
+  }
+`;

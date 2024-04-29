@@ -116,6 +116,14 @@ export interface User {
   tagline: string;
   badges: Badge[];
   followers: { nodes: User[]; pageInfo: PageInfo };
+  publications: {
+    edges: {
+      node: {
+        id: string;
+        url: string;
+      }[];
+    };
+  };
 }
 
 export interface Badge {

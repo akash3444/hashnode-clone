@@ -1,6 +1,4 @@
-"use client";
-
-import Button from "@/shared/Button";
+import { auth } from "@/lib/auth";
 import { Link } from "@nextui-org/link";
 import {
   Navbar as Nav,
@@ -9,11 +7,15 @@ import {
   NavbarItem,
 } from "@nextui-org/navbar";
 import { LogoStandard } from "../icons";
+import { LoginButton } from "./LoginButton";
 import MoreDropdown from "./MoreDropdown";
 import NavbarLinks from "./NavbarLinks";
+import { NavbarUser } from "./NavbarUser";
 import { ThemeToggle } from "./ThemeToggle";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const session = await auth();
+
   return (
     <Nav
       maxWidth="2xl"
@@ -24,26 +26,23 @@ const Navbar = () => {
       <NavbarBrand className="cursor-pointer" as={Link} href="/">
         <LogoStandard className="h-7 w-auto text-black dark:text-white" />
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="hidden md:flex gap-4" justify="center">
         <NavbarLinks />
         <NavbarItem>
           <MoreDropdown />
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end" className="gap-2">
-        <NavbarItem className="hidden lg:flex">
+      <NavbarContent justify="end" className="gap-3">
+        <NavbarItem>
           <ThemeToggle />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">
-          <Button as={Link} color="default" variant="light">
-            Login
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" href="#">
-            Sign Up
-          </Button>
-        </NavbarItem>
+        {session?.user ? (
+          <NavbarUser user={session.user} />
+        ) : (
+          <NavbarItem>
+            <LoginButton />
+          </NavbarItem>
+        )}
       </NavbarContent>
     </Nav>
   );
