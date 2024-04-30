@@ -15,7 +15,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         // verify if user with provided access token exists
         user = await getAuthenticatedUser(accessToken as string);
-        return user;
+        return user ? { ...user, accessToken } : user;
       },
     }),
   ],
@@ -33,3 +33,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
 });
+
+export const getAccessToken = async () => {
+  const session = await auth();
+
+  return session?.user?.accessToken;
+};

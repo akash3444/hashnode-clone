@@ -371,6 +371,7 @@ export const GET_USER = `
       bio {
         text
       }
+      following
       followersCount
       location
       socialMediaLinks {

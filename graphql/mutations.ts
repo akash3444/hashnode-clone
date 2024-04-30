@@ -6,3 +6,13 @@ export const SUBSCRIBE_TO_NEWSLETTER = `
     }
   }
 `;
+
+export const TOGGLE_FOLLOW_USER = `
+  mutation ToggleFollowUser($username: String) {
+    toggleFollowUser(username: $username) {
+      user {
+        username
+      }
+    }
+  }
+`;

@@ -1,6 +1,8 @@
 "use server";
 
+import { TOGGLE_FOLLOW_USER } from "@/graphql/mutations";
 import { GET_USER, GET_USER_INFO } from "@/graphql/queries";
+import { getAccessToken } from "@/lib/auth";
 import { ConnectionType, User } from "@/lib/types";
 
 interface GetUserConnectionsVariables {
@@ -10,12 +12,17 @@ interface GetUserConnectionsVariables {
 }
 
 export const getUser = async (username: string): Promise<User> => {
+  const accessToken = (await getAccessToken()) || "";
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: accessToken,
+  };
+  console.log("headers :", headers);
+  console.log("AccessToken :", accessToken);
   const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
     method: "POST",
 
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers,
 
     body: JSON.stringify({
       query: GET_USER,
@@ -23,17 +30,21 @@ export const getUser = async (username: string): Promise<User> => {
     }),
     cache: "no-store",
   });
+  console.log("res :", res);
   const data = await res.json();
+  console.log("DATA :", data);
 
   return data?.data?.user;
 };
 
 export const getUserInfo = async (username: string): Promise<User> => {
+  const accessToken = (await getAccessToken()) || "";
   const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
     method: "POST",
 
     headers: {
       "Content-Type": "application/json",
+      Authorization: accessToken,
     },
 
     body: JSON.stringify({
@@ -61,4 +72,27 @@ export const getUserConnections = async ({
   const data = await res.json();
 
   return data?.[type];
+};
+
+export const toggleFollowUser = async (
+  username: string
+): Promise<{ user: { username: string } }> => {
+  const accessToken = (await getAccessToken()) || "";
+  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+
+    body: JSON.stringify({
+      query: TOGGLE_FOLLOW_USER,
+      variables: { username },
+    }),
+    cache: "no-store",
+  });
+  const data = await res.json();
+
+  return data?.data?.toggleFollowUser;
 };
