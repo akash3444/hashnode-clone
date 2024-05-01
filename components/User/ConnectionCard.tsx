@@ -1,15 +1,16 @@
+import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 import { User } from "@/lib/types";
 import Card, { CardBody } from "@/shared/Card";
 import Typography from "@/shared/Typography";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import { PlusIcon } from "../icons";
-import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
+import { ConnectionFollowButton } from "./ConnectionFollowButton";
 
 interface ConnectionCardProps extends User {}
 
 const ConnectionCard: FC<ConnectionCardProps> = ({
+  _id,
   name,
   photo,
   tagline,
@@ -37,9 +38,7 @@ const ConnectionCard: FC<ConnectionCardProps> = ({
             {tagline}
           </p>
         </div>
-        <button className="ml-auto shrink-0 h-[26px] w-[26px] flex items-center justify-center rounded-full bg-white border hover:bg-slate-200 dark:bg-foreground-950 dark:border-foreground-700">
-          <PlusIcon className="h-4 w-4 text-primary-600" />
-        </button>
+        <ConnectionFollowButton userId={_id} />
       </CardBody>
     </Card>
   );

@@ -9,6 +9,7 @@ import { JoinedDate } from "./JoinedDate";
 import { Location } from "./Location";
 import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 import Link from "next/link";
+import { UserFollowButton } from "./UserFollowButton";
 
 export const ConnectionsWrapper = async ({
   username,
@@ -41,7 +42,7 @@ export const ConnectionsWrapper = async ({
           </p>
         </CardBody>
         <CardFooter className="block space-y-3">
-          <Button color="primary">Follow</Button>
+          <UserFollowButton following={user.following} />
           <Location location={user.location} />
           <JoinedDate dateJoined={user.dateJoined} />
         </CardFooter>

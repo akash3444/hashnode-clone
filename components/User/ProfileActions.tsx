@@ -15,16 +15,18 @@ import {
   ShareIcon,
   XIcon,
 } from "../icons";
+import { UserFollowButton } from "./UserFollowButton";
+import { User } from "@/lib/types";
 
 export const ProfileActions = ({
-  name,
+  user,
   className,
 }: {
-  name: string;
+  user: User;
   className?: string;
 }) => {
   const shareProfile = (platform: string) => {
-    const text = `Check ${name}'s profile on @hashnode ${window.location.href}`;
+    const text = `Check ${user.name}'s profile on @hashnode ${window.location.href}`;
 
     switch (platform) {
       case "twitter":
@@ -79,7 +81,7 @@ export const ProfileActions = ({
         </DropdownMenu>
       </Dropdown>
 
-      <Button color="primary">Follow</Button>
+      <UserFollowButton following={user.following} />
     </div>
   );
 };

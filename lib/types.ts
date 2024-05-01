@@ -92,6 +92,7 @@ export interface User {
   isPro: boolean;
   photo: string;
   username: string;
+  following: boolean;
   bio: {
     text: string;
     html: string;

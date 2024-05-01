@@ -15,9 +15,6 @@ export const getAuthenticatedUser = async (accessToken: string) => {
 
     body: JSON.stringify({
       query: GET_AUTHENTICATED_USER,
-      headers: {
-        Authorization: accessToken,
-      },
     }),
     cache: "no-store",
   });

@@ -59,7 +59,7 @@ const ConnectionList: FC<ConnectionListProps> = ({ username, type }) => {
         })}
       >
         {connections?.map((user) => (
-          <ConnectionCard key={user.id} {...user} />
+          <ConnectionCard key={user._id} {...user} />
         ))}
       </div>
     </InfiniteScroll>

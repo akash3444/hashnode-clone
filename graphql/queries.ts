@@ -371,6 +371,7 @@ export const GET_USER = `
       bio {
         text
       }
+      following
       followersCount
       location
       socialMediaLinks {
@@ -403,6 +404,7 @@ export const GET_USER_INFO = `
       id
       name
       tagline
+      following
       profilePicture
       location
       dateJoined

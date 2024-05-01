@@ -87,7 +87,7 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
                 {user.tagline}
               </p>
             </div>
-            <ProfileActions name={user.name} className="hidden md:flex" />
+            <ProfileActions user={user} className="hidden md:flex" />
           </div>
 
           <Link
@@ -100,7 +100,7 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
         </div>
 
         <ProfileActions
-          name={user.name}
+          user={user}
           className="flex md:hidden flex-row-reverse"
         />
 
