@@ -1,3 +1,5 @@
+"use client";
+
 import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 import { User } from "@/lib/types";
 import Card, { CardBody } from "@/shared/Card";

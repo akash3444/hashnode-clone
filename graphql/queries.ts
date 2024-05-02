@@ -177,6 +177,7 @@ export const GET_DISCUSSIONS_TOP_COMMENTERS = `
     _id: id
     name
     photo: profilePicture
+    following
     isPro
     username
     __typename
