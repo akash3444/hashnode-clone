@@ -39,7 +39,8 @@ export const TableOfContents: FC<TableOfContentsProps> = ({
   highlightActiveItem,
   onItemClick = () => {},
 }) => {
-  const activeItem = window?.location?.hash;
+  const activeItem =
+    typeof window !== "undefined" ? window?.location?.hash : "";
 
   if (!tableOfContents || !tableOfContents?.length) {
     return null;
@@ -63,9 +64,9 @@ export const TableOfContents: FC<TableOfContentsProps> = ({
               <Link
                 href={hash}
                 className={cn(
-                  "p-2 rounded-lg hover:bg-foreground-100 flex items-center gap-2",
+                  "p-2 rounded-lg hover:bg-foreground-100 dark:hover:bg-foreground-900 flex items-center gap-2",
                   {
-                    "text-foreground-500": isChildren,
+                    "text-foreground-500 dark:text-foreground-400": isChildren,
                     "text-primary-500": highlightActiveItem && activeItems[id],
                   }
                 )}

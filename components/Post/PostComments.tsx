@@ -78,8 +78,10 @@ export const PostComments: FC<PostCommentsProps> = ({
                 </span>
               </div>
             </div>
-            <p className="mt-2.5 text-foreground-600">{content.text}</p>
-            <div className="mt-2.5 flex items-center gap-4 text-foreground-600">
+            <p className="mt-2.5 text-foreground-600 dark:text-foreground-300">
+              {content.text}
+            </p>
+            <div className="mt-2.5 flex items-center gap-4 text-foreground-600 dark:text-foreground-300">
               <div className="flex items-center">
                 <LikeCommentButton />
                 {!!totalReactions && (
@@ -92,7 +94,7 @@ export const PostComments: FC<PostCommentsProps> = ({
                 <div className="flex items-center">
                   <Tooltip content="Like this article" offset={15} delay={1000}>
                     <Button isIconOnly variant="light" size="sm">
-                      <ChatIcon className="text-foreground-600" />
+                      <ChatIcon className="text-foreground-600 dark:text-foreground-300" />
                     </Button>
                   </Tooltip>
 

@@ -18,7 +18,7 @@ export const LikeCommentButton = () => {
         size="sm"
         onClick={() => authenticatedAction(likeComment)}
       >
-        <HeartIcon className="text-foreground-600" />
+        <HeartIcon className="text-foreground-600 dark:text-foreground-300" />
       </Button>
     </Tooltip>
   );
