@@ -11,7 +11,6 @@ import {
   DropdownSection,
   DropdownTrigger,
 } from "@nextui-org/react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   BookmarksIcon,
@@ -29,12 +28,11 @@ export const NavbarUser = ({ user }: { user: SessionUser }) => {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <button className="relative h-10 w-10 rounded-full">
-          <Image
+        <button className="rounded-full">
+          <img
             src={user.profilePicture || DEFAULT_PROFILE_PICTURE}
             alt=""
-            fill
-            className="rounded-full"
+            className="h-10 w-10 rounded-full"
           />
         </button>
       </DropdownTrigger>
@@ -45,14 +43,11 @@ export const NavbarUser = ({ user }: { user: SessionUser }) => {
         >
           <DropdownItem as={Link} href={`/users/${user.username}`}>
             <div className="flex items-center gap-3">
-              <div className="relative h-12 w-12 rounded-full">
-                <Image
-                  src={user.profilePicture || DEFAULT_PROFILE_PICTURE}
-                  alt=""
-                  fill
-                  className="rounded-full"
-                />
-              </div>
+              <img
+                src={user.profilePicture || DEFAULT_PROFILE_PICTURE}
+                alt=""
+                className="h-12 w-12 rounded-full"
+              />
               <div>
                 <Typography variant="h5">{user.name}</Typography>
                 <Typography>@{user.username}</Typography>

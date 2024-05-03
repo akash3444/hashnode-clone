@@ -15,7 +15,6 @@ import { CardBody, CardFooter, CardHeader, CardProps } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
 import { Divider } from "@nextui-org/divider";
 import { Link } from "@nextui-org/link";
-import Image from "next/image";
 import NextLink from "next/link";
 import { FC } from "react";
 import UserInfo from "../UserInfo";
@@ -71,8 +70,12 @@ const ArticleCardBody: FC<Article> = ({ id, brief, coverImage, title }) => (
       </Typography>
     </div>
     {!!coverImage && (
-      <div className="relative h-full min-w-48 aspect-video bg-foreground-100 dark:bg-foreground-900 rounded-lg">
-        <Image src={coverImage.url} fill alt={title} className="rounded-lg" />
+      <div className="md:max-w-sm w-full aspect-video bg-foreground-100 dark:bg-foreground-900 rounded-lg">
+        <img
+          src={coverImage.url}
+          alt={title}
+          className="rounded-lg object-cover w-full h-full aspect-video"
+        />
       </div>
     )}
   </CardBody>

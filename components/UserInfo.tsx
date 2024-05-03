@@ -4,10 +4,9 @@ import { cn, formatDate, getDomain } from "@/lib/utils";
 import WithSeparatorDot from "@/shared/WithSeparatorDot";
 import { Chip } from "@nextui-org/chip";
 import { Tooltip } from "@nextui-org/react";
-import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 import { UserProfileSummary } from "./UserProfileSummary";
-import Link from "next/link";
 
 interface UserInfoProps extends Partial<Article> {
   showProBadge?: boolean;
@@ -35,18 +34,17 @@ const UserInfo: FC<UserInfoProps> = ({
         >
           <Link
             href={`/users/${author.username}`}
-            className={cn(
-              "relative h-10 w-10 cursor-pointer hover:opacity-75",
-              {
-                "h-8 w-8": isSmall,
-              }
-            )}
+            className="cursor-pointer hover:opacity-75"
           >
-            <Image
+            <img
               alt={author.name}
               src={author.photo || DEFAULT_PROFILE_PICTURE}
-              fill
-              className="rounded-full object-cover object-center flex-shrink-0 flex-grow shadow-small"
+              className={cn(
+                "h-10 w-10 rounded-full object-cover object-center flex-shrink-0 flex-grow shadow-small",
+                {
+                  "h-8 w-8": isSmall,
+                }
+              )}
             />
           </Link>
         </Tooltip>

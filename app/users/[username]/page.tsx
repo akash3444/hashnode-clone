@@ -12,7 +12,6 @@ import Card, { CardHeader } from "@/shared/Card";
 import Typography from "@/shared/Typography";
 import { CardBody, Chip, Link } from "@nextui-org/react";
 import { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FC } from "react";
 
@@ -54,14 +53,11 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
   return (
     <Card className="border-0 lg:border py-0 md:py-10 px-6 lg:px-24">
       <CardHeader className="mb-2 flex-col md:flex-row gap-4 lg:gap-10 items-start">
-        <div className="shrink-0 relative h-24 w-24 lg:h-40 lg:w-40 border rounded-full">
-          <Image
-            src={user.profilePicture || DEFAULT_PROFILE_PICTURE}
-            alt={user.username}
-            fill
-            className="rounded-full"
-          />
-        </div>
+        <img
+          src={user.profilePicture || DEFAULT_PROFILE_PICTURE}
+          alt={user.username}
+          className="shrink-0 h-24 w-24 lg:h-40 lg:w-40 border rounded-full"
+        />
 
         <div className="w-full">
           <div className="flex items-start justify-between gap-8">

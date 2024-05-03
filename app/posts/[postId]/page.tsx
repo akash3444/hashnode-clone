@@ -7,7 +7,6 @@ import Card from "@/shared/Card";
 import Typography from "@/shared/Typography";
 import { CardBody, Chip } from "@nextui-org/react";
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -65,14 +64,11 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
         )}
 
         {!!post.coverImage?.url && (
-          <div className="my-14 relative aspect-[18/9]">
-            <Image
-              src={post.coverImage?.url}
-              alt=""
-              fill
-              className="object-cover"
-            />
-          </div>
+          <img
+            src={post.coverImage?.url}
+            alt=""
+            className="my-14 w-full aspect-[18/9] object-cover"
+          />
         )}
 
         <PostContent html={post.content.html} />
@@ -102,14 +98,11 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
           </p>
           <div className="mt-6 flex flex-col md:flex-row items-start gap-4">
             <div className="flex items-center gap-3">
-              <div className="shrink-0 relative h-12 w-12 rounded-full bg-slate-100">
-                <Image
-                  src={post.author.profilePicture}
-                  alt={post.author.name}
-                  fill
-                  className="rounded-full"
-                />
-              </div>
+              <img
+                src={post.author.profilePicture}
+                alt={post.author.name}
+                className="shrink-0 h-12 w-12 rounded-full bg-slate-100"
+              />
               <Typography variant="h5" className="md:hidden">
                 {post.author.name}
               </Typography>

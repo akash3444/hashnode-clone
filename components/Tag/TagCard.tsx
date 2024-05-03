@@ -7,7 +7,6 @@ import Card, { CardBody } from "@/shared/Card";
 import Typography from "@/shared/Typography";
 import WithSeparatorDot from "@/shared/WithSeparatorDot";
 import { Link } from "@nextui-org/react";
-import Image from "next/image";
 import { FC } from "react";
 import CopyLink from "./CopyLink";
 
@@ -23,14 +22,11 @@ export const TagCard: FC<TagCardProps> = async ({ slug }) => {
     <Card>
       <CardBody>
         <div className="sm:hidden flex items-center justify-between">
-          <div className="relative h-12 w-12">
-            <Image
-              src={logo || DEFAULT_TAG_LOGO}
-              alt={name}
-              fill
-              className="rounded-full"
-            />
-          </div>
+          <img
+            src={logo || DEFAULT_TAG_LOGO}
+            alt={name}
+            className="relative h-12 w-12 rounded-full"
+          />
           <div className="flex items-center gap-2">
             <CopyLink />
             <Button
@@ -67,14 +63,11 @@ export const TagCard: FC<TagCardProps> = async ({ slug }) => {
               <span>{formatNumberWithSuffix(postsCount)} articles</span>
             </WithSeparatorDot>
           </div>
-          <div className="relative h-12 w-12">
-            <Image
-              src={logo || DEFAULT_TAG_LOGO}
-              alt={name}
-              fill
-              className="rounded-full"
-            />
-          </div>
+          <img
+            src={logo || DEFAULT_TAG_LOGO}
+            alt={name}
+            className="relative h-12 w-12 rounded-full"
+          />
         </div>
         <div className="mt-6 flex items-center gap-3">
           <Button size="sm" color="primary" className="font-medium">

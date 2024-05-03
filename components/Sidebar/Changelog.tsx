@@ -8,7 +8,6 @@ import Typography from "@/shared/Typography";
 import WithSeparatorDot from "@/shared/WithSeparatorDot";
 import { CardBody, CardHeader } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
-import Image from "next/image";
 import { FC, useState } from "react";
 import { CloseIcon } from "../icons";
 
@@ -38,9 +37,11 @@ const Changelog: FC<ChangelogProps> = ({
         </Button>
       </CardHeader>
       <CardBody className="pt-1">
-        <div className="relative aspect-video">
-          <Image src={coverImageURL} alt={title} fill className="rounded-lg" />
-        </div>
+        <img
+          src={coverImageURL}
+          alt={title}
+          className="aspect-video rounded-lg bg-foreground-100 dark:bg-foreground-900"
+        />
         <Typography variant="h3" className="mt-3 mb-2">
           {title}
         </Typography>

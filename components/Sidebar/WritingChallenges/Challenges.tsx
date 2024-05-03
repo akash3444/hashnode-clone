@@ -2,7 +2,6 @@
 
 import { Challenge } from "@/lib/types";
 import Typography from "@/shared/Typography";
-import Image from "next/image";
 import { FC, use } from "react";
 
 const Challenges: FC<{
@@ -22,9 +21,7 @@ const Challenges: FC<{
               {tagline}
             </Typography>
           </div>
-          <div className="relative h-20 aspect-square">
-            <Image src={image} fill alt={title} />
-          </div>
+          <img src={image} alt={title} className="h-20 aspect-square" />
         </div>
       ))}
     </div>

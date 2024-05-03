@@ -2,7 +2,6 @@ import { Article } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 import Typography from "@/shared/Typography";
 import WithSeparatorDot from "@/shared/WithSeparatorDot";
-import Image from "next/image";
 import { FC } from "react";
 import { FeaturedChip } from "../Feed";
 import { BookIcon } from "../icons";
@@ -23,14 +22,11 @@ export const PostHeader: FC<PostHeaderProps> = ({ post }) => {
       </Typography>
       <div className="mt-8 flex flex-col items-center gap-6 md:hidden">
         <div className="flex items-center gap-3.5">
-          <div className="relative h-12 w-12 bg-slate-200 rounded-full">
-            <Image
-              src={post.author.profilePicture}
-              alt={post.author.name}
-              fill
-              className="rounded-full"
-            />
-          </div>
+          <img
+            src={post.author.profilePicture}
+            alt={post.author.name}
+            className="h-12 w-12 bg-slate-200 rounded-full"
+          />
           <span className="font-medium text-foreground-600 dark:text-foreground-200">
             {post.author.name}
           </span>
@@ -49,14 +45,11 @@ export const PostHeader: FC<PostHeaderProps> = ({ post }) => {
       </div>
       <WithSeparatorDot className="mt-10 hidden md:flex items-center justify-center text-lg gap-4 text-foreground-500 dark:text-foreground-400">
         <div className="flex items-center gap-3.5">
-          <div className="relative h-12 w-12 bg-slate-200 rounded-full">
-            <Image
-              src={post.author.profilePicture}
-              alt={post.author.name}
-              fill
-              className="rounded-full"
-            />
-          </div>
+          <img
+            src={post.author.profilePicture}
+            alt={post.author.name}
+            className="h-12 w-12 bg-slate-200 rounded-full"
+          />
           <span className="font-medium text-foreground-600 dark:text-foreground-200">
             {post.author.name}
           </span>
