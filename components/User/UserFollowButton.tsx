@@ -1,14 +1,23 @@
 "use client";
 
 import { toggleFollowUser } from "@/api/user";
+import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import Button from "@/shared/Button";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { CheckIcon } from "../icons";
 
-export const UserFollowButton = ({ following }: { following: boolean }) => {
+export const UserFollowButton = ({
+  following,
+  className,
+}: {
+  following: boolean;
+  className?: string;
+}) => {
   const [isFollowing, setIsFollowing] = useState(following);
+
   const { username } = useParams();
+  const authenticatedAction = useAuthenticatedAction();
 
   const toggleFollow = async () => {
     setIsFollowing((prev) => !prev);
@@ -21,8 +30,9 @@ export const UserFollowButton = ({ following }: { following: boolean }) => {
     <Button
       color="primary"
       variant={isFollowing ? "bordered" : "solid"}
-      onClick={toggleFollow}
+      onClick={() => authenticatedAction(toggleFollow)}
       startContent={isFollowing && <CheckIcon />}
+      className={className}
     >
       {isFollowing ? "Following" : "Follow"}
     </Button>

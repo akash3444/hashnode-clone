@@ -2,7 +2,7 @@ import { getPost } from "@/api/post";
 import Newsletter from "@/components/Newsletter";
 import { PostContent, PostHeader, TableOfContents } from "@/components/Post";
 import { PostActions } from "@/components/Post/PostActions";
-import Button from "@/shared/Button";
+import { UserFollowButton } from "@/components/User/UserFollowButton";
 import Card from "@/shared/Card";
 import Typography from "@/shared/Typography";
 import { CardBody, Chip } from "@nextui-org/react";
@@ -116,13 +116,10 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
               </p>
             </div>
 
-            <Button
-              color="primary"
-              variant="bordered"
+            <UserFollowButton
+              following={false}
               className="mt-1 md:mt-0 md:ml-auto"
-            >
-              Follow
-            </Button>
+            />
           </div>
         </div>
       </div>

@@ -5,8 +5,10 @@ import Button from "@/shared/Button";
 import Tooltip from "@/shared/Tooltip";
 import { Divider } from "@nextui-org/react";
 import { FC, useState } from "react";
-import { BookmarkIcon, BulletListIcon, HeartIcon, ShareIcon } from "../icons";
+import { BulletListIcon, ShareIcon } from "../icons";
+import { BookmarkArticleButton } from "./BookmarkArticleButton";
 import { CommentsAction } from "./CommentsAction";
+import { LikeArticleButton } from "./LikeArticleButton";
 import { PeopleWhoLiked } from "./PeopleWhoLiked";
 import { TableOfContentsModal } from "./TableOfContentsModal";
 
@@ -21,11 +23,7 @@ export const PostActions: FC<PostActionsProps> = ({ post }) => {
   return (
     <div className="mt-10 flex max-w-max mx-auto items-center gap-2 border dark:border-foreground-800 rounded-full py-1 px-4">
       <div className="flex items-center">
-        <Tooltip content="Like this article" offset={15} delay={1000}>
-          <Button isIconOnly variant="light">
-            <HeartIcon />
-          </Button>
-        </Tooltip>
+        <LikeArticleButton />
         <Tooltip content="View who liked" showArrow={false} offset={23}>
           <span
             role="button"
@@ -53,11 +51,7 @@ export const PostActions: FC<PostActionsProps> = ({ post }) => {
           <Divider orientation="vertical" className="h-6" />
         </>
       )}
-      <Tooltip content="Add Bookmark" offset={15} delay={1000}>
-        <Button isIconOnly variant="light">
-          <BookmarkIcon />
-        </Button>
-      </Tooltip>
+      <BookmarkArticleButton />
       <Divider orientation="vertical" className="h-6" />
       <Tooltip content="Share this article" offset={15} delay={1000}>
         <Button isIconOnly variant="light">

@@ -9,6 +9,8 @@ import WithSeparatorDot from "@/shared/WithSeparatorDot";
 import { Link } from "@nextui-org/react";
 import { FC } from "react";
 import CopyLink from "./CopyLink";
+import { FollowTagButton } from "./FollowTagButton";
+import { WriteArticleButton } from "./WriteArticleButton";
 
 interface TagCardProps {
   slug: string;
@@ -70,12 +72,8 @@ export const TagCard: FC<TagCardProps> = async ({ slug }) => {
           />
         </div>
         <div className="mt-6 flex items-center gap-3">
-          <Button size="sm" color="primary" className="font-medium">
-            Follow tag
-          </Button>
-          <Button size="sm" variant="bordered" className="font-medium">
-            Write an article
-          </Button>
+          <FollowTagButton />
+          <WriteArticleButton />
           <CopyLink className="hidden sm:flex" />
           <Button
             as={Link}

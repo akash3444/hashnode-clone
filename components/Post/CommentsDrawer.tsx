@@ -1,6 +1,7 @@
 "use client";
 
 import { getPostComments } from "@/api/post";
+import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { POST_COMMENTS_SORT_BY } from "@/lib/constants";
 import { Article } from "@/lib/types";
@@ -59,8 +60,13 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
 }) => {
   const [filterBy, setFilterBy] = useState("top");
   const [comments, setComments] = useState<Article["comments"]>();
+
   const { postId } = useParams();
+  const authenticatedAction = useAuthenticatedAction();
+
   useLockBodyScroll(isOpen);
+
+  const addComment = () => {};
 
   const fetchPostComments = async (isFilterApplied?: boolean) => {
     if (!isOpen) return;
@@ -138,7 +144,12 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
                 <ArrowUpRightIcon className="h-4 w-4" />
                 Code of conduct
               </Link>
-              <Button className="ml-auto" size="sm" color="primary">
+              <Button
+                className="ml-auto"
+                size="sm"
+                color="primary"
+                onClick={() => authenticatedAction(addComment)}
+              >
                 Comment
               </Button>
             </div>

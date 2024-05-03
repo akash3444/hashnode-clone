@@ -1,3 +1,5 @@
+"use client";
+
 import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 import { Article } from "@/lib/types";
 import { cn, formatDate } from "@/lib/utils";
@@ -7,7 +9,9 @@ import Typography from "@/shared/Typography";
 import { Avatar, Chip, Divider } from "@nextui-org/react";
 import Link from "next/link";
 import { FC, Fragment } from "react";
-import { ChatIcon, HeartIcon } from "../icons";
+import { ChatIcon } from "../icons";
+import { LikeCommentButton } from "./LikeCommentButton";
+import { ReplyButton } from "./ReplyButton";
 
 interface PostCommentsProps {
   comments?: Article["comments"];
@@ -77,11 +81,7 @@ export const PostComments: FC<PostCommentsProps> = ({
             <p className="mt-2.5 text-foreground-600">{content.text}</p>
             <div className="mt-2.5 flex items-center gap-4 text-foreground-600">
               <div className="flex items-center">
-                <Tooltip content="Like this article" offset={15} delay={1000}>
-                  <Button isIconOnly variant="light" size="sm">
-                    <HeartIcon className="text-foreground-600" />
-                  </Button>
-                </Tooltip>
+                <LikeCommentButton />
                 {!!totalReactions && (
                   <span role="button" className="cursor-pointer text-sm">
                     {totalReactions}
@@ -103,12 +103,7 @@ export const PostComments: FC<PostCommentsProps> = ({
                   )}
                 </div>
               )}
-              <span
-                role="button"
-                className="cursor-pointer hover:underline text-sm font-medium"
-              >
-                Reply
-              </span>
+              <ReplyButton />
             </div>
           </div>
           <PostComments comments={replies} isReply authorId={authorId} />

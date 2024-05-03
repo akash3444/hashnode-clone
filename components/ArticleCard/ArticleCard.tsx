@@ -1,14 +1,6 @@
-import {
-  BookmarkIcon,
-  BookmarkSolidIcon,
-  ChatBubble,
-  FeaturedIcon,
-  SeriesIcon,
-} from "@/components/icons";
+import { ChatBubble, FeaturedIcon, SeriesIcon } from "@/components/icons";
 import { Article } from "@/lib/types";
-import Button from "@/shared/Button";
 import Card from "@/shared/Card";
-import Tooltip from "@/shared/Tooltip";
 import Typography from "@/shared/Typography";
 import WithSeparatorDot from "@/shared/WithSeparatorDot";
 import { CardBody, CardFooter, CardHeader, CardProps } from "@nextui-org/card";
@@ -18,6 +10,7 @@ import { Link } from "@nextui-org/link";
 import NextLink from "next/link";
 import { FC } from "react";
 import UserInfo from "../UserInfo";
+import { BookmarkButton } from "./BookmarkButton";
 
 interface ArticleCardProps extends CardProps {
   article: Article;
@@ -141,15 +134,7 @@ const ArticleCardFooter: FC<Article> = ({
           />
         </>
       )}
-      <Tooltip content={bookmarked ? "Remove bookmark" : "Save for later"}>
-        <Button isIconOnly size="sm" variant="light">
-          {bookmarked ? (
-            <BookmarkSolidIcon className="text-foreground-500" />
-          ) : (
-            <BookmarkIcon className="h-4 w-4 text-foreground-500" />
-          )}
-        </Button>
-      </Tooltip>
+      <BookmarkButton bookmarked={bookmarked} />
     </div>
   </CardFooter>
 );
