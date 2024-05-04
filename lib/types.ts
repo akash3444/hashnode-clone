@@ -175,7 +175,12 @@ export interface Publication {
 }
 
 type UrlPattern = "DEFAULT" | "SIMPLE";
-export type FeedType = "RECENT" | "PERSONALIZED" | "FEATURED" | "RELEVANT";
+export type FeedType =
+  | "RECENT"
+  | "PERSONALIZED"
+  | "FEATURED"
+  | "RELEVANT"
+  | "FOLLOWING";
 
 export interface Changelog {
   _id: string;

@@ -34,13 +34,15 @@ export const getTag = async (variables: TagVariables): Promise<Tag> => {
 };
 
 export const getTagFeed = async (
-  variables: TagFeedVariables
+  variables: TagFeedVariables,
+  accessToken: string | undefined
 ): Promise<Feed> => {
   const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
       "Content-Type": "application/json",
+      Authorization: accessToken || "",
     },
 
     body: JSON.stringify({

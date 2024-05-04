@@ -884,3 +884,23 @@ export const CheckIcon: FC<ComponentProps<"svg">> = ({
     />
   </svg>
 );
+
+export const UsersIcon: FC<ComponentProps<"svg">> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    viewBox="0 0 20 20"
+    className={cn("w-5 h-5", className)}
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      d="M11.667 7.917a2.917 2.917 0 0 0 0-5.834m2.916 15.834h2.593c.87 0 1.574-.705 1.574-1.575a5.51 5.51 0 0 0-5.51-5.509h-.323M9.792 5a2.917 2.917 0 1 1-5.834 0 2.917 2.917 0 0 1 5.834 0ZM2.917 17.917h7.916c.92 0 1.667-.747 1.667-1.667v-.208a5.625 5.625 0 0 0-11.25 0v.208c0 .92.746 1.667 1.667 1.667Z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.25"
+    ></path>
+  </svg>
+);

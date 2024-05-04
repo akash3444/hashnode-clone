@@ -63,11 +63,11 @@ const ArticleCardBody: FC<Article> = ({ id, brief, coverImage, title }) => (
       </Typography>
     </div>
     {!!coverImage && (
-      <div className="md:max-w-sm w-full aspect-video bg-foreground-100 dark:bg-foreground-900 rounded-lg">
+      <div className="md:max-w-sm w-full aspect-video rounded-lg">
         <img
           src={coverImage.url}
           alt={title}
-          className="rounded-lg object-cover w-full h-full aspect-video"
+          className="rounded-lg object-cover w-full h-full md:h-auto aspect-video bg-foreground-100 dark:bg-foreground-900"
         />
       </div>
     )}

@@ -10,23 +10,31 @@ interface ArticleListProps {
   initialFeed: Feed;
   feedVariables: FeedVariables;
   // TODO: define type for feedVariables
-  getMoreFeed?: (feedVariables: any) => Promise<Feed>;
+  getMoreFeed?: (
+    feedVariables: any,
+    accessToken: string | undefined
+  ) => Promise<Feed>;
+  accessToken?: string;
 }
 
 const ArticleList: FC<ArticleListProps> = ({
   initialFeed,
   feedVariables,
   getMoreFeed = getFeed,
+  accessToken,
 }) => {
   const [feed, setFeed] = useState<Feed>(initialFeed);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchMoreFeed = async () => {
     setIsLoading(true);
-    const newFeed = await getMoreFeed({
-      ...feedVariables,
-      after: feed.pageInfo.endCursor,
-    });
+    const newFeed = await getMoreFeed(
+      {
+        ...feedVariables,
+        after: feed.pageInfo.endCursor,
+      },
+      accessToken
+    );
 
     setFeed((prev) => ({
       edges: [...prev.edges, ...newFeed.edges],

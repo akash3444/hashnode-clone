@@ -14,12 +14,16 @@ export interface FeedVariables {
   commentsFirst?: number;
 }
 
-export const getFeed = async (variables: FeedVariables): Promise<Feed> => {
+export const getFeed = async (
+  variables: FeedVariables,
+  accessToken: string | undefined
+): Promise<Feed> => {
   const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
       "Content-Type": "application/json",
+      Authorization: accessToken || "",
     },
 
     body: JSON.stringify({
