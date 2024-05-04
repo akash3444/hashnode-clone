@@ -96,3 +96,24 @@ export const subscribeToNewsletter = async (input: {
 
   return data?.data?.subscribeToNewsletter;
 };
+
+export const bookmarkArticle = async (postId: string, accessToken: string) => {
+  const res = await fetch(
+    "https://hashnode.com/ajax/collections/add-or-remove-post",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: accessToken,
+      },
+      body: JSON.stringify({
+        postId,
+        responseId: null,
+        bookmarkType: "SAVED",
+      }),
+    }
+  );
+  const data = await res.json();
+
+  return data?.bookmark;
+};

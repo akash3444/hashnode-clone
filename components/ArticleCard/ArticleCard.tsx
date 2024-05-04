@@ -75,6 +75,7 @@ const ArticleCardBody: FC<Article> = ({ id, brief, coverImage, title }) => (
 );
 
 const ArticleCardFooter: FC<Article> = ({
+  id,
   bookmarked,
   tags,
   totalReactions,
@@ -143,7 +144,12 @@ const ArticleCardFooter: FC<Article> = ({
           />
         </>
       )}
-      <BookmarkButton bookmarked={bookmarked} />
+      <BookmarkButton
+        postId={id}
+        bookmarked={bookmarked}
+        buttonProps={{ size: "sm" }}
+        iconClassName="text-foreground-500"
+      />
     </div>
   </CardFooter>
 );

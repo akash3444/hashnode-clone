@@ -1,28 +1,57 @@
 "use client";
 
+import useBookmarkPost from "@/api/post/useBookmarkPost";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import Button from "@/shared/Button";
 import Tooltip from "@/shared/Tooltip";
+import { FC, useState } from "react";
 import { BookmarkIcon, BookmarkSolidIcon } from "../icons";
+import { ButtonProps, TooltipProps } from "@nextui-org/react";
+import { cn } from "@/lib/utils";
 
-export const BookmarkButton = ({ bookmarked }: { bookmarked: boolean }) => {
+interface BookmarkButtonProps {
+  bookmarked: boolean;
+  postId: string;
+  tooltipProps?: TooltipProps;
+  buttonProps?: Omit<ButtonProps, "ref">;
+  iconClassName?: string;
+}
+
+export const BookmarkButton: FC<BookmarkButtonProps> = ({
+  bookmarked,
+  postId,
+  tooltipProps,
+  buttonProps,
+  iconClassName,
+}) => {
+  const [isBookmarked, setIsBookmarked] = useState(bookmarked);
+
   const authenticatedAction = useAuthenticatedAction();
+  const { mutate } = useBookmarkPost();
 
-  const bookmarkArticle = () => {};
+  const Icon = isBookmarked ? BookmarkSolidIcon : BookmarkIcon;
+
+  const bookmark = () => {
+    mutate(postId, {
+      onError: () => {
+        setIsBookmarked((prev) => !prev);
+      },
+    });
+    setIsBookmarked((prev) => !prev);
+  };
 
   return (
-    <Tooltip content={bookmarked ? "Remove bookmark" : "Save for later"}>
+    <Tooltip
+      content={isBookmarked ? "Remove bookmark" : "Save for later"}
+      {...tooltipProps}
+    >
       <Button
         isIconOnly
-        size="sm"
         variant="light"
-        onClick={() => authenticatedAction(bookmarkArticle)}
+        onClick={() => authenticatedAction(bookmark)}
+        {...buttonProps}
       >
-        {bookmarked ? (
-          <BookmarkSolidIcon className="text-foreground-500" />
-        ) : (
-          <BookmarkIcon className="h-4 w-4 text-foreground-500" />
-        )}
+        <Icon className={iconClassName} />
       </Button>
     </Tooltip>
   );

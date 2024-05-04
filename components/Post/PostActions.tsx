@@ -4,9 +4,10 @@ import { Article } from "@/lib/types";
 import Button from "@/shared/Button";
 import Tooltip from "@/shared/Tooltip";
 import { Divider } from "@nextui-org/react";
+import { useParams } from "next/navigation";
 import { FC, useState } from "react";
+import { BookmarkButton } from "../ArticleCard/BookmarkButton";
 import { BulletListIcon, ShareIcon } from "../icons";
-import { BookmarkArticleButton } from "./BookmarkArticleButton";
 import { CommentsAction } from "./CommentsAction";
 import { LikeArticleButton } from "./LikeArticleButton";
 import { PeopleWhoLiked } from "./PeopleWhoLiked";
@@ -19,6 +20,7 @@ interface PostActionsProps {
 export const PostActions: FC<PostActionsProps> = ({ post }) => {
   const [showPeopleWhoLiked, setShowPeopleWhoLiked] = useState(false);
   const [showTableOfContents, setShowTableOfContents] = useState(false);
+  const { postId } = useParams();
 
   return (
     <div className="mt-10 flex max-w-max mx-auto items-center gap-2 border dark:border-foreground-800 rounded-full py-1 px-4">
@@ -51,7 +53,15 @@ export const PostActions: FC<PostActionsProps> = ({ post }) => {
           <Divider orientation="vertical" className="h-6" />
         </>
       )}
-      <BookmarkArticleButton />
+      <BookmarkButton
+        postId={postId as string}
+        bookmarked={post.bookmarked}
+        tooltipProps={{
+          offset: 15,
+          delay: 1000,
+        }}
+        iconClassName="h-[22px] w-[22px]"
+      />
       <Divider orientation="vertical" className="h-6" />
       <Tooltip content="Share this article" offset={15} delay={1000}>
         <Button isIconOnly variant="light">
