@@ -1,6 +1,7 @@
 import { GET_DISCUSSIONS_TOP_COMMENTERS, GET_FEED } from "@/graphql/queries";
 import { PageInfo, Article, FeedType, User, UserProfile } from "../lib/types";
 import { getAccessToken } from "@/lib/auth";
+import { getGraphQlEndpoint } from "@/lib/utils";
 
 export type Feed = { edges: { node: Article }[]; pageInfo: PageInfo };
 export type TopCommenters = { edges: { node: User }[] };
@@ -14,7 +15,7 @@ export interface FeedVariables {
 }
 
 export const getFeed = async (variables: FeedVariables): Promise<Feed> => {
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
@@ -34,7 +35,7 @@ export const getFeed = async (variables: FeedVariables): Promise<Feed> => {
 
 export const getTopCommenters = async (): Promise<TopCommenters> => {
   const accessToken = (await getAccessToken()) || "";
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {

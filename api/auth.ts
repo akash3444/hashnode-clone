@@ -2,10 +2,11 @@
 
 import { GET_AUTHENTICATED_USER } from "@/graphql/queries";
 import { signIn, signOut } from "@/lib/auth";
+import { getGraphQlEndpoint } from "@/lib/utils";
 import { isRedirectError } from "next/dist/client/components/redirect";
 
 export const getAuthenticatedUser = async (accessToken: string) => {
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {

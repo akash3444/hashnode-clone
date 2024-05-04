@@ -7,9 +7,10 @@ import {
   NewsletterSubscribeStatus,
   PostCommentSortBy,
 } from "@/lib/types";
+import { getGraphQlEndpoint } from "@/lib/utils";
 
 export const getPost = async (postId: string): Promise<Article> => {
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
@@ -32,7 +33,7 @@ export const getPostLikes = async (variables: {
   first: number;
   after?: string;
 }): Promise<Article> => {
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
@@ -56,7 +57,7 @@ export const getPostComments = async (variables: {
   after?: string;
   sortBy: PostCommentSortBy;
 }): Promise<Article["comments"]> => {
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
@@ -78,7 +79,7 @@ export const subscribeToNewsletter = async (input: {
   email: string;
   publicationId: string;
 }): Promise<{ status: NewsletterSubscribeStatus }> => {
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {

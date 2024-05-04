@@ -3,6 +3,7 @@
 import { GET_TAG, GET_TAG_FEED } from "@/graphql/queries";
 import { Tag } from "@/lib/types";
 import { Feed } from "./feed";
+import { getGraphQlEndpoint } from "@/lib/utils";
 
 interface TagFeedVariables {
   slug: Tag["slug"];
@@ -14,7 +15,7 @@ interface TagVariables {
 }
 
 export const getTag = async (variables: TagVariables): Promise<Tag> => {
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
@@ -35,7 +36,7 @@ export const getTag = async (variables: TagVariables): Promise<Tag> => {
 export const getTagFeed = async (
   variables: TagFeedVariables
 ): Promise<Feed> => {
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {

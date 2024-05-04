@@ -38,3 +38,8 @@ export const getTwitterShareUrl = (text: string) =>
 
 export const getLinkedInShareUrl = (url: string) =>
   encodeURI(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`);
+
+export const getGraphQlEndpoint = () =>
+  `${
+    process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL
+  }?id=${new Date().valueOf()}`;

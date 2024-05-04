@@ -4,6 +4,7 @@ import { TOGGLE_FOLLOW_USER } from "@/graphql/mutations";
 import { GET_USER, GET_USER_INFO } from "@/graphql/queries";
 import { getAccessToken } from "@/lib/auth";
 import { ConnectionType, User } from "@/lib/types";
+import { getGraphQlEndpoint } from "@/lib/utils";
 
 interface GetUserConnectionsVariables {
   username: string;
@@ -17,7 +18,7 @@ export const getUser = async (username: string): Promise<User> => {
     "Content-Type": "application/json",
     Authorization: accessToken,
   };
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers,
@@ -35,7 +36,7 @@ export const getUser = async (username: string): Promise<User> => {
 
 export const getUserInfo = async (username: string): Promise<User> => {
   const accessToken = (await getAccessToken()) || "";
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
@@ -74,7 +75,7 @@ export const toggleFollowUser = async (
   username: string
 ): Promise<{ user: { username: string } }> => {
   const accessToken = (await getAccessToken()) || "";
-  const res = await fetch(process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL, {
+  const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
