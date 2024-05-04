@@ -1,7 +1,12 @@
 "use server";
 
 import { SUBSCRIBE_TO_NEWSLETTER } from "@/graphql/mutations";
-import { GET_POST, GET_POST_COMMENTS, GET_POST_LIKES } from "@/graphql/queries";
+import {
+  GET_POST,
+  GET_POST_COMMENTS,
+  GET_POST_LIKES,
+  LIKE_POST,
+} from "@/graphql/queries";
 import {
   Article,
   NewsletterSubscribeStatus,
@@ -9,17 +14,21 @@ import {
 } from "@/lib/types";
 import { getGraphQlEndpoint } from "@/lib/utils";
 
-export const getPost = async (postId: string): Promise<Article> => {
+export const getPost = async (
+  variables: { authenticatedUserId?: string; postId: string },
+  accessToken?: string
+): Promise<Article> => {
   const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
       "Content-Type": "application/json",
+      Authorization: accessToken || "",
     },
 
     body: JSON.stringify({
       query: GET_POST,
-      variables: { postId },
+      variables,
     }),
     cache: "no-store",
   });
@@ -116,4 +125,30 @@ export const bookmarkArticle = async (postId: string, accessToken: string) => {
   const data = await res.json();
 
   return data?.bookmark;
+};
+
+export const likePost = async (
+  input: {
+    postId: string;
+    likesCount: number;
+  },
+  accessToken: string
+): Promise<{ post: { id: string } }> => {
+  const res = await fetch(getGraphQlEndpoint(), {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+
+    body: JSON.stringify({
+      query: LIKE_POST,
+      variables: { input },
+    }),
+    cache: "no-store",
+  });
+  const data = await res.json();
+
+  return data?.data?.likePost;
 };

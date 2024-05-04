@@ -34,6 +34,11 @@ export interface Article {
     pageInfo: PageInfo;
     totalDocuments: number;
   };
+  likedByMe: {
+    edges: {
+      reactionCount: number;
+    }[];
+  };
   comments: {
     edges: {
       node: Comment;

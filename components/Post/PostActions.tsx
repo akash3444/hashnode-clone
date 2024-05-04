@@ -8,9 +8,8 @@ import { useParams } from "next/navigation";
 import { FC, useState } from "react";
 import { BookmarkButton } from "../ArticleCard/BookmarkButton";
 import { BulletListIcon, ShareIcon } from "../icons";
+import { ArticleLikes } from "./ArticleLikes";
 import { CommentsAction } from "./CommentsAction";
-import { LikeArticleButton } from "./LikeArticleButton";
-import { PeopleWhoLiked } from "./PeopleWhoLiked";
 import { TableOfContentsModal } from "./TableOfContentsModal";
 
 interface PostActionsProps {
@@ -18,24 +17,15 @@ interface PostActionsProps {
 }
 
 export const PostActions: FC<PostActionsProps> = ({ post }) => {
-  const [showPeopleWhoLiked, setShowPeopleWhoLiked] = useState(false);
   const [showTableOfContents, setShowTableOfContents] = useState(false);
   const { postId } = useParams();
 
   return (
     <div className="mt-10 flex max-w-max mx-auto items-center gap-2 border dark:border-foreground-800 rounded-full py-1 px-4">
-      <div className="flex items-center">
-        <LikeArticleButton />
-        <Tooltip content="View who liked" showArrow={false} offset={23}>
-          <span
-            role="button"
-            className="cursor-pointer hover:underline"
-            onClick={() => setShowPeopleWhoLiked(true)}
-          >
-            {post.reactionCount}
-          </span>
-        </Tooltip>
-      </div>
+      <ArticleLikes
+        likesCount={post.likedByMe.edges?.[0]?.reactionCount || 0}
+        reactionCount={post.reactionCount}
+      />
       <Divider orientation="vertical" className="h-6" />
       <CommentsAction post={post} />
       <Divider orientation="vertical" className="h-6" />
@@ -70,9 +60,6 @@ export const PostActions: FC<PostActionsProps> = ({ post }) => {
       </Tooltip>
 
       {/* Modals */}
-      {showPeopleWhoLiked && (
-        <PeopleWhoLiked onClose={() => setShowPeopleWhoLiked(false)} />
-      )}
       {post.features?.tableOfContents?.isEnabled && showTableOfContents && (
         <TableOfContentsModal
           onClose={() => setShowTableOfContents(false)}

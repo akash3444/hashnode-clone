@@ -3,6 +3,7 @@ import Newsletter from "@/components/Newsletter";
 import { PostContent, PostHeader, TableOfContents } from "@/components/Post";
 import { PostActions } from "@/components/Post/PostActions";
 import { UserFollowButton } from "@/components/User/UserFollowButton";
+import { auth } from "@/lib/auth";
 import Card from "@/shared/Card";
 import Typography from "@/shared/Typography";
 import { CardBody, Chip } from "@nextui-org/react";
@@ -21,10 +22,11 @@ interface Props {
 export const generateMetadata = async ({
   params: { postId },
 }: Props): Promise<Metadata> => {
+  const session = await auth();
   const {
     coverImage,
     seo: { title, description },
-  } = await getPost(postId);
+  } = (await getPost({ postId, authenticatedUserId: session?.user?.id })) || {};
   const coverImageUrl = encodeURIComponent(
     `${coverImage?.url}?w=1200&h=630&fit=crop&crop=entropy&auto=compress,format&format=webp&fm=png`
   );
@@ -42,7 +44,11 @@ export const generateMetadata = async ({
 };
 
 const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
-  const post = await getPost(postId);
+  const session = await auth();
+  const post = await getPost(
+    { postId, authenticatedUserId: session?.user?.id },
+    session?.user?.accessToken
+  );
 
   return (
     post && (

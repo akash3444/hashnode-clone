@@ -416,7 +416,7 @@ export const GET_USER_INFO = `
 `;
 
 export const GET_POST = `
-  query Post($postId: ID!) {
+  query Post($postId: ID!, $authenticatedUserId: ID!) {
     post(id: $postId) {
       title
       slug
@@ -462,6 +462,11 @@ export const GET_POST = `
       readTimeInMinutes
       reactionCount
       replyCount
+      likedByMe:likedBy(first:1, filter:{userIds: [$authenticatedUserId]}) {
+        edges{
+          reactionCount
+        }
+      }
       likedBy(first: 4) {
         edges {
           node {
@@ -563,6 +568,16 @@ export const GET_AUTHENTICATED_USER = `
             url
           }
         }
+      }
+    }
+  }
+`;
+
+export const LIKE_POST = `
+  mutation LikePost($input: LikePostInput!) {
+    likePost(input: $input) {
+      post {
+        id
       }
     }
   }
