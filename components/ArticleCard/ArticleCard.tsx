@@ -115,6 +115,9 @@ const ArticleCardFooter: FC<Article> = ({
             variant="flat"
             color="primary"
             className="px-2"
+            classNames={{
+              content: "max-w-[25ch] overflow-hidden text-ellipsis",
+            }}
             startContent={<SeriesIcon className="h-4 w-4 mr-0.5" />}
           >
             {series.name}
@@ -124,7 +127,13 @@ const ArticleCardFooter: FC<Article> = ({
       {!!tags?.length && (
         <>
           <Link href={`/tags/${tags[0].slug}`} className="hidden md:block">
-            <Chip size="sm" variant="flat">
+            <Chip
+              size="sm"
+              variant="flat"
+              classNames={{
+                content: "max-w-[15ch] overflow-hidden text-ellipsis",
+              }}
+            >
               {tags[0]?.name}
             </Chip>
           </Link>
