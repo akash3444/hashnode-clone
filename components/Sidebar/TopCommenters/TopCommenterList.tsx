@@ -8,7 +8,10 @@ const TopCommenterList = async () => {
   return topCommenters?.edges?.map(({ node: author }) => (
     <div key={author._id} className="flex items-center justify-between">
       <UserInfo author={author} size="sm" />
-      <FollowCommenterButton following={author.following} />
+      <FollowCommenterButton
+        username={author.username}
+        following={author.following}
+      />
     </div>
   ));
 };

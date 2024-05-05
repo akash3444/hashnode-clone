@@ -1,28 +1,40 @@
 "use client";
 
+import useFollowUser from "@/api/user/useFollowUser";
 import { CheckIcon, FollowIcon } from "@/components/icons";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import Button from "@/shared/Button";
 import Tooltip from "@/shared/Tooltip";
+import { useState } from "react";
 
 export const FollowCommenterButton = ({
   following,
+  username,
 }: {
   following: boolean;
+  username: string;
 }) => {
-  const authenticatedAction = useAuthenticatedAction();
+  const [isFollowing, setIsFollowing] = useState(following);
 
-  const follow = () => {};
+  const authenticatedAction = useAuthenticatedAction();
+  const { mutate } = useFollowUser();
+
+  const toggleFollow = async () => {
+    mutate(username, {
+      onError: () => setIsFollowing((prev) => !prev),
+    });
+    setIsFollowing((prev) => !prev);
+  };
 
   return (
-    <Tooltip content={following ? "Unfollow" : "Follow"}>
+    <Tooltip content={isFollowing ? "Unfollow" : "Follow"}>
       <Button
         isIconOnly
         size="sm"
         variant="light"
-        onClick={() => authenticatedAction(follow)}
+        onClick={() => authenticatedAction(toggleFollow)}
       >
-        {following ? <CheckIcon className="text-success" /> : <FollowIcon />}
+        {isFollowing ? <CheckIcon /> : <FollowIcon />}
       </Button>
     </Tooltip>
   );

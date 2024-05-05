@@ -432,6 +432,7 @@ export const GET_POST = `
         }
         username
         profilePicture
+        following
       }
       coverImage {
         url

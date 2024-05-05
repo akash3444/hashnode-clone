@@ -1,6 +1,6 @@
 "use client";
 
-import { toggleFollowUser } from "@/api/user";
+import useFollowUser from "@/api/user/useFollowUser";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import Button from "@/shared/Button";
 import { useParams } from "next/navigation";
@@ -10,20 +10,23 @@ import { CheckIcon } from "../icons";
 export const UserFollowButton = ({
   following,
   className,
+  username,
 }: {
   following: boolean;
   className?: string;
+  username?: string;
 }) => {
   const [isFollowing, setIsFollowing] = useState(following);
 
-  const { username } = useParams();
+  const params = useParams();
   const authenticatedAction = useAuthenticatedAction();
+  const { mutate } = useFollowUser();
 
   const toggleFollow = async () => {
+    mutate(username ?? (params.username as string), {
+      onError: () => setIsFollowing((prev) => !prev),
+    });
     setIsFollowing((prev) => !prev);
-    const isToggled = await toggleFollowUser(username as string);
-
-    if (!isToggled) setIsFollowing((prev) => !prev);
   };
 
   return (

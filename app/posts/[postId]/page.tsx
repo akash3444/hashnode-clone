@@ -123,7 +123,8 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
             </div>
 
             <UserFollowButton
-              following={false}
+              username={post.author.username}
+              following={post.author.following}
               className="mt-1 md:mt-0 md:ml-auto"
             />
           </div>
