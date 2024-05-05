@@ -26,7 +26,11 @@ export const generateMetadata = async ({
   const {
     coverImage,
     seo: { title, description },
-  } = (await getPost({ postId, authenticatedUserId: session?.user?.id })) || {};
+  } =
+    (await getPost({
+      postId,
+      authenticatedUserIds: session?.user?.id ? [session?.user?.id] : [],
+    })) || {};
   const coverImageUrl = encodeURIComponent(
     `${coverImage?.url}?w=1200&h=630&fit=crop&crop=entropy&auto=compress,format&format=webp&fm=png`
   );
@@ -47,7 +51,7 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
   const session = await auth();
   const post = await getPost({
     postId,
-    authenticatedUserId: session?.user?.id,
+    authenticatedUserIds: session?.user?.id ? [session?.user?.id] : [],
   });
 
   return (

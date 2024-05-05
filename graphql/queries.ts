@@ -416,7 +416,7 @@ export const GET_USER_INFO = `
 `;
 
 export const GET_POST = `
-  query Post($postId: ID!, $authenticatedUserId: ID!) {
+  query Post($postId: ID!, $authenticatedUserIds: [ID!]) {
     post(id: $postId) {
       title
       slug
@@ -464,7 +464,7 @@ export const GET_POST = `
       readTimeInMinutes
       reactionCount
       replyCount
-      likedByMe:likedBy(first:1, filter:{userIds: [$authenticatedUserId]}) {
+      likedByMe:likedBy(first:1, filter:{userIds: $authenticatedUserIds}) {
         edges{
           reactionCount
         }

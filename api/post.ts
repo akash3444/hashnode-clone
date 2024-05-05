@@ -16,7 +16,7 @@ import {
 import { getGraphQlEndpoint } from "@/lib/utils";
 
 export const getPost = async (variables: {
-  authenticatedUserId?: string;
+  authenticatedUserIds?: string[];
   postId: string;
 }): Promise<Article> => {
   const accessToken = (await getAccessToken()) || "";
