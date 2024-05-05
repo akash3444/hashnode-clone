@@ -1,3 +1,5 @@
+"use server";
+
 import { GET_DISCUSSIONS_TOP_COMMENTERS, GET_FEED } from "@/graphql/queries";
 import { PageInfo, Article, FeedType, User, UserProfile } from "../lib/types";
 import { getAccessToken } from "@/lib/auth";
@@ -14,16 +16,14 @@ export interface FeedVariables {
   commentsFirst?: number;
 }
 
-export const getFeed = async (
-  variables: FeedVariables,
-  accessToken: string | undefined
-): Promise<Feed> => {
+export const getFeed = async (variables: FeedVariables): Promise<Feed> => {
+  const accessToken = (await getAccessToken()) || "";
   const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
       "Content-Type": "application/json",
-      Authorization: accessToken || "",
+      Authorization: accessToken,
     },
 
     body: JSON.stringify({

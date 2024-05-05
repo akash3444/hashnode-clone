@@ -4,6 +4,7 @@ import { GET_TAG, GET_TAG_FEED } from "@/graphql/queries";
 import { Tag } from "@/lib/types";
 import { Feed } from "./feed";
 import { getGraphQlEndpoint } from "@/lib/utils";
+import { getAccessToken } from "@/lib/auth";
 
 interface TagFeedVariables {
   slug: Tag["slug"];
@@ -34,15 +35,15 @@ export const getTag = async (variables: TagVariables): Promise<Tag> => {
 };
 
 export const getTagFeed = async (
-  variables: TagFeedVariables,
-  accessToken: string | undefined
+  variables: TagFeedVariables
 ): Promise<Feed> => {
+  const accessToken = (await getAccessToken()) || "";
   const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
       "Content-Type": "application/json",
-      Authorization: accessToken || "",
+      Authorization: accessToken,
     },
 
     body: JSON.stringify({

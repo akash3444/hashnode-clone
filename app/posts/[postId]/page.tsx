@@ -45,10 +45,10 @@ export const generateMetadata = async ({
 
 const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
   const session = await auth();
-  const post = await getPost(
-    { postId, authenticatedUserId: session?.user?.id },
-    session?.user?.accessToken
-  );
+  const post = await getPost({
+    postId,
+    authenticatedUserId: session?.user?.id,
+  });
 
   return (
     post && (

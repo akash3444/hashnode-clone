@@ -424,6 +424,7 @@ export const GET_POST = `
         id
         url
       }
+      bookmarked
       author {
         id
         name

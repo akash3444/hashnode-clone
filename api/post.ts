@@ -7,6 +7,7 @@ import {
   GET_POST_LIKES,
   LIKE_POST,
 } from "@/graphql/queries";
+import { getAccessToken } from "@/lib/auth";
 import {
   Article,
   NewsletterSubscribeStatus,
@@ -14,16 +15,17 @@ import {
 } from "@/lib/types";
 import { getGraphQlEndpoint } from "@/lib/utils";
 
-export const getPost = async (
-  variables: { authenticatedUserId?: string; postId: string },
-  accessToken?: string
-): Promise<Article> => {
+export const getPost = async (variables: {
+  authenticatedUserId?: string;
+  postId: string;
+}): Promise<Article> => {
+  const accessToken = (await getAccessToken()) || "";
   const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
       "Content-Type": "application/json",
-      Authorization: accessToken || "",
+      Authorization: accessToken,
     },
 
     body: JSON.stringify({
@@ -106,7 +108,8 @@ export const subscribeToNewsletter = async (input: {
   return data?.data?.subscribeToNewsletter;
 };
 
-export const bookmarkArticle = async (postId: string, accessToken: string) => {
+export const bookmarkArticle = async (postId: string) => {
+  const accessToken = (await getAccessToken()) || "";
   const res = await fetch(
     "https://hashnode.com/ajax/collections/add-or-remove-post",
     {
@@ -127,13 +130,11 @@ export const bookmarkArticle = async (postId: string, accessToken: string) => {
   return data?.bookmark;
 };
 
-export const likePost = async (
-  input: {
-    postId: string;
-    likesCount: number;
-  },
-  accessToken: string
-): Promise<{ post: { id: string } }> => {
+export const likePost = async (input: {
+  postId: string;
+  likesCount: number;
+}): Promise<{ post: { id: string } }> => {
+  const accessToken = (await getAccessToken()) || "";
   const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
