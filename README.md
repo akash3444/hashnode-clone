@@ -24,9 +24,10 @@ This project is a clone of Hashnode a feature-rich blogging and community platfo
 
 ## Roadmap
 
-- [ ] Authentication using Hashnode acecss token
+- [x] ~Authentication using Hashnode access token~
 - [ ] Actions for authenticated users
 - [ ] Error handling
+- [ ] Create, edit and delete articles
 
 ## Running Locally
 
