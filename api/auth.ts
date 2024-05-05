@@ -41,6 +41,21 @@ export const authenticate = async (
   }
 };
 
+export const authenticateWithDemoAccount = async () => {
+  try {
+    const formData = new FormData();
+    formData.append("accessToken", process.env.DEMO_ACCOUNT_ACCESS_TOKEN);
+    await signIn("credentials", formData);
+  } catch (error) {
+    // Work around for NEXT_REDIRECT error
+    if (isRedirectError(error)) {
+      throw error;
+    }
+
+    return "Invalid access token";
+  }
+};
+
 export const logout = async () => {
   try {
     await signOut({ redirect: true, redirectTo: "/" });

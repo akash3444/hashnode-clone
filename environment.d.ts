@@ -3,6 +3,8 @@ declare global {
     interface ProcessEnv {
       NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL: string;
       NEXT_PUBLIC_HASHNODE_REST_API_URL: string;
+      AUTH_SECRET: string;
+      DEMO_ACCOUNT_ACCESS_TOKEN: string;
       NODE_ENV: "development" | "production";
     }
   }
