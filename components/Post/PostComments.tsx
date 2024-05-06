@@ -12,22 +12,31 @@ import { FC, Fragment } from "react";
 import { ChatIcon } from "../icons";
 import { LikeCommentButton } from "./LikeCommentButton";
 import { ReplyButton } from "./ReplyButton";
+import { LikeReplyButton } from "./LikeReplyButton";
 
 interface PostCommentsProps {
   comments?: Article["comments"];
-  isReply?: boolean;
   authorId: string;
 }
 
-export const PostComments: FC<PostCommentsProps> = ({
+type ReplyProps =
+  | {
+      isReply: true;
+      commentId: string;
+    }
+  | { isReply?: undefined; commentId?: undefined };
+
+export const PostComments: FC<PostCommentsProps & ReplyProps> = ({
   comments,
   isReply,
   authorId,
+  commentId,
 }) =>
   comments?.edges.map(
     ({
       node: {
         id,
+        myTotalReactions,
         author: { id: commenterId, name, username, profilePicture },
         dateAdded,
         content,
@@ -43,7 +52,7 @@ export const PostComments: FC<PostCommentsProps> = ({
           })}
         >
           {isReply && (
-            <Divider className="mb-3 ml-5 h-6 w-[2px]" orientation="vertical" />
+            <Divider className="mb-3 ml-4 h-6 w-[2px]" orientation="vertical" />
           )}
           <div>
             <div className="flex items-start gap-2">
@@ -78,18 +87,25 @@ export const PostComments: FC<PostCommentsProps> = ({
                 </span>
               </div>
             </div>
-            <p className="mt-2.5 text-foreground-600 dark:text-foreground-300">
-              {content.text}
-            </p>
+            <div
+              className="mt-2.5 text-foreground-600 dark:text-foreground-300"
+              dangerouslySetInnerHTML={{ __html: content.html }}
+            />
             <div className="mt-2.5 flex items-center gap-4 text-foreground-600 dark:text-foreground-300">
-              <div className="flex items-center">
-                <LikeCommentButton />
-                {!!totalReactions && (
-                  <span role="button" className="cursor-pointer text-sm">
-                    {totalReactions}
-                  </span>
-                )}
-              </div>
+              {isReply ? (
+                <LikeReplyButton
+                  commentId={commentId}
+                  replyId={id}
+                  myTotalReactions={myTotalReactions}
+                  totalReactions={totalReactions}
+                />
+              ) : (
+                <LikeCommentButton
+                  commentId={id}
+                  myTotalReactions={myTotalReactions}
+                  totalReactions={totalReactions}
+                />
+              )}
               {!isReply && (
                 <div className="flex items-center">
                   <Tooltip content="Like this article" offset={15} delay={1000}>
@@ -108,7 +124,12 @@ export const PostComments: FC<PostCommentsProps> = ({
               <ReplyButton />
             </div>
           </div>
-          <PostComments comments={replies} isReply authorId={authorId} />
+          <PostComments
+            comments={replies}
+            isReply
+            authorId={authorId}
+            commentId={id}
+          />
         </div>
         {!isReply && <Divider />}
       </Fragment>

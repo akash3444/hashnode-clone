@@ -22,12 +22,14 @@ export const CommentsAction = ({ post }: { post: Article }) => {
           {post.responseCount + post.replyCount || null}
         </Button>
       </Tooltip>
-      <CommentsDrawer
-        isOpen={isOpen}
-        onClose={onClose}
-        responseCount={post.responseCount + post.replyCount}
-        authorId={post.author.id}
-      />
+      {isOpen && (
+        <CommentsDrawer
+          isOpen={isOpen}
+          onClose={onClose}
+          responseCount={post.responseCount + post.replyCount}
+          authorId={post.author.id}
+        />
+      )}
     </>
   );
 };

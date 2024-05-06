@@ -4,7 +4,7 @@ import { getPostComments } from "@/api/post";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { POST_COMMENTS_SORT_BY } from "@/lib/constants";
-import { Article } from "@/lib/types";
+import { Article, PostCommentSortBy } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Button from "@/shared/Button";
 import Select, { SelectItem } from "@/shared/Select";
@@ -58,8 +58,9 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
   responseCount,
   authorId,
 }) => {
-  const [filterBy, setFilterBy] = useState("top");
+  const [sortBy, setSortBy] = useState(POST_COMMENTS_SORT_BY.TOP);
   const [comments, setComments] = useState<Article["comments"]>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { postId } = useParams();
   const authenticatedAction = useAuthenticatedAction();
@@ -68,19 +69,24 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
 
   const addComment = () => {};
 
-  const fetchPostComments = async (isFilterApplied?: boolean) => {
+  const fetchPostComments = async (sortCommentBy?: PostCommentSortBy) => {
     if (!isOpen) return;
+
+    setIsLoading(true);
 
     const data = await getPostComments({
       postId: postId as string,
       first: 10,
-      after: isFilterApplied ? undefined : comments?.pageInfo?.endCursor,
-      sortBy: POST_COMMENTS_SORT_BY.TOP,
+      after: sortCommentBy ? undefined : comments?.pageInfo?.endCursor,
+      sortBy: sortCommentBy ?? sortBy,
     });
 
     setComments((prev) =>
-      prev ? { ...data, edges: [...prev.edges, ...data?.edges] } : data
+      !sortCommentBy && prev
+        ? { ...data, edges: [...prev.edges, ...data?.edges] }
+        : data
     );
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -161,20 +167,35 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
           <div className="pt-2 px-6">
             <Select
               size="sm"
-              selectedKeys={[filterBy]}
+              selectedKeys={[sortBy]}
               className="w-40"
               variant="bordered"
               classNames={{
                 trigger: "rounded-md shadow-none",
                 value: "font-medium",
               }}
-              onChange={(e) => setFilterBy(e.target.value)}
+              onChange={(e) => {
+                setSortBy(e.target.value as PostCommentSortBy);
+                fetchPostComments(e.target.value as PostCommentSortBy);
+              }}
             >
-              <SelectItem key="top">Top Comments</SelectItem>
-              <SelectItem key="new">New Comments</SelectItem>
+              <SelectItem key={POST_COMMENTS_SORT_BY.TOP}>
+                Top Comments
+              </SelectItem>
+              <SelectItem key={POST_COMMENTS_SORT_BY.RECENT}>
+                New Comments
+              </SelectItem>
             </Select>
           </div>
-
+          {isLoading && (
+            <div
+              className={cn({
+                "mt-5": !!comments?.edges.length,
+              })}
+            >
+              <CommentsSkeleton />
+            </div>
+          )}
           <InfiniteScroll
             hasMore={comments?.pageInfo.hasNextPage ?? true}
             loader={

@@ -10,6 +10,12 @@ body {
   @apply font-inter dark:bg-foreground-950;
 }
 
+/* Post code highlight */
 .hljs {
   @apply text-lg;
+}
+
+/* Post comments */
+.user-mention {
+  @apply text-primary-500 border-b-2 border-primary-500;
 }

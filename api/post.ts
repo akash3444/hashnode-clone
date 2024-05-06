@@ -1,12 +1,12 @@
 "use server";
 
-import { SUBSCRIBE_TO_NEWSLETTER } from "@/graphql/mutations";
 import {
-  GET_POST,
-  GET_POST_COMMENTS,
-  GET_POST_LIKES,
+  LIKE_COMMENT,
   LIKE_POST,
-} from "@/graphql/queries";
+  LIKE_REPLY,
+  SUBSCRIBE_TO_NEWSLETTER,
+} from "@/graphql/mutations";
+import { GET_POST, GET_POST_COMMENTS, GET_POST_LIKES } from "@/graphql/queries";
 import { getAccessToken } from "@/lib/auth";
 import {
   Article,
@@ -68,11 +68,13 @@ export const getPostComments = async (variables: {
   after?: string;
   sortBy: PostCommentSortBy;
 }): Promise<Article["comments"]> => {
+  const accessToken = (await getAccessToken()) || "";
   const res = await fetch(getGraphQlEndpoint(), {
     method: "POST",
 
     headers: {
       "Content-Type": "application/json",
+      Authorization: accessToken,
     },
 
     body: JSON.stringify({
@@ -152,4 +154,53 @@ export const likePost = async (input: {
   const data = await res.json();
 
   return data?.data?.likePost;
+};
+
+export const likeComment = async (input: {
+  commentId: string;
+  likesCount: number;
+}): Promise<{ comment: { id: string } }> => {
+  const accessToken = (await getAccessToken()) || "";
+  const res = await fetch(getGraphQlEndpoint(), {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+
+    body: JSON.stringify({
+      query: LIKE_COMMENT,
+      variables: { input },
+    }),
+    cache: "no-store",
+  });
+  const data = await res.json();
+
+  return data?.data?.likeComment;
+};
+
+export const likeReply = async (input: {
+  commentId: string;
+  replyId: string;
+  likesCount: number;
+}): Promise<{ reply: { id: string } }> => {
+  const accessToken = (await getAccessToken()) || "";
+  const res = await fetch(getGraphQlEndpoint(), {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+
+    body: JSON.stringify({
+      query: LIKE_REPLY,
+      variables: { input },
+    }),
+    cache: "no-store",
+  });
+  const data = await res.json();
+
+  return data?.data?.likeReply;
 };

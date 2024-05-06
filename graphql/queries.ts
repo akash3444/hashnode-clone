@@ -515,6 +515,7 @@ export const GET_POST_COMMENTS = `
         edges {
           node {
             id
+            myTotalReactions
             author {
               id
               name
@@ -522,7 +523,7 @@ export const GET_POST_COMMENTS = `
               profilePicture
             }
             content {
-              text
+              html
             }
             totalReactions
             dateAdded
@@ -530,6 +531,7 @@ export const GET_POST_COMMENTS = `
               edges {
                 node {
                   id
+                  myTotalReactions
                   author {
                     id
                     name
@@ -537,7 +539,7 @@ export const GET_POST_COMMENTS = `
                     profilePicture
                   }
                   content {
-                    text
+                    html
                   }
                   totalReactions
                   dateAdded
@@ -570,16 +572,6 @@ export const GET_AUTHENTICATED_USER = `
             url
           }
         }
-      }
-    }
-  }
-`;
-
-export const LIKE_POST = `
-  mutation LikePost($input: LikePostInput!) {
-    likePost(input: $input) {
-      post {
-        id
       }
     }
   }

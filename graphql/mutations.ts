@@ -16,3 +16,33 @@ export const TOGGLE_FOLLOW_USER = `
     }
   }
 `;
+
+export const LIKE_POST = `
+  mutation LikePost($input: LikePostInput!) {
+    likePost(input: $input) {
+      post {
+        id
+      }
+    }
+  }
+`;
+
+export const LIKE_COMMENT = `
+  mutation LikeComment($input: LikeCommentInput!) {
+    likeComment(input: $input) {
+      comment {
+        id
+      }
+    }
+  }
+`;
+
+export const LIKE_REPLY = `
+  mutation LikeReply($input: LikeReplyInput!) {
+    likeReply(input: $input) {
+      reply {
+        id
+      }
+    }
+  }
+`;

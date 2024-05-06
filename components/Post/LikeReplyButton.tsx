@@ -5,21 +5,23 @@ import Button from "@/shared/Button";
 import Tooltip from "@/shared/Tooltip";
 import { HeartFilledIcon, HeartIcon } from "../icons";
 import { useState } from "react";
-import useLikeComment from "@/api/post/useLikeComment";
+import useLikeReply from "@/api/post/useLikeReply";
 
-export const LikeCommentButton = ({
+export const LikeReplyButton = ({
   myTotalReactions,
   commentId,
+  replyId,
   totalReactions,
 }: {
   myTotalReactions: number;
   commentId: string;
+  replyId: string;
   totalReactions: number;
 }) => {
   const [myReactions, setMyReactions] = useState(myTotalReactions);
 
   const authenticatedAction = useAuthenticatedAction();
-  const { mutate } = useLikeComment();
+  const { mutate } = useLikeReply();
 
   const totalLikes = totalReactions + (myReactions - myTotalReactions);
 
@@ -29,6 +31,7 @@ export const LikeCommentButton = ({
     mutate(
       {
         commentId,
+        replyId,
         likesCount: 1,
       },
       {

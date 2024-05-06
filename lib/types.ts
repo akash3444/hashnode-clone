@@ -60,6 +60,7 @@ export interface Article {
 export interface Comment {
   id: string;
   author: User;
+  myTotalReactions: number;
   content: {
     text: string;
     html: string;
