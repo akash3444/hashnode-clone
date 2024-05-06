@@ -27,6 +27,7 @@ This project is a clone of Hashnode a feature-rich blogging and community platfo
 - [x] ~Authentication using Hashnode access token~
 - [ ] Actions for authenticated users
 - [ ] Error handling
+- [ ] Comment to post
 - [ ] Create, edit and delete articles
 
 ## Running Locally
