@@ -65,7 +65,7 @@ const Newsletter: FC<NewsletterProps> = ({ authorName, publicationId }) => {
               name="email"
               placeholder="Enter your email address"
               classNames={{
-                inputWrapper: "shadow-none h-12 rounded-r-none pl-6",
+                inputWrapper: "shadow-none h-12 rounded-r-none pl-3.5 md:pl-6",
               }}
               variant="bordered"
             />

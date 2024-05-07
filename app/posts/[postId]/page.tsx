@@ -61,16 +61,18 @@ const PostPage: FC<PostPageProps> = async ({ params: { postId } }) => {
 
         {/* Table of contents */}
         {post.features?.tableOfContents?.isEnabled && (
-          <Card className="mt-16 max-w-2xl mx-auto">
-            <CardBody>
-              <Typography variant="h3" className="mb-4 font-semibold">
-                Table of contents
-              </Typography>
-              <TableOfContents
-                tableOfContents={post.features?.tableOfContents?.items}
-              />
-            </CardBody>
-          </Card>
+          <div className="px-6 md:p-0">
+            <Card className="mt-16 max-w-2xl mx-auto">
+              <CardBody>
+                <Typography variant="h3" className="mb-4 font-semibold">
+                  Table of contents
+                </Typography>
+                <TableOfContents
+                  tableOfContents={post.features?.tableOfContents?.items}
+                />
+              </CardBody>
+            </Card>
+          </div>
         )}
 
         {!!post.coverImage?.url && (
