@@ -1,4 +1,7 @@
-import { getLatestChangelog, getTrendingArticles } from "@/api/sidebar";
+import {
+  getLatestChangelog,
+  getTrendingArticles,
+} from "@/api-handlers/sidebar";
 import Changelog from "./Changelog";
 import TopCommenters from "./TopCommenters";
 import TrendingArticles from "./TrendingArticles";

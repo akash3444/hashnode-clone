@@ -1,4 +1,4 @@
-import { getUser } from "@/api/user";
+import { getUser } from "@/api-handlers/user";
 import {
   JoinedDate,
   Location,

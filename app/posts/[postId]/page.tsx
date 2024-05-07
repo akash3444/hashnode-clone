@@ -1,4 +1,4 @@
-import { getPost } from "@/api/post";
+import { getPost } from "@/api-handlers/post";
 import Newsletter from "@/components/Newsletter";
 import { PostContent, PostHeader, TableOfContents } from "@/components/Post";
 import { PostActions } from "@/components/Post/PostActions";

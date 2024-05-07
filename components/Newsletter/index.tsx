@@ -1,6 +1,6 @@
 "use client";
 
-import { subscribeToNewsletter } from "@/api/post";
+import { subscribeToNewsletter } from "@/api-handlers/post";
 import { emailPattern } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Button from "@/shared/Button";

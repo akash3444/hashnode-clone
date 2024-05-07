@@ -1,4 +1,4 @@
-import { authenticateWithDemoAccount } from "@/api/auth";
+import { authenticateWithDemoAccount } from "@/api-handlers/auth";
 import Button from "@/shared/Button";
 import { useFormState, useFormStatus } from "react-dom";
 

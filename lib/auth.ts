@@ -1,4 +1,4 @@
-import { getAuthenticatedUser } from "@/api/auth";
+import { getAuthenticatedUser } from "@/api-handlers/auth";
 import { SessionUser } from "@/types/auth";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";

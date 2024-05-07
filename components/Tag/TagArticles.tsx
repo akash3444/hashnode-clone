@@ -1,4 +1,4 @@
-import { getTagFeed } from "@/api/tag";
+import { getTagFeed } from "@/api-handlers/tag";
 import { FC } from "react";
 import ArticleList from "../Feed/ArticleList";
 

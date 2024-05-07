@@ -1,6 +1,6 @@
 "use client";
 
-import useFollowUser from "@/api/user/useFollowUser";
+import useFollowUser from "@/api-handlers/user/useFollowUser";
 import { CheckIcon, FollowIcon } from "@/components/icons";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import Button from "@/shared/Button";

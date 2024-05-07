@@ -1,6 +1,6 @@
 "use client";
 
-import { getPostComments } from "@/api/post";
+import { getPostComments } from "@/api-handlers/post";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { POST_COMMENTS_SORT_BY } from "@/lib/constants";

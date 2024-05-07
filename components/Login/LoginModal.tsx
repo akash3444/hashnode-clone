@@ -1,6 +1,6 @@
 "use client";
 
-import { authenticate } from "@/api/auth";
+import { authenticate } from "@/api-handlers/auth";
 import { useModal } from "@/contexts/ModalContext";
 import Button from "@/shared/Button";
 import Typography from "@/shared/Typography";

@@ -1,4 +1,4 @@
-import { getTopCommenters } from "@/api/feed";
+import { getTopCommenters } from "@/api-handlers/feed";
 import UserInfo from "../../UserInfo";
 import { FollowCommenterButton } from "./FollowCommenterButton";
 

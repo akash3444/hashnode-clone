@@ -1,4 +1,4 @@
-import { getUserInfo } from "@/api/user";
+import { getUserInfo } from "@/api-handlers/user";
 import ConnectionList from "@/components/User/ConnectionList";
 import { Metadata } from "next";
 import { FC } from "react";

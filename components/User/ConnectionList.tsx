@@ -1,6 +1,6 @@
 "use client";
 
-import { getUserConnections } from "@/api/user";
+import { getUserConnections } from "@/api-handlers/user";
 import { ConnectionType, User } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { FC, useEffect, useRef, useState } from "react";

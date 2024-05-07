@@ -5,7 +5,7 @@ import Button from "@/shared/Button";
 import Tooltip from "@/shared/Tooltip";
 import { HeartFilledIcon, HeartIcon } from "../icons";
 import { useState } from "react";
-import useLikeReply from "@/api/post/useLikeReply";
+import useLikeReply from "@/api-handlers/post/useLikeReply";
 
 export const LikeReplyButton = ({
   myTotalReactions,

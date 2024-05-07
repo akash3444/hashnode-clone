@@ -1,6 +1,6 @@
 "use client";
 
-import { getUserProfileSummary } from "@/api/feed";
+import { getUserProfileSummary } from "@/api-handlers/feed";
 import { UserProfile } from "@/lib/types";
 import {
   Avatar,

@@ -1,6 +1,6 @@
 "use client";
 
-import useLikePost from "@/api/post/useLikePost";
+import useLikePost from "@/api-handlers/post/useLikePost";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import Button from "@/shared/Button";
 import Tooltip from "@/shared/Tooltip";

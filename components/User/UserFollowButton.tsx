@@ -1,6 +1,6 @@
 "use client";
 
-import useFollowUser from "@/api/user/useFollowUser";
+import useFollowUser from "@/api-handlers/user/useFollowUser";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import Button from "@/shared/Button";
 import { useParams } from "next/navigation";

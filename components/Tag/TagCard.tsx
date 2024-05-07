@@ -1,4 +1,4 @@
-import { getTag } from "@/api/tag";
+import { getTag } from "@/api-handlers/tag";
 import { RssIcon } from "@/components/icons";
 import { DEFAULT_TAG_LOGO } from "@/lib/constants";
 import { formatNumberWithSuffix } from "@/lib/utils";

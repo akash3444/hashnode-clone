@@ -1,4 +1,4 @@
-import { getPostLikes } from "@/api/post";
+import { getPostLikes } from "@/api-handlers/post";
 import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 import { Article } from "@/lib/types";
 import { cn } from "@/lib/utils";

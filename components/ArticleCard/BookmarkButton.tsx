@@ -1,6 +1,6 @@
 "use client";
 
-import useBookmarkPost from "@/api/post/useBookmarkPost";
+import useBookmarkPost from "@/api-handlers/post/useBookmarkPost";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import Button from "@/shared/Button";
 import Tooltip from "@/shared/Tooltip";

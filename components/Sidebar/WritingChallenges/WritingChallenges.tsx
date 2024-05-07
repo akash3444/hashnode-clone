@@ -1,4 +1,4 @@
-import { getWritingChallenges } from "@/api/sidebar";
+import { getWritingChallenges } from "@/api-handlers/sidebar";
 import Card, { CardBody, CardHeader } from "@/shared/Card";
 import Typography from "@/shared/Typography";
 import ChallengeTabs from "./ChallengeTabs";

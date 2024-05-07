@@ -1,4 +1,4 @@
-import { getTag } from "@/api/tag";
+import { getTag } from "@/api-handlers/tag";
 import Sidebar from "@/components/Sidebar";
 import { DEFAULT_TAG_LOGO } from "@/lib/constants";
 import StickyBox from "@/shared/StickyBox";

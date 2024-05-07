@@ -1,6 +1,6 @@
 "use client";
 
-import { Feed, FeedVariables, getFeed } from "@/api/feed";
+import { Feed, FeedVariables, getFeed } from "@/api-handlers/feed";
 import { FC, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ArticleCard from "../ArticleCard";

@@ -1,4 +1,4 @@
-import { getFeed } from "@/api/feed";
+import { getFeed } from "@/api-handlers/feed";
 import { FeedType } from "@/lib/types";
 import { FC } from "react";
 import ArticleList from "./ArticleList";

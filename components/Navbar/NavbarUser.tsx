@@ -1,6 +1,6 @@
 "use client";
 
-import { logout } from "@/api/auth";
+import { logout } from "@/api-handlers/auth";
 import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 import Typography from "@/shared/Typography";
 import { SessionUser } from "@/types/auth";

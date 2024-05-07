@@ -1,6 +1,6 @@
 "use client";
 
-import { getTrendingArticles } from "@/api/sidebar";
+import { getTrendingArticles } from "@/api-handlers/sidebar";
 import { Article } from "@/lib/types";
 import Card, { CardHeader } from "@/shared/Card";
 import Select, { SelectItem } from "@/shared/Select";

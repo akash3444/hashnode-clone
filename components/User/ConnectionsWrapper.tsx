@@ -1,4 +1,4 @@
-import { getUserInfo } from "@/api/user";
+import { getUserInfo } from "@/api-handlers/user";
 import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 import Card, { CardBody, CardFooter, CardHeader } from "@/shared/Card";
 import Typography from "@/shared/Typography";
