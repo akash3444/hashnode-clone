@@ -7,6 +7,7 @@ import { FeaturedChip } from "../Feed";
 import { BookIcon } from "../icons";
 import { Reactions } from "./Reactions";
 import Link from "next/link";
+import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 
 interface PostHeaderProps {
   post: Article;
@@ -25,7 +26,7 @@ export const PostHeader: FC<PostHeaderProps> = ({ post }) => {
         <Link href={`/users/${post.author.username}`}>
           <div className="flex items-center gap-3.5">
             <img
-              src={post.author.profilePicture}
+              src={post.author.profilePicture || DEFAULT_PROFILE_PICTURE}
               alt={post.author.name}
               className="h-12 w-12 bg-slate-200 rounded-full"
             />
@@ -50,7 +51,7 @@ export const PostHeader: FC<PostHeaderProps> = ({ post }) => {
         <Link href={`/users/${post.author.username}`}>
           <div className="flex items-center gap-3.5">
             <img
-              src={post.author.profilePicture}
+              src={post.author.profilePicture || DEFAULT_PROFILE_PICTURE}
               alt={post.author.name}
               className="h-12 w-12 bg-slate-200 rounded-full"
             />

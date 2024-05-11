@@ -1,6 +1,7 @@
 "use server";
 
 import {
+  ADD_COMMENT,
   LIKE_COMMENT,
   LIKE_POST,
   LIKE_REPLY,
@@ -10,6 +11,7 @@ import { GET_POST, GET_POST_COMMENTS, GET_POST_LIKES } from "@/graphql/queries";
 import { getAccessToken } from "@/lib/auth";
 import {
   Article,
+  Comment,
   NewsletterSubscribeStatus,
   PostCommentSortBy,
 } from "@/lib/types";
@@ -203,4 +205,28 @@ export const likeReply = async (input: {
   const data = await res.json();
 
   return data?.data?.likeReply;
+};
+
+export const addComment = async (input: {
+  postId: string;
+  contentMarkdown: string;
+}): Promise<{ comment: Comment }> => {
+  const accessToken = (await getAccessToken()) || "";
+  const res = await fetch(getGraphQlEndpoint(), {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+
+    body: JSON.stringify({
+      query: ADD_COMMENT,
+      variables: { input },
+    }),
+    cache: "no-store",
+  });
+  const data = await res.json();
+
+  return data?.data?.addComment;
 };

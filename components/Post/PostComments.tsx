@@ -88,7 +88,7 @@ export const PostComments: FC<PostCommentsProps & ReplyProps> = ({
               </div>
             </div>
             <div
-              className="mt-2.5 text-foreground-600 dark:text-foreground-300"
+              className="mt-2.5 prose prose-a:no-underline text-foreground-600 dark:text-foreground-300"
               dangerouslySetInnerHTML={{ __html: content.html }}
             />
             <div className="mt-2.5 flex items-center gap-4 text-foreground-600 dark:text-foreground-300">

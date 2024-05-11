@@ -9,6 +9,7 @@ import { CommentsDrawer } from "./CommentsDrawer";
 
 export const CommentsAction = ({ post }: { post: Article }) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const totalComments = Math.max(post.responseCount + post.replyCount, 0);
 
   return (
     <>
@@ -19,14 +20,14 @@ export const CommentsAction = ({ post }: { post: Article }) => {
           startContent={<ChatIcon />}
           onClick={onOpen}
         >
-          {post.responseCount + post.replyCount || null}
+          {totalComments || null}
         </Button>
       </Tooltip>
       {isOpen && (
         <CommentsDrawer
           isOpen={isOpen}
           onClose={onClose}
-          responseCount={post.responseCount + post.replyCount}
+          responseCount={totalComments}
           authorId={post.author.id}
         />
       )}

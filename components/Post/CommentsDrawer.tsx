@@ -1,6 +1,7 @@
 "use client";
 
 import { getPostComments } from "@/api-handlers/post";
+import useAddComment from "@/api-handlers/post/useAddComment";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { POST_COMMENTS_SORT_BY } from "@/lib/constants";
@@ -11,18 +12,19 @@ import Select, { SelectItem } from "@/shared/Select";
 import Skeleton from "@/shared/Skeleton";
 import {
   Divider,
-  Link,
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
-  Textarea,
 } from "@nextui-org/react";
 import { useParams } from "next/navigation";
 import { FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { ArrowUpRightIcon, CloseIcon } from "../icons";
+import { CloseIcon } from "../icons";
+import { AddComment } from "./AddComment";
 import { PostComments } from "./PostComments";
+import { SuggestionDataItem } from "react-mentions";
 
 interface CommentsDrawerProps {
   isOpen?: boolean;
@@ -30,6 +32,32 @@ interface CommentsDrawerProps {
   responseCount: number;
   authorId: string;
 }
+
+const getUsersInConversation = (comments: Article["comments"] | undefined) => {
+  if (!comments) return [];
+
+  let users: SuggestionDataItem[] = [];
+  const usersMap: Record<string, string> = {};
+
+  const getUsers = (comments: Article["comments"]) =>
+    comments?.edges?.forEach(
+      ({
+        node: {
+          author: { name, username },
+          replies,
+        },
+      }) => {
+        if (!usersMap[username]) users.push({ id: username, display: name });
+        usersMap[username] = name;
+
+        if (replies) getUsers(replies);
+      }
+    );
+
+  getUsers(comments);
+
+  return users;
+};
 
 const CommentsSkeleton = () =>
   new Array(3).fill(0).map((_, index) => (
@@ -62,12 +90,13 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
   const [comments, setComments] = useState<Article["comments"]>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const { postId } = useParams();
+  const { postId }: { postId: string } = useParams();
   const authenticatedAction = useAuthenticatedAction();
+  const { mutate: addComment, isPending: isAddingComment } = useAddComment();
+
+  const usersInConversation = getUsersInConversation(comments);
 
   useLockBodyScroll(isOpen);
-
-  const addComment = () => {};
 
   const fetchPostComments = async (sortCommentBy?: PostCommentSortBy) => {
     if (!isOpen) return;
@@ -75,7 +104,7 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
     setIsLoading(true);
 
     const data = await getPostComments({
-      postId: postId as string,
+      postId,
       first: 10,
       after: sortCommentBy ? undefined : comments?.pageInfo?.endCursor,
       sortBy: sortCommentBy ?? sortBy,
@@ -130,36 +159,34 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
           </Button>
         </ModalHeader>
         <ModalBody className="p-0">
-          <div className="pt-6 px-6 flex flex-col gap-2">
-            <Textarea
-              variant="flat"
-              placeholder="Write a thoughtful comment"
-              classNames={{
-                inputWrapper:
-                  "bg-transparent min-h-[100px] group-data-[focus=true]:bg-transparent data-[hover=true]:bg-transparent shadow-none p-0",
-              }}
-              minRows={5}
-              maxRows={5}
-            />
-            <div className="flex items-center justify-between">
-              <Link
-                color="foreground"
-                className="gap-2 text-xs"
-                href="https://hashnode.com/code-of-conduct"
-              >
-                <ArrowUpRightIcon className="h-4 w-4" />
-                Code of conduct
-              </Link>
-              <Button
-                className="ml-auto"
-                size="sm"
-                color="primary"
-                onClick={() => authenticatedAction(addComment)}
-              >
-                Comment
-              </Button>
-            </div>
-          </div>
+          <AddComment
+            usersInConversation={usersInConversation}
+            isAdding={isAddingComment}
+            onAdd={(comment, onSuccess) =>
+              authenticatedAction(() =>
+                addComment(
+                  {
+                    postId,
+                    contentMarkdown: comment,
+                  },
+                  {
+                    onSuccess: ({ comment }) => {
+                      toast.success("Comment added");
+                      setComments((prev) =>
+                        prev
+                          ? {
+                              ...prev,
+                              edges: [{ node: comment }, ...prev.edges],
+                            }
+                          : undefined
+                      );
+                      onSuccess();
+                    },
+                  }
+                )
+              )
+            }
+          />
 
           <Divider />
 

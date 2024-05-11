@@ -19,3 +19,27 @@ body {
 .user-mention {
   @apply text-primary-500 border-b-2 border-primary-500;
 }
+
+/* React Mentions */
+.react-mentions__control {
+  @apply h-32;
+}
+.react-mentions__input {
+  @apply focus:outline-none;
+}
+
+.react-mentions__suggestions__list {
+  @apply border rounded-xl max-h-96 overflow-y-auto;
+}
+.react-mentions__suggestions__item {
+  @apply py-3 px-3;
+}
+.react-mentions__suggestions__item:hover, .react-mentions__suggestions__item--focused {
+  @apply bg-primary-50;
+}
+.react-mentions__suggestions__item:first-child {
+  @apply rounded-t-xl;
+}
+.react-mentions__suggestions__item:last-child {
+  @apply rounded-b-xl;
+}

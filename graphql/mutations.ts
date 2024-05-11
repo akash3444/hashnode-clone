@@ -46,3 +46,25 @@ export const LIKE_REPLY = `
     }
   }
 `;
+
+export const ADD_COMMENT = `
+  mutation AddComment($input: AddCommentInput!) {
+    addComment(input: $input) {
+      comment {
+        id
+        myTotalReactions
+        author {
+          id
+          name
+          username
+          profilePicture
+        }
+        content {
+          html
+        }
+        totalReactions
+        dateAdded
+      }
+    }
+  }
+`;
