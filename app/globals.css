@@ -28,14 +28,17 @@ body {
   @apply focus:outline-none;
 }
 
+.react-mentions__suggestions {
+  @apply border dark:border-foreground-700 rounded-xl;
+}
 .react-mentions__suggestions__list {
-  @apply border rounded-xl max-h-96 overflow-y-auto;
+  @apply max-h-96 overflow-y-auto rounded-xl;
 }
 .react-mentions__suggestions__item {
-  @apply py-3 px-3;
+  @apply py-2 pl-3 pr-4 dark:bg-foreground-900;
 }
 .react-mentions__suggestions__item:hover, .react-mentions__suggestions__item--focused {
-  @apply bg-primary-50;
+  @apply bg-primary-50 dark:bg-foreground-600;
 }
 .react-mentions__suggestions__item:first-child {
   @apply rounded-t-xl;

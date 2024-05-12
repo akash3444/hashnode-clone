@@ -36,7 +36,9 @@ const CommentInput: FC<CommentInputProps> = ({ value, onChange, users }) => {
             />
             <div>
               <h6 className="font-medium">{highlightedDisplay}</h6>
-              <span className="text-foreground-500">@{suggestion.id}</span>
+              <span className="text-foreground-500 dark:text-foreground-300">
+                @{suggestion.id}
+              </span>
             </div>
           </div>
         )}

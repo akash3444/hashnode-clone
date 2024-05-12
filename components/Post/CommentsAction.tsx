@@ -28,7 +28,7 @@ export const CommentsAction = ({ post }: { post: Article }) => {
           isOpen={isOpen}
           onClose={onClose}
           responseCount={totalComments}
-          authorId={post.author.id}
+          author={post.author}
         />
       )}
     </>

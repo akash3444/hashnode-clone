@@ -5,7 +5,7 @@ import useAddComment from "@/api-handlers/post/useAddComment";
 import useAuthenticatedAction from "@/hooks/useAuthenticatedAction";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { POST_COMMENTS_SORT_BY } from "@/lib/constants";
-import { Article, PostCommentSortBy } from "@/lib/types";
+import { Article, PostCommentSortBy, User } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Button from "@/shared/Button";
 import Select, { SelectItem } from "@/shared/Select";
@@ -30,13 +30,18 @@ interface CommentsDrawerProps {
   isOpen?: boolean;
   onClose: () => void;
   responseCount: number;
-  authorId: string;
+  author: User;
 }
 
-const getUsersInConversation = (comments: Article["comments"] | undefined) => {
-  if (!comments) return [];
+const getUsersInConversation = (
+  author: User,
+  comments: Article["comments"] | undefined
+) => {
+  let users: SuggestionDataItem[] = [
+    { id: author.username, display: author.name },
+  ];
+  if (!comments) return users;
 
-  let users: SuggestionDataItem[] = [];
   const usersMap: Record<string, string> = {};
 
   const getUsers = (comments: Article["comments"]) =>
@@ -84,7 +89,7 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
   isOpen,
   onClose,
   responseCount,
-  authorId,
+  author,
 }) => {
   const [sortBy, setSortBy] = useState(POST_COMMENTS_SORT_BY.TOP);
   const [comments, setComments] = useState<Article["comments"]>();
@@ -94,7 +99,7 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
   const authenticatedAction = useAuthenticatedAction();
   const { mutate: addComment, isPending: isAddingComment } = useAddComment();
 
-  const usersInConversation = getUsersInConversation(comments);
+  const usersInConversation = getUsersInConversation(author, comments);
 
   useLockBodyScroll(isOpen);
 
@@ -245,7 +250,7 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
             }
           >
             <div>
-              <PostComments comments={comments} authorId={authorId} />
+              <PostComments comments={comments} authorId={author.id} />
             </div>
           </InfiniteScroll>
         </ModalBody>
