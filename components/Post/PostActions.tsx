@@ -1,6 +1,8 @@
 "use client";
 
+import useWindowScroll from "@/hooks/useWindowScroll";
 import { Article } from "@/lib/types";
+import { cn } from "@/lib/utils";
 import Button from "@/shared/Button";
 import Tooltip from "@/shared/Tooltip";
 import { Divider } from "@nextui-org/react";
@@ -19,9 +21,17 @@ interface PostActionsProps {
 export const PostActions: FC<PostActionsProps> = ({ post }) => {
   const [showTableOfContents, setShowTableOfContents] = useState(false);
   const { postId } = useParams();
+  const { y } = useWindowScroll();
 
   return (
-    <div className="mt-10 flex max-w-max mx-auto items-center gap-2 border dark:border-foreground-800 rounded-full py-1 px-4">
+    <div
+      className={cn(
+        "transition-all duration-350 bg-white dark:bg-foreground-950 mt-10 flex max-w-max mx-auto items-center gap-2 border dark:border-foreground-800 rounded-full py-1 px-4 bottom-0",
+        {
+          "sticky bottom-5": y > 300,
+        }
+      )}
+    >
       <ArticleLikes
         likesCount={post.likedByMe.edges?.[0]?.reactionCount || 0}
         reactionCount={post.reactionCount}
