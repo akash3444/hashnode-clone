@@ -43,3 +43,6 @@ export const getGraphQlEndpoint = () =>
   `${
     process.env.NEXT_PUBLIC_HASHNODE_GRAPHQL_API_URL
   }?id=${new Date().valueOf()}`;
+
+export const capitalize = (str: string) =>
+  str ? str[0].toUpperCase() + str.slice(1) : str;

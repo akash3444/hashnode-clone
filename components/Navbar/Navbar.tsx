@@ -12,6 +12,7 @@ import MoreDropdown from "./MoreDropdown";
 import NavbarLinks from "./NavbarLinks";
 import { NavbarUser } from "./NavbarUser";
 import { ThemeToggle } from "./ThemeToggle";
+import ColorPaletteManager from "./ColorPaletteManager";
 
 const Navbar = async () => {
   const session = await auth();
@@ -33,6 +34,9 @@ const Navbar = async () => {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end" className="gap-3">
+        <NavbarItem>
+          <ColorPaletteManager />
+        </NavbarItem>
         <NavbarItem>
           <ThemeToggle />
         </NavbarItem>

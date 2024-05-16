@@ -17,9 +17,18 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <SessionProvider>
       <NextUIProvider navigate={router.push}>
         <NextThemesProvider
-          attribute="class"
-          defaultTheme="system"
+          defaultTheme="default"
           disableTransitionOnChange
+          themes={[
+            "default" /* light */,
+            "dark-default" /* dark */,
+            "rose",
+            "dark-rose",
+            "orange",
+            "dark-orange",
+            "purple",
+            "dark-purple",
+          ]}
         >
           <QueryClientProvider client={queryClient}>
             <ModalProvider>{children}</ModalProvider>
