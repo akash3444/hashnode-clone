@@ -6,6 +6,7 @@ import {
   SocialMediaHandles,
 } from "@/components/User";
 import UserBadges from "@/components/User/UserBadges";
+import { auth } from "@/lib/auth";
 import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
 import { formatNumberWithSuffix } from "@/lib/utils";
 import Card, { CardHeader } from "@/shared/Card";
@@ -47,6 +48,9 @@ export const generateMetadata = async ({
 
 const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
   const user = await getUser(username);
+  const session = await auth();
+
+  const isOwnProfile = user.id === session?.user?.id;
 
   if (!user) return notFound();
 
@@ -83,30 +87,53 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
                 {user.tagline}
               </p>
             </div>
-            <ProfileActions user={user} className="hidden md:flex" />
+            <ProfileActions
+              user={user}
+              className="hidden md:flex"
+              isOwnProfile={isOwnProfile}
+            />
           </div>
 
-          <Link
-            href={`/users/${username}/followers`}
-            className="hidden md:flex text-foreground-700 dark:text-foreground-200"
-          >
-            <b>{formatNumberWithSuffix(user.followersCount)}</b>
-            <span>&nbsp;followers</span>
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href={`/users/${username}/followers`}
+              className="hidden md:flex text-foreground-700 dark:text-foreground-200"
+            >
+              <b>{formatNumberWithSuffix(user.followersCount)}</b>
+              <span>&nbsp;followers</span>
+            </Link>
+            <Link
+              href={`/users/${username}/following`}
+              className="hidden md:flex text-foreground-700 dark:text-foreground-200"
+            >
+              <b>{formatNumberWithSuffix(user.followingsCount ?? 0)}</b>
+              <span>&nbsp;following</span>
+            </Link>
+          </div>
         </div>
 
         <ProfileActions
           user={user}
           className="flex md:hidden flex-row-reverse"
+          isOwnProfile={isOwnProfile}
         />
 
-        <Link
-          href={`/users/${username}/followers`}
-          className="mt-2 mb-4 flex md:hidden text-foreground-700 dark:text-foreground-200"
-        >
-          <b>{formatNumberWithSuffix(user.followersCount)}</b>
-          <span>&nbsp;followers</span>
-        </Link>
+        <div className="mt-2 mb-4 flex items-center gap-4">
+          <Link
+            href={`/users/${username}/followers`}
+            className="flex md:hidden text-foreground-700 dark:text-foreground-200"
+          >
+            <b>{formatNumberWithSuffix(user.followersCount)}</b>
+            <span>&nbsp;followers</span>
+          </Link>
+          <Link
+            href={`/users/${username}/following`}
+            className="flex md:hidden text-foreground-700 dark:text-foreground-200"
+          >
+            <b>{formatNumberWithSuffix(user.followingsCount ?? 0)}</b>
+            <span>&nbsp;following</span>
+          </Link>
+        </div>
       </CardHeader>
 
       <CardBody>

@@ -240,12 +240,14 @@ export const CommentsDrawer: FC<CommentsDrawerProps> = ({
               </div>
             }
             next={fetchPostComments}
-            dataLength={comments?.edges.length || 0}
+            dataLength={comments?.edges?.length || 0}
             scrollableTarget="people-who-liked"
             scrollThreshold="507px" // Skeleton height
             endMessage={
               <p className="mt-8 mb-4 text-center text-sm font-semibold text-foreground-600">
-                You&apos;ve reached the end! 👋
+                {comments?.edges?.length
+                  ? "You've reached the end! 👋"
+                  : "There are no comments yet"}
               </p>
             }
           >

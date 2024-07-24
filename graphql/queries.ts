@@ -374,6 +374,7 @@ export const GET_USER = `
       }
       following
       followersCount
+      followingsCount
       location
       socialMediaLinks {
         website

@@ -1,5 +1,6 @@
 "use client";
 
+import { User } from "@/lib/types";
 import { cn, getLinkedInShareUrl, getTwitterShareUrl } from "@/lib/utils";
 import Button from "@/shared/Button";
 import {
@@ -16,14 +17,15 @@ import {
   XIcon,
 } from "../icons";
 import { UserFollowButton } from "./UserFollowButton";
-import { User } from "@/lib/types";
 
 export const ProfileActions = ({
   user,
   className,
+  isOwnProfile,
 }: {
   user: User;
   className?: string;
+  isOwnProfile?: boolean;
 }) => {
   const shareProfile = (platform: string) => {
     const text = `Check ${user.name}'s profile on @hashnode ${window.location.href}`;
@@ -66,22 +68,24 @@ export const ProfileActions = ({
         </DropdownMenu>
       </Dropdown>
 
-      <Dropdown placement="bottom" disableAnimation>
-        <DropdownTrigger>
-          <Button isIconOnly variant="bordered">
-            <ChevronDown />
-          </Button>
-        </DropdownTrigger>
-        <DropdownMenu aria-label="Profile Actions" variant="flat">
-          <DropdownItem
-            startContent={<ExclamationCircleIcon className="h-6 w-6" />}
-          >
-            <p className="font-semibold">Report this profile</p>
-          </DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
+      {!isOwnProfile && (
+        <Dropdown placement="bottom" disableAnimation>
+          <DropdownTrigger>
+            <Button isIconOnly variant="bordered">
+              <ChevronDown />
+            </Button>
+          </DropdownTrigger>
+          <DropdownMenu aria-label="Profile Actions" variant="flat">
+            <DropdownItem
+              startContent={<ExclamationCircleIcon className="h-6 w-6" />}
+            >
+              <p className="font-semibold">Report this profile</p>
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      )}
 
-      <UserFollowButton following={user.following} />
+      {!isOwnProfile && <UserFollowButton following={user.following} />}
     </div>
   );
 };

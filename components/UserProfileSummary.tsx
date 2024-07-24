@@ -80,7 +80,13 @@ export const UserProfileSummary = ({ userId }: { userId: string }) => {
         <CardBody className="px-3 py-0">
           <p className="text-small pl-px text-default-500">{user.tagline}</p>
           {user.publicationDomain && (
-            <Link href={user.publicationDomain} size="sm" className="mt-2">
+            <Link
+              href={user.publicationDomain}
+              target="_blank"
+              isExternal
+              size="sm"
+              className="mt-2"
+            >
               {user.publicationDomain}
             </Link>
           )}
