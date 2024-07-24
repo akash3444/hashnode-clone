@@ -5,6 +5,7 @@ import {
   ProfileActions,
   SocialMediaHandles,
 } from "@/components/User";
+import TechStack from "@/components/User/TechStack";
 import UserBadges from "@/components/User/UserBadges";
 import { auth } from "@/lib/auth";
 import { DEFAULT_PROFILE_PICTURE } from "@/lib/constants";
@@ -180,6 +181,7 @@ const UserPage: FC<UserPageProps> = async ({ params: { username } }) => {
               )}
             </CardBody>
           </Card>
+          <TechStack techStack={user.techStack} />
           <UserBadges badges={user.badges} />
         </div>
       </CardBody>

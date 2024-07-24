@@ -131,6 +131,18 @@ export interface User {
       }[];
     };
   };
+  techStack: {
+    nodes: Technology[];
+    pageInfo: PageInfo;
+    totalDocuments: number;
+  };
+}
+
+interface Technology {
+  id: string;
+  name: string;
+  slug: string;
+  logo: string;
 }
 
 export interface Badge {

@@ -396,6 +396,14 @@ export const GET_USER = `
         image
         dateAssigned
       }
+      techStack(page: 1, pageSize: 20) {
+        nodes {
+          id
+          name
+          slug
+          logo
+        }
+      }
     }
   }
 `;
