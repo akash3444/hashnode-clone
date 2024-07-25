@@ -255,3 +255,18 @@ export type ConnectionType = "following" | "followers";
 export type PostCommentSortBy = "TOP" | "RECENT";
 
 export type NewsletterSubscribeStatus = "PENDING" | "CONFIRMED";
+
+export interface Activity {
+  dateAdded: string;
+  isActive: boolean;
+  itemType: string;
+  post: { id: string; title: string; slug: string };
+  reason: string;
+  reply: string;
+  response: string;
+  responseStamp: string;
+  type: string;
+  url: string;
+  user: string;
+  _id: string;
+}

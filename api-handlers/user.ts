@@ -3,7 +3,7 @@
 import { TOGGLE_FOLLOW_USER } from "@/graphql/mutations";
 import { GET_USER, GET_USER_INFO } from "@/graphql/queries";
 import { getAccessToken } from "@/lib/auth";
-import { ConnectionType, User } from "@/lib/types";
+import { Activity, ConnectionType, User } from "@/lib/types";
 import { getGraphQlEndpoint } from "@/lib/utils";
 
 interface GetUserConnectionsVariables {
@@ -11,6 +11,13 @@ interface GetUserConnectionsVariables {
   page: number;
   type: ConnectionType;
 }
+
+export type ActivitiesGroupedByDate = [
+  {
+    activities: Activity[];
+    date: string;
+  }
+];
 
 export const getUser = async (username: string): Promise<User> => {
   const accessToken = (await getAccessToken()) || "";
@@ -92,4 +99,23 @@ export const toggleFollowUser = async (
   const data = await res.json();
 
   return data?.data?.toggleFollowUser;
+};
+
+export const getUserRecentActivity = async ({
+  username,
+  page = 0,
+}: {
+  username: string;
+  page: number;
+}): Promise<{
+  activitiesGroupedByDate: ActivitiesGroupedByDate;
+}> => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_HASHNODE_REST_API_URL}/profile/${username}/recent-activity?page=${page}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  return await res.json();
 };
