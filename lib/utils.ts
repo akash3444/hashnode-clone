@@ -46,3 +46,22 @@ export const getGraphQlEndpoint = () =>
 
 export const capitalize = (str: string) =>
   str ? str[0].toUpperCase() + str.slice(1) : str;
+
+export function debounce<T extends (...args: any[]) => void>(
+  func: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+
+  return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+    const context = this;
+
+    if (timeout !== null) {
+      clearTimeout(timeout);
+    }
+
+    timeout = setTimeout(() => {
+      func.apply(context, args);
+    }, wait);
+  };
+}

@@ -1,0 +1,41 @@
+.ProseMirror {
+  @apply caret-black dark:caret-white outline-0 pr-8 pl-20 pb-44 z-0 lg:pl-8 lg:pr-8;
+  @apply prose prose-slate max-w-3xl mx-auto prose-p:text-lg md:prose-p:text-xl prose-p:leading-8 md:prose-p:leading-9 prose-p:tracking-wide prose-h1:text-3xl prose-h1:leading-10 md:prose-h1:text-4xl prose-h2:text-2xl md:prose-h2:text-3xl prose-tr:border prose-td:border dark:prose-td:border-foreground-800 prose-td:pl-4 prose-td:text-lg prose-td:py-2 prose-thead:font-semibold prose-thead:bg-foreground-50 dark:prose-thead:bg-foreground-900 prose-code:bg-foreground-200 dark:prose-code:bg-foreground-800 prose-code:py-1 prose-code:px-2 prose-code:rounded-md prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-code:font-medium prose-code:prose-pre:!text-base prose-code:prose-pre:bg-transparent px-6 dark:prose-invert prose-a:break-words prose-p:break-words;
+
+  & > * {
+    @apply mx-auto max-w-2xl;
+  }
+
+  .selection {
+    @apply inline;
+  }
+
+  .selection,
+  *::selection {
+    @apply bg-black/10 dark:bg-white/20;
+  }
+
+  & > .react-renderer {
+    @apply my-12 first:mt-0 last:mb-0;
+  }
+
+  &.resize-cursor {
+    @apply cursor-col-resize;
+  }
+
+  .ProseMirror-gapcursor {
+    @apply relative w-full max-w-2xl mx-auto;
+
+    &:after {
+      @apply border-t-black/40 dark:border-t-white/40 w-full -top-[1.5em] max-w-2xl mx-auto left-0 right-0;
+    }
+  }
+}
+
+[data-theme='slash-command'] {
+  width: 1000vw;
+}
+
+@import './partials/animations.css';
+@import './partials/placeholder.css';
+

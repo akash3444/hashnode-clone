@@ -585,3 +585,36 @@ export const GET_AUTHENTICATED_USER = `
     }
   }
 `;
+
+export const GET_DRAFT = `
+  query Draft($id: ObjectId!) {
+    draft(id: $id) {
+      id
+      slug
+      title
+      subtitle
+      author {
+        id
+      }
+      content {
+        markdown
+      }
+      coverImage {
+        url
+        attribution
+        photographer
+      }
+      updatedAt
+      settings {
+        disableComments
+      }
+      seo {
+        title
+        description
+      }
+      publication {
+        id
+      }
+    }
+  }
+`;

@@ -270,3 +270,79 @@ export interface Activity {
   user: string;
   _id: string;
 }
+
+// Draft
+interface DraftCoverImage {
+  url: string;
+  attribution: string;
+  photographer: string;
+  isAttributionHidden: boolean;
+}
+
+interface Content {
+  markdown: string;
+  html: string;
+  text: string;
+}
+
+interface SEO {
+  title: string;
+  description: string;
+}
+
+interface DraftSettings {
+  disableComments: boolean;
+  stickCoverToBottom: boolean;
+  isDelisted: boolean;
+}
+
+type OpenGraphMetaData = { image: string };
+
+interface TableOfContentsItem {
+  id: number | string;
+  level: number;
+  slug: string;
+  title: string;
+  parentId: number | string;
+}
+
+type TableOfContentsFeature = {
+  isEnabled: boolean;
+  items: TableOfContentsItem[];
+};
+type DraftFeatures = { tableOfContents: TableOfContentsFeature };
+
+type BackupStatus = "success" | "failed";
+
+interface DraftBackup {
+  status: BackupStatus;
+  at: string;
+}
+
+export interface Draft {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  author: User;
+  coAuthors: [User];
+  publishAs: User;
+  tags: [Tag];
+  tagsV2: [Tag];
+  canonicalUrl: "xyz789";
+  publication: Publication;
+  coverImage: DraftCoverImage;
+  readTimeInMinutes: 123;
+  series: Series;
+  content: Content;
+  updatedAt: string;
+  settings: DraftSettings;
+  seo: SEO;
+  ogMetaData: OpenGraphMetaData;
+  features: DraftFeatures;
+  lastBackup: DraftBackup;
+  lastSuccessfulBackupAt: string;
+  lastFailedBackupAt: string;
+  scheduledDate: string;
+  isSubmittedForReview: boolean;
+}
