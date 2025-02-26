@@ -81,7 +81,6 @@ export const GET_FEED = `
     _id: id
     name
     photo: profilePicture
-    isPro
     username
     __typename
   }
@@ -143,7 +142,6 @@ export const GET_FEED = `
       _id: id
       name
       photo: profilePicture
-      isPro
       username
       __typename
     }
@@ -178,7 +176,6 @@ export const GET_DISCUSSIONS_TOP_COMMENTERS = `
     name
     photo: profilePicture
     following
-    isPro
     username
     __typename
   }
@@ -284,7 +281,6 @@ export const GET_TAG_FEED = `
     _id: id
     name
     photo: profilePicture
-    isPro
     username
     __typename
   }
@@ -346,7 +342,6 @@ export const GET_TAG_FEED = `
       _id: id
       name
       photo: profilePicture
-      isPro
       username
       __typename
     }
@@ -368,7 +363,6 @@ export const GET_USER = `
     user(username: $username) {
       id
       name
-      isPro
       bio {
         text
       }
